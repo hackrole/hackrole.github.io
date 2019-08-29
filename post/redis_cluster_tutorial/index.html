@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>redis集群教程</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>redis集群教程</h2>
+        
+
+<p>redis集群相关内容, 讲解如何设置集群，对集群做测试和常规操作。
+不涵盖redis集群的细节，只从用户的角度讲如何使用redis集群, 以及redis的高可用性和一致性相关内容。
+更具体内容参见::</p>
+
+<pre><code>http://redis.io/topics/cluster-spec
+</code></pre>
+
+<h1 id="redis集群的作用">redis集群的作用</h1>
+
+<p>1) 自动把数据分布到多台redis实例上.</p>
+
+<p>2) 再部分节点失败后，保持可用性。再大多数redis节点失败后,redis集群仍然会失败.</p>
+
+<h1 id="redis集群tcp端口">redis集群tcp端口</h1>
+
+<p>redis集群需要所有节点开启两个端口.</p>
+
+<p>1) normal-port. 如6379. 用于客户端的请求处理。</p>
+
+<p>2) high-port(normal-port+10000). 如16379.
+   用于集群内节点间使用2进制协议交换数据，
+   同时完成节点的错误检测，配置更新，故障转移认证等.</p>
+
+<p>确定开启这两个端口，并正确的设置防火墙。不然集群可以无法正常工作.</p>
+
+<h1 id="redis集群与docker">redis集群与docker</h1>
+
+<p>redis集群无法的NAT网络下使用。</p>
+
+<p>配合docker使用时，需要开启docker host-networking-mode. 具体参见docker相关文档。</p>
+
+<h1 id="redis集群数据共享方式">redis集群数据共享方式</h1>
+
+<p>redis集群不是通过一致性hash实现. 而且通过hash-slot概念实现(hash槽)
+hash槽实现方式: CRC16(key) % 16384. 所以redis集群最多只能包含16384个实例。
+每个redis实例都是复制一部分hash槽。如A: 1-5500. B: 5501-11000
+这样的实现方式的好处是可以方便的增加和删除节点。只需将对应的槽做移动</p>
+
+<p>如果一个操作涉及多个key, 只要这些key再同一个hash槽中，redis集群允许这类multi-key操作.
+可以通过hash-tag的概念强制一系列键保存到同一个hash槽中。</p>
+
+<p>hash-tag概念, 如果一个key里包含{tag}, 则只是用tag来做hash, 以此保证数据被hash到相同的槽中。
+如: foo{bar} never{bar}</p>
+
+<h1 id="redis集群的主从模式">redis集群的主从模式</h1>
+
+<p>redis的分片配置redis主从复制， 来保证高可用性。</p>
+
+<h1 id="数据一致性">数据一致性</h1>
+
+<p>redis集群没法保证数据的一致性。再特定的场景下,redis会丢失部分数据.
+主要原因在于redis的异步同步的方式上。这是在性能和一致性上的权衡.</p>
+
+<p>还要注意处理集群分裂的问题. 如一个6节点的集群分裂为两个3节点集群，然后各自工作
+导致两边数据不同步的问题.</p>
+
+<h1 id="redis集群配置">redis集群配置</h1>
+
+<h2 id="配置参数">配置参数</h2>
+
+<p>.. _TODO:</p>
+
+<pre><code class="language-nginx">cluster-enabled &lt;yes/no&gt;
+
+# 用于保存集群状态和节点信息，由集群自动更新
+cluster-config-file &lt;filename&gt;
+# 超时时间，超时后认为节点不再可用
+cluster-node-timeout &lt;milliseconds&gt;
+
+cluster-slave-validity-factor &lt;factor&gt;
+
+cluster-migration-barrier &lt;count&gt;
+
+cluster-require-full-coverage &lt;yes/no&gt;
+</code></pre>
+
+<h2 id="创建和使用redis集群">创建和使用redis集群</h2>
+
+<p>一般都需要安装ruby的redis包</p>
+
+<pre><code class="language-bash">gem install redis
+</code></pre>
+
+<p>如果是测试可以使用redis下提供的命令，快速启动集群做测试.如下</p>
+
+<pre><code class="language-bash">cd &lt;reids&gt;/utils/utils/create-cluster/
+
+# read the readme and gem install redis.
+
+./create-cluster start
+
+./create-cluster create.
+
+# test it now.
+
+./create-cluster stop &amp;&amp; ./create-cluster clean
+</code></pre>
+
+<p>当然最好是自己配置集群环境，这样能学到更多东西, 如下</p>
+
+<p>TODO 补全</p>
+
+<pre><code class="language-bash">mkdir cluster-test
+cd cluster-test
+mkdir 7000 7001 7002 7003 7004 7005
+</code></pre>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

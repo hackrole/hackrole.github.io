@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>python标准模块struct笔记</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>python标准模块struct笔记</h2>
+        
+
+<p>struct模块的作用为，完成字节串到python对象的转换.</p>
+
+<h1 id="基本的api接口">基本的api接口</h1>
+
+<h2 id="python对象-字节串">python对象 -&gt; 字节串</h2>
+
+<p>1) pack(fmt, v1, v2, v3&hellip;)</p>
+
+<p>2) pack_info(fmt, buffer, offset, v1, v2&hellip;)
+    将多个python对象按固定的格式转化为字节串</p>
+
+<h2 id="字节串-python对象">字节串 -&gt; python对象</h2>
+
+<p>1) unpack(fmt, str)</p>
+
+<p>2) unpack_from(fmt, buffer, offset=0)</p>
+
+<h2 id="其他">其他</h2>
+
+<p>1) calcsize(fmt) 计算一个fmt需要多少字节</p>
+
+<p>2) Struct(fmt), 包含pack/unpack等方法。</p>
+
+<h1 id="转换说明">转换说明</h1>
+
+<p>转换中要重要的有以下四项：</p>
+
+<h2 id="byte-order">byte order</h2>
+
+<p>字节顺序有大端和小端两种。
+不同机器可能使用不同的字节序，
+网络字节序统一采用大端.</p>
+
+<p>1) native 本地字节序(与机器和本地环境相关)</p>
+
+<p>2) little-endian 小端</p>
+
+<p>3) big-endian 大端</p>
+
+<p>4) network 网络字节序（使用大端)</p>
+
+<h2 id="size">size</h2>
+
+<p>同一个c type在不同机器上可能有不同的大小。</p>
+
+<p>1) native 于机器和本地环境相关的大小</p>
+
+<p>2) standard 于环境无关的标准大小</p>
+
+<h2 id="todo-alignment">TODO alignment</h2>
+
+<p>对齐方式</p>
+
+<h2 id="format-char">format char</h2>
+
+<table>
+<thead>
+<tr>
+<th>char</th>
+<th>c type</th>
+<th>python type</th>
+<th>size</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>x</td>
+<td>pad bytes</td>
+<td></td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>c</td>
+<td>char</td>
+<td>string(len 1)</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>b</td>
+<td>signed char</td>
+<td>integer</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>B</td>
+<td>unsigned char</td>
+<td>integer</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>?</td>
+<td>bool</td>
+<td>bool</td>
+<td>1</td>
+</tr>
+
+<tr>
+<td>h</td>
+<td>short</td>
+<td>integer</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>H</td>
+<td>unsigned short</td>
+<td>integer</td>
+<td>2</td>
+</tr>
+
+<tr>
+<td>i</td>
+<td>int</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>I</td>
+<td>unsigned int</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>l</td>
+<td>long</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>L</td>
+<td>unsigned long</td>
+<td>integer</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>q</td>
+<td>long long</td>
+<td>integer</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>Q</td>
+<td>unsigned long long</td>
+<td>integer</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>f</td>
+<td>float</td>
+<td>float</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>d</td>
+<td>double</td>
+<td>float</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>s</td>
+<td>char[]</td>
+<td>string</td>
+<td></td>
+</tr>
+
+<tr>
+<td>p</td>
+<td>char[]</td>
+<td>string</td>
+<td></td>
+</tr>
+
+<tr>
+<td>P</td>
+<td>void *</td>
+<td>integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="重要事项">重要事项</h1>
+
+<h2 id="struct-前缀">struct 前缀</h2>
+
+<table>
+<thead>
+<tr>
+<th>char</th>
+<th>byte order</th>
+<th>size</th>
+<th>alignment</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>@</td>
+<td>native</td>
+<td>native</td>
+<td>native</td>
+</tr>
+
+<tr>
+<td>=</td>
+<td>native</td>
+<td>standard</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>&lt;</td>
+<td>litte-endian</td>
+<td>standard</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>&gt;</td>
+<td>big-endian</td>
+<td>standard</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>!</td>
+<td>network</td>
+<td>standard</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+
+<p>若格式化字符串第一个字符不是上面的一个，则未默认的@.</p>
+
+<h2 id="todo-弄懂字节序和alignment规则">TODO 弄懂字节序和alignment规则</h2>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>algorithms on hackrole&#39;s note</title>
+    <link>https://hackrole.github.io/category/algorithms/</link>
+    <description>Recent content in algorithms on hackrole&#39;s note</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 08 Mar 2019 10:05:30 +0000</lastBuildDate>
+    
+	<atom:link href="https://hackrole.github.io/category/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>sort algorithms note</title>
+      <link>https://hackrole.github.io/post/sort/</link>
+      <pubDate>Fri, 08 Mar 2019 10:05:30 +0000</pubDate>
+      
+      <guid>https://hackrole.github.io/post/sort/</guid>
+      <description>heap sort 1) in-place sort algorithms
+2) O(nlgn)
+过程要点 1) left/right/parent可以通过(2n, 2n+1, n/2)算出.
+2) 一般数组索引从0开始，left/right/parent为(2n+1, 2n+2, (n-1)/2)
+3) 建堆算法 O(n)
+4) 堆有一个cap和一个len(当前长度)
+步骤 # max-heap 保持堆性质 def max_heap(h, i): l = left(i) r = right(i) if l &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[l] &amp;gt; A[i]: lg = l if r &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[r] &amp;gt; A[i]: lg = r if lg != i: A[i], A[lg] = A[lg], A[i] max_heap(h, lg) # build-heap 建堆 def build_heap(h): hs = len(h) for i = hs/2; i &amp;gt;= 0; i--: build_heap(h, i) # heap-sort 排序 def heap_sort(A): build_heap(A) for i = len(A); i&amp;gt;0; i--: A[0], A[i] = A[i], A[0] A.</description>
+    </item>
+    
+  </channel>
+</rss>

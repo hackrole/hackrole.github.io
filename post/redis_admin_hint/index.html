@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>redis服务管理需知</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>redis服务管理需知</h2>
+        
+
+<p>介绍一些redis部署时的注意事项</p>
+
+<h1 id="注意事项">注意事项</h1>
+
+<p>1) 建议使用linux部署。</p>
+
+<p>2) sysctl vm.overcommit_memory=1 或者 vm.overcommit_memory = 1 (/etc/sysctl.conf)</p>
+
+<p>3) echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</p>
+
+<p>4) 设置一个和内存一样大或更大的swap分区，不然redis有可能在内存不足时被系统杀死。</p>
+
+<p>5) 设置一个明确的maxmemory. 这样redis会在内存到限后抛出错误，而不会falling.</p>
+
+<p>6) 在写比较重的场景下需要有大约2倍于normal的内存。这些是来在内存中保留那些需要被写回磁盘的数据.</p>
+
+<p>7) 配置supervisor类工具时，设置 daemonize no</p>
+
+<p>8) 开启slave特性时，即便不使用持久化特性,redis也会perform RDB save. 除非使用实验性的diskless-sync.</p>
+
+<p>9) 开启slave特性时，要确保要么打开master节点的保存特性，要么关闭master节点的自动重启。</p>
+
+<p>10) 注意开发redis安全相关配置. require-pass/rewrite-command/bind-ip</p>
+
+<h1 id="aws注意事项">aws注意事项</h1>
+
+<p>1) 使用HWS实例，不要使用pv实例</p>
+
+<p>2) 不要使用太老的实例。 m3 good than m1</p>
+
+<p>3) redis在EBS的持久话需要注意，EBS可能会太慢。</p>
+
+<p>4) 你可能想尝试diskless-sync. 如果replication-sync有问题的话。</p>
+
+<h1 id="redis升级或重启建议">redis升级或重启建议</h1>
+
+<p>TODO</p>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

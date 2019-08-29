@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tips on hackrole&#39;s note</title>
+    <link>https://hackrole.github.io/tags/tips/</link>
+    <description>Recent content in tips on hackrole&#39;s note</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Aug 2018 10:23:01 +0000</lastBuildDate>
+    
+	<atom:link href="https://hackrole.github.io/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>minikube tips</title>
+      <link>https://hackrole.github.io/post/k8s_minikube_tips/</link>
+      <pubDate>Fri, 03 Aug 2018 10:23:01 +0000</pubDate>
+      
+      <guid>https://hackrole.github.io/post/k8s_minikube_tips/</guid>
+      <description> minikube搭建issuses 1) 启动失败
+最新的28.2版本有bug,使用25.2版本
+同时25.2版本应该使用kvm,kvm2启动会失败
+注意要rm -rf ~/.minikube删除旧文件
+国内须开启代理,代理不能使用127.0.0.1, 不然docker pull会失败. 须设置no_proxy=192.168.99.0/24
+.. code-block:: bash
+https_proxy=192.168.88.242:8118 minikube start --docker-env \ https_proxy=192.168.88.242:8118 --docker-env \ http_proxy=192.168.88.242:8118 --docker-env \ no_proxy=192.168.99.0/24 --vm-driver kvm  启动后验证是否成功:
+.. code-block:: bash
+minikube status kubectl cluster-info kubectl get pod --all-namespaces=true minikube dashboard  </description>
+    </item>
+    
+    <item>
+      <title>文章写作tips</title>
+      <link>https://hackrole.github.io/post/how_to_write_good_article/</link>
+      <pubDate>Wed, 20 Jan 2016 10:04:46 +0000</pubDate>
+      
+      <guid>https://hackrole.github.io/post/how_to_write_good_article/</guid>
+      <description>本文是对 图灵社区文章http://www.ituring.com.cn/article/210924 的整理。
+why this 作为一名程序员，工作中学习中要记录很多东西。本人也一直使用rst记录各种学习笔记.
+但是, 比较苦恼的是写作能力实在太差。自己写的笔记回头读总感觉各种不通顺,错别字一堆. 最搞的就是过一段时间看的时候感觉完全看不懂自己的笔记.
+大多数人估计都面临和我一样的问题，我也在寻找一些能提高写作能力，更好的记录笔记，做好个人知识管理。
+如何良好的写作 口语与写作分不清 ~~~~~~~~~~~~~~~~
+写做前没有思考，想到哪写到哪。导致文章里口语话严重。容易出现歧义，表述不清或太冗余的问题. 建议如下:
+1) 尽量把单字组成词语。
+2) 去除口语话词，如 了 .
+缺少重点，内容太过冗余 ~~~~~~~~~~~~~~~~~~~~~~
+事前没整理要表达的重点，内容重复严重.建议如下.
+1) 去重, 语句去重和语义去重.
+2) 避免内容多次重复.
+3) 精简语句
+4) 扣题， 扣题 ， 扣题. 重要的技能放三遍。
+行文逻辑差 ~~~~~~~~~~
+建议提前写大纲，做必要的整理准备.
+正确的使用标点符号 ~~~~~~~~~~~~~~~~~~
+注重行文排版 ~~~~~~~~~~~~
+总结 内容大致总结如下:
+1) 写作最好先整理大纲和重点，避免行文天马行空或太冗余.
+2) 练习写作, 锻炼语句和行文的安排.
+3) 注意文章结构的安排和排版.
+4) 区别口语话和写作文体的区别.</description>
+    </item>
+    
+    <item>
+      <title>mongodb索引建立和优化</title>
+      <link>https://hackrole.github.io/post/mongodb_indexes_pretty/</link>
+      <pubDate>Fri, 27 Jun 2014 17:38:06 +0000</pubDate>
+      
+      <guid>https://hackrole.github.io/post/mongodb_indexes_pretty/</guid>
+      <description>TODO: 来源
+ 索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引
+ 可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响
+ 对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读
+ nosqlfan是个学习和找问题的好地方
+  mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用
+db.things.ensureIndex({j:1})  默认单列/文档/组合索引  每个集合都会有个默认索引 _id ,该字段不能删除
+ 单列索引可以是独立字段，也可以是嵌套文档字段
+ 建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO
+ 稀疏索引的概念与sql中的稀疏索引概念不同
+ mongodb不会为字段值不存在的文档加入索引,null值不能被查出
+ 唯一索引
+db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})   特殊索引 mongodb支持2d索引，用于地理位置服务。
+mongodb支持text全文索引，但是功能较弱.
+须注意：
+1) mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html
+2) mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理
+mongodb支持两种2d索引:
+1) 平面2d索引
+2) 球面2d索引（最新特性，距离计算更加准确）
+不同的索引在用于地理位置服务时的处理方式不同，具体可以参见： http://www.tuicool.com/articles/MVrqAn</description>
+    </item>
+    
+    <item>
+      <title>编译安装ruby问题总结</title>
+      <link>https://hackrole.github.io/post/ruby_install_from_source/</link>
+      <pubDate>Tue, 14 Jan 2014 17:59:31 +0000</pubDate>
+      
+      <guid>https://hackrole.github.io/post/ruby_install_from_source/</guid>
+      <description>多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.
+rvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.
+.. note::
+多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同.  卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.
+解决方法. .. code-block:: ruby
+sudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome  卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了
+ldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url
+.. code-block:: shell
+ldd `which vim`  可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题
+编译ruby 编译前记得安装readline库, 不然无法使用补全。</description>
+    </item>
+    
+  </channel>
+</rss>

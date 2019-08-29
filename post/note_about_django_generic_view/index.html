@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>django generic-view使用笔记</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>django generic-view使用笔记</h2>
+        
+
+<p>做了一个django app, 由于数据库使用mongodb, 所以没法使用django-admin. 就自己写了个admin.
+起初用的是最简单的一个视图一个函数，forms/generic-view都没用。但是问题很明显，容易出现bug，代码重复度很高。</p>
+
+<p>后来改用django-generic view配合forms, 总的来是开发效率和代码质量确实会有不错的提升，但是相对的，代码逻辑被分散在各处，
+即便是自己写的代码，过一段时间回头看都有点看不太懂。</p>
+
+<p>所以这里坐下笔记，整理下django generic-view的功能和流程, 以及自己开发过程中的一些感想，以备后用.</p>
+
+<h2 id="与django-rest-framework的对比">与django-rest-framework的对比</h2>
+
+<p>django-rest-framework里也有类似generic-view的概念。
+两者的目的比较相似，都是为了减少重复代码，加快开发速度.</p>
+
+<p>比较大的区别是:  适用目标不同.
+django-rest-framework的目标是api接口，所以使用了get/post/delete/put/等method, 设计上就想是对一个model的CURD操作的映射。
+django-generic-view的目标是web界面，所以只使用了get/post方法，设计上也不是一眼就能看出每个类的目的。</p>
+
+<h2 id="django-generic-view主要组成">django-generic-view主要组成</h2>
+
+<p>最基础的View/TemplateView/RedirectView/StaticView等
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
+
+<p>listView</p>
+
+<pre><code>
+提供对象列表视图
+
+detailView
+~~~~~~~~~~
+
+单个对象的详情视图
+
+formView/createView/updateView/deleteView
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+用于编辑信息的视图
+
+yearView/monthView等暂时没理解
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+django-generic_view内部流程
+---------------------------
+
+listView
+</code></pre>
+
+<p>实现了默认的get方法，
+先调用get_queryset获取queryset, 之后通过paginate_querset对queryset进行分页.
+之后通过调用get_context_data获取一些必要的context, 并把view/request放入其中，
+之后调用render_to_response返回页面.</p>
+
+<p>1) get_queryset默认返回但强的queryset属性，或者model.objects.all.</p>
+
+<p>2) 可以重写get_queryset来返回特定的查询，结果会被设置到self.object_list.</p>
+
+<p>3) 可以通过分页相关的属性或方法设置分页相关的流程。</p>
+
+<p>4) 通过get_context_data可以获取额外的属性输出到页面.</p>
+
+<p>5) render_to_response使用templateMixin来输出结果.</p>
+
+<p>detailView
+~~~~~~~~~~</p>
+
+<p>实现默认的get方法.
+先调用get_object方法获取对象,
+之后通过get_context_data获取必要的context,
+之后返回render_to_response方法</p>
+
+<p>1) get_object默认会调用get_queryset来获取对象.</p>
+
+<p>2) 可以通过定义slug_field等，设置get_object查询条件.</p>
+
+<p>3) 通过定义get_context_data设置额外的页面属性.</p>
+
+<p>formView
+~~~~~~~~</p>
+
+<p>实现默认的get方法，
+通过get_form_class返回默认的form类，.
+通过get_form来获取form实例，其中会调用get_initial(), get_prefix()获取form initial.
+然后通过get_context_data获取必要的页面属性
+之后通过render_to_response返回页面</p>
+
+<p>1) 可以通过get_form_class这里返回特殊choices的form等.</p>
+
+<p>2) 通过get_initial可以为form表单设置初始化值。</p>
+
+<p>3) get_prefix作用还不明确</p>
+
+<p>4) 通过get_context_data可以设置额外属性,比较enums.choices</p>
+
+<p>实现默认的post方法
+前面和get方法类似，通过get_form_class/get_form获取form实例。
+之后调用form.is_valid,
+如果成功，调用form_valid, 默认的实现会调用form.save()，然后redirect到success_url.
+如果失败, 调用form_invalid, 默认实现或返回的form页面，此时form实例会携带错误信息.</p>
+
+<p>1) 需要在页面上输出form的错误信息</p>
+
+<p>2) 需要在form中实现save方法完成保存.</p>
+
+<h2 id="createview-updateview-deleteview">createView/updateview/deleteview</h2>
+
+<p>使用modelForm实现, 暂时没看。</p>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

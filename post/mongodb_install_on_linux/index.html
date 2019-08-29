@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>linux(ubuntu)下安装mongodb服务器</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>linux(ubuntu)下安装mongodb服务器</h2>
+        
+
+<h1 id="概述">概述</h1>
+
+<p>安装过程可以参考官网，文档很详细.</p>
+
+<p>ubuntu官网源有提供mongodb安装，但是一般版本都比较落后，更新不及时。
+所以可以采用mongodb提供的安装源，安装最新的mongodb.</p>
+
+<p>mongodb只为64-bit的长期支持版本提供安装源，即ubuntu12.04/ubuntu14.04. 其他版本也许可以使用，但是不推荐。</p>
+
+<p>mongodb官网有5个主要的包:
+1) mongodb-dev. meta-pacage. 自动安装其他四个包.
+2) mongodb-org-server. mongod-daemon以及配置文件/init脚本
+3) mongodb-org-mongos. mongos-daemon.
+4) mongodb-org-shell. mongo-shell
+5) mongodb-org-tools. mongoimport/mongodump/bsondump/mongoexport/retore/stat/perf/oplog等工具.</p>
+
+<h1 id="安装过程">安装过程</h1>
+
+<p>具体过程如下</p>
+
+<pre><code class="language-bash"># import mongodb GPK key
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+# add source
+# 12.04
+echo &quot;deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+# 14.04
+echo &quot;deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse&quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+</code></pre>
+
+<p>如果想安装特定版本mongodb</p>
+
+<pre><code class="language-bash"># 如果只mongodb-org=3.2.0，会安装最新版本mongodb. 后面的必须也制定。
+sudo apt-get install -y mongodb-org=3.2.0 mongodb-org-server=3.2.0 mongodb-org-shell=3.2.0 mongodb-org-mongos=3.2.0 mongodb-org-tools=3.2.0
+</code></pre>
+
+<p>如果想使用老版本mongodb，同时阻止upgrade更新</p>
+
+<pre><code class="language-bash">echo &quot;mongodb-org hold&quot; | sudo dpkg --set-selections
+echo &quot;mongodb-org-server hold&quot; | sudo dpkg --set-selections
+echo &quot;mongodb-org-shell hold&quot; | sudo dpkg --set-selections
+echo &quot;mongodb-org-mongos hold&quot; | sudo dpkg --set-selections
+echo &quot;mongodb-org-tools hold&quot; | sudo dpkg --set-selections
+</code></pre>
+
+<h2 id="补充-手动安装mongodb">补充:手动安装mongodb</h2>
+
+<p>实例过程如下</p>
+
+<pre><code class="language-bash"># 下载可用包.
+curl -O https://fastdl.mongodb.org/linux/mongodb-linux-i686-3.2.0.tgz
+
+# 解压
+tar -zxvf mongodb-linux-i686-3.2.0.tgz
+
+# copy to right locationi. and set $PATH.
+mkdir -p mongodb
+cp -R -n mongodb-linux-i686-3.2.0/ mongodb
+export PATH=&lt;mongodb-install-directory&gt;/bin:$PATH
+</code></pre>
+
+<h2 id="补充-源码安装">补充:源码安装</h2>
+
+<p>mongodb使用python pycons做自动构建。需要先安装pyconds.</p>
+
+<p><strong>TODO</strong></p>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

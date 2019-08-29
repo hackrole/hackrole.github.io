@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>anisble note</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>anisble note</h2>
+        
+
+<h1 id="playbook组织">playbook组织</h1>
+
+<p>应该按项目组织playbook, 而不是按组件.</p>
+
+<p>比如一个畅通的web应用, api-server, db, 负载均衡, redis-cache, 日志收集
+应该在一个playbook里写,而不是分成四个play,每个装一块.</p>
+
+<p>playbook的粒度控制在项目级别.</p>
+
+<p>在hosts中列出host,之后按项目分好组.设置好组变量和全局变量.一般如果需要设置太多host变量,多半都是ansible组织出现问题.
+简单变量可是使用hosts来完成,配合部分group vars_files, 少使用host vars_files</p>
+
+<p>需要加密的信息使用ansible-vault</p>
+
+<h1 id="playbook编写注意">playbook编写注意</h1>
+
+<p>尽量保证每个playbook考虑周全,不然出现第一次跑ok,第二次跑就挂的情况.</p>
+
+<p>还有可以考虑实现判断某一步是否已完成,避免每次都重复在一遍,也要考虑通过命令传参来强制跳过判断重复执行.</p>
+
+<p>个人更喜欢用supervisor取代systemctl/init.d, supervisor加载新配制的方式是,
+使用service supervisor restart的方式有不少问题.</p>
+
+<pre><code class="language-ansible">- name: reload supervisor
+  cmd: supervisorctl reread &amp;&amp; supervisorctl update
+  - name: ensure programming running
+    supervisorctl:
+    name: program
+    state: started
+</code></pre>
+
+<p>supervisor记得设置minfds, 避免因为ulimits的问题无法启动进程,如elasticsearch</p>
+
+<h1 id="ansible系统加固">ansible系统加固</h1>
+
+<p>ansible有个用来加固系统的roles, 建议加上.
+包亏一些sysctl配置都是运行linux server需要的.</p>
+
+<h1 id="常用module">常用module</h1>
+
+<h2 id="debug-ping">debug/ping</h2>
+
+<h2 id="copy-file-template-content-in-file">copy/file/template/content_in_file</h2>
+
+<h2 id="user-group">user/group</h2>
+
+<h2 id="services-supervisorctl">services/supervisorctl</h2>
+
+<h1 id="roles">roles</h1>
+
+<p>多使用roles, 使用ansible-galaxy查找roles, 每个roles记得查看支持的系统版本,
+看看role的源码, 也可适当作出修改.</p>
+
+<h1 id="测试">测试</h1>
+
+<p>molecule官方推出的测试roles, playbook的工具, 文档比较少.
+基于docker自动跑roles,完成测试.</p>
+
+<p>本地也可以使用vagrant来测试.</p>
+
+<h1 id="best-practice">best practice</h1>
+
+<p>TODO link</p>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

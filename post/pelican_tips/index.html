@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>pelican使用tips</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>pelican使用tips</h2>
+        
+
+<h2 id="不要配置siteurl">不要配置SITEURL</h2>
+
+<p>在pelicanconf.py里配置SITEURL后，生成的页面里所有url都会带上这个url.
+使用起来反而更加麻烦.</p>
+
+<p>.. code-block:: html</p>
+
+<p><!-- 不设置SITE_URL生成的链接 -->
+   <a href="/chrome_tips.html" /></p>
+
+<p><!-- 设置SITE_URL生成的链接 -->
+   <a href="http://www.blog.com/chrome_tips.html" /></p>
+
+<h2 id="设置时间默认的格式">设置时间默认的格式</h2>
+
+<p>默认的时间格式看着挺不习惯. 在pelicanconf.py里加入如下配置修改.</p>
+
+<p>.. code-block:: python</p>
+
+<p>TIMEZONE = &lsquo;Asia/Shanghai&rsquo;
+   DEFAULT_DATE_FORMAT = &lsquo;%Y-%m-%d&rsquo;</p>
+
+<h2 id="使用文件名做url">使用文件名做url</h2>
+
+<p>默认情况下pelican生成的页面使用article的标题的中文拼音做页面的url.</p>
+
+<p>如果你博客的标题是 <strong>chrome_开发tips</strong>, 文件名是 <strong>chrome_dev_tips</strong>.
+默认情况下生成的文件名为 <strong>chrome_kai_fa_tips.html</strong>.</p>
+
+<p>通过设置 <code>SLUGIFY_SOUTCE</code> 来修改.</p>
+
+<p>.. code-block:: python</p>
+
+<p>SLUGIFY_SOUTCE = &lsquo;basename&rsquo; # use filename. default use article title.</p>
+
+<h2 id="设置文件draft状态">设置文件draft状态</h2>
+
+<p>在文件头加入:</p>
+
+<pre><code># rst-mode
+:draft: true
+# markdown-mode
+draft: true
+</code></pre>
+
+<p>可将文件设置为drafted, 不会发布到网上</p>
+
+<h2 id="文件internal-link">文件internal-link</h2>
+
+<p>rst-mode</p>
+
+<p>.. code-block:: rst</p>
+
+<p>TODO</p>
+
+<p>markdown-mode</p>
+
+<p>.. code-block:: mardown</p>
+
+<p><a href="./filename.(md|rst)">description text</a>
+   # 例如
+   <a href="./python/python-code-style.md">python-code-style</a></p>
+
+<h2 id="忽略部分文件">忽略部分文件</h2>
+
+<p>有时会想再content目录下放些暂时不想被pelican解析的内容.
+比如用org做的临时性笔记.</p>
+
+<p>.. code-block:: python</p>
+
+<p># 目录和文件都可以
+   IGNORE_FILES = [&lsquo;org-note&rsquo;, &lsquo;not-me.html&rsquo;]</p>
+
+<h2 id="处理静态文件">处理静态文件</h2>
+
+<p>可以把静态文件(图片/视频/css等)放到content/images目录, 之后在article/page中引用。
+在pelican build的时候会把images整个目录拷贝到output里.</p>
+
+<p>但是有时希望把图片和其他格式静态资源分开. 可是使用如下设置.</p>
+
+<p>.. code-block:: python</p>
+
+<p># default is [&lsquo;images&rsquo;]. set it to [&lsquo;static&rsquo;].
+   # and make images/css/video directory under the static directory
+   STATIC_PATHS = [
+       &lsquo;static&rsquo;,
+   ]</p>
+
+<p>默认是直接把STATIC整个目录拷贝过去. 也可以指定不同的STATIC拷贝到不同的目录.</p>
+
+<p>.. code-block:: python</p>
+
+<p>EXTRA_PATH_METADATA = {
+       &lsquo;static/images/favicon.ico&rsquo;: {
+           &lsquo;path&rsquo;: &lsquo;favicon.ico&rsquo;,
+        },
+        &lsquo;static/robot.txt&rsquo;: {
+            &lsquo;path&rsquo;: &lsquo;robot.txt&rsquo;,
+        }
+    }</p>
+
+<h2 id="增加友链和社交帐号">增加友链和社交帐号</h2>
+
+<p>.. code-block:: python</p>
+
+<p># 友链
+   LINKS = [
+       (&lsquo;朋友A的博客&rsquo;, &lsquo;<a href="http://a.blog.com'">http://a.blog.com'</a>),
+       (&lsquo;朋友B的博客&rsquo;, &lsquo;<a href="http://b.blog.com'">http://b.blog.com'</a>),
+   ]</p>
+
+<p># 社交帐号
+   SOCIAL = [
+       (&lsquo;github&rsquo;, &lsquo;<a href="http://your.github.com'">http://your.github.com'</a>),
+       (&lsquo;twiier&rsquo;, &lsquo;<a href="http://twitter.com/your'">http://twitter.com/your'</a>),
+   ]</p>
+
+<h2 id="设置分页大小">设置分页大小</h2>
+
+<p>.. code-block:: python</p>
+
+<p>DEFAULT)_PAGINATION = 6</p>
+
+<h2 id="新增模板">新增模板</h2>
+
+<p>如果希望新加个页面来查看所有的drafts状态的博客列表，
+或者想生成个sitemap.xml文件优化搜索引擎.可以使用如下配置.</p>
+
+<p>.. code-block:: python</p>
+
+<pre><code># add sitemap and drafts
+DIRECT_TEMPLATES = ('index', 'tags', 'categories',
+                    'archives', 'sitemap', 'drafts')
+SITEMAP_SAVE_AS = 'sitemap.xml'
+DRAFTS_SAVE_AS = 'drafts.html'
+</code></pre>
+
+<p>之后需要在themes里添加 <strong>sitemap.html(不是xml)</strong> 和 drafts.html文件.
+重新 <code>fab rebuild</code> 就可以了.</p>
+
+<p>如果使用pelican-themes管理themes, 要使用如下命令更新themes.</p>
+
+<p>.. code-block:: bash</p>
+
+<p>pelican-theme -U <theme-dir></p>
+
+<h2 id="插件管理及常用插件">插件管理及常用插件</h2>
+
+<p><strong>TODO</strong></p>
+
+<h2 id="文章serial">文章serial</h2>
+
+<p><strong>TODO</strong></p>
+
+<h2 id="添加disqus评论功能">添加disqus评论功能</h2>
+
+<p><strong>TODO</strong></p>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pelican on hackrole&#39;s note</title>
+    <link>https://hackrole.github.io/tags/pelican/</link>
+    <description>Recent content in pelican on hackrole&#39;s note</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 Jan 2016 11:15:34 +0000</lastBuildDate>
+    
+	<atom:link href="https://hackrole.github.io/tags/pelican/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>pelican使用tips</title>
+      <link>https://hackrole.github.io/post/pelican_tips/</link>
+      <pubDate>Fri, 29 Jan 2016 11:15:34 +0000</pubDate>
+      
+      <guid>https://hackrole.github.io/post/pelican_tips/</guid>
+      <description>不要配置SITEURL 在pelicanconf.py里配置SITEURL后，生成的页面里所有url都会带上这个url. 使用起来反而更加麻烦.
+.. code-block:: html
+设置时间默认的格式 默认的时间格式看着挺不习惯. 在pelicanconf.py里加入如下配置修改.
+.. code-block:: python
+TIMEZONE = &amp;lsquo;Asia/Shanghai&amp;rsquo; DEFAULT_DATE_FORMAT = &amp;lsquo;%Y-%m-%d&amp;rsquo;
+使用文件名做url 默认情况下pelican生成的页面使用article的标题的中文拼音做页面的url.
+如果你博客的标题是 chrome_开发tips, 文件名是 chrome_dev_tips. 默认情况下生成的文件名为 chrome_kai_fa_tips.html.
+通过设置 SLUGIFY_SOUTCE 来修改.
+.. code-block:: python
+SLUGIFY_SOUTCE = &amp;lsquo;basename&amp;rsquo; # use filename. default use article title.
+设置文件draft状态 在文件头加入:
+# rst-mode :draft: true # markdown-mode draft: true  可将文件设置为drafted, 不会发布到网上
+文件internal-link rst-mode
+.. code-block:: rst
+TODO
+markdown-mode
+.. code-block:: mardown
+description text # 例如 python-code-style</description>
+    </item>
+    
+  </channel>
+</rss>

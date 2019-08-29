@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>vim中使用nerdcomment来注释python代码tips</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>vim中使用nerdcomment来注释python代码tips</h2>
+        
+
+<h2 id="intro">intro</h2>
+
+<p>nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。</p>
+
+<p>项目地址: <a href="https://github.com/scrooloose/nerdcommenter.git">https://github.com/scrooloose/nerdcommenter.git</a></p>
+
+<p>常用的按键有:</p>
+
+<p>.. csv-table:: nerdcommnet按键
+    :header: keymap, 描述, key-mode
+    :class: table
+    :name: csv-table</p>
+
+<pre><code>&lt;leader&gt;c&lt;space&gt;, 切换代码注释状态, v
+&lt;leader&gt;cc, 注释代码, v
+&lt;leader&gt;cl, 注释代码.但是保持左边对齐, v
+&lt;leader&gt;cb, 同上both-side.暂时没看出区别, v
+&lt;leader&gt;ca, 切换alt注释符号, n
+&lt;leader&gt;cA, 在行尾添加注释, n
+&lt;leader&gt;c$, 从当前cursor注释到行尾, n
+</code></pre>
+
+<h2 id="配合python使用tips">配合python使用tips</h2>
+
+<p>添加空格</p>
+
+<pre><code>
+设置 `let g:NERDSpaceDelims = 1`.
+
+之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图.
+
+设置前:
+
+.. image:: /static/vim-nerdcomment/bad-delims.jpg
+    :alt: bad-pep8
+
+设置后:
+
+.. image:: /static/vim-nerdcomment/good-delims.jpg
+    :alt: good-pep8
+
+
+注释对齐
+</code></pre>
+
+<p>使用 <code>&lt;leader&gt;cl</code> 取代 <code>&lt;leader&gt;c&lt;space&gt;</code>.</p>
+
+<p>我一般也是用 <code>&lt;leader&gt;c&lt;space&gt;</code> 。但是注释出来的效果不是很好
+看了好久文档总算是找个了解决办法.效果如下.</p>
+
+<p><leader>c<space></p>
+
+<p>.. image:: /static/vim-nerdcomment/bad-align.jpg
+    :alt: bad-pep8</p>
+
+<p><leader>cl</p>
+
+<p>.. image:: /static/vim-nerdcomment/good-align.jpg
+    :alt: good-pep8</p>
+
+<p>需要注意 <code>&lt;leader&gt;cl</code> 只能添加注释不能取消注释， 取消可以使用<leader>c<space>.</p>
+
+<h2 id="行内注释">行内注释</h2>
+
+<p>python pep8里建议行内注释要前要加两个空格, 默认注释只加了一个.
+可以通过 <code>&lt;leader&gt;ca</code> 来做切换(注意命令行的提示信息).</p>
+
+<p>之后使用 <code>&lt;leader&gt;c$</code> 和 <code>&lt;leader&gt;cA</code> 来添加行内注释.</p>
+
+<p>不过总体来是使用起来不太方便，而且效果不太满意。有时间再看看。</p>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+

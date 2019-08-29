@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" content="en-us" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4925505157170964",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+    <title>redis持久化配置</title>
+    
+
+
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
+    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
+
+    
+        
+
+        
+        
+        
+        
+            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
+        
+
+        
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+
+    
+    
+</head>
+
+
+<body>
+    <script>
+        window.addEventListener("resize", resizeThrottler, false);
+
+        var resizeTimeout;
+        function resizeThrottler() {
+        
+        if ( !resizeTimeout ) {
+            resizeTimeout = setTimeout(function() {
+            resizeTimeout = null;
+            actualResizeHandler();
+        
+            
+            }, 66);
+        }
+        }
+        actualResizeHandler()
+        function actualResizeHandler() {
+                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
+                {
+                    document.body.classList.add('mobile');
+                }else{
+                    document.body.classList.remove('mobile');  
+                }
+    }</script>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+                    <span class="big-icon icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        
+                            
+                            <li class=""><a href="/">Home</a></li>
+                            
+                            <li class=""><a href="/about">about</a></li>
+                            
+                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
+                            
+                            <li class=""><a href="/tags">Tags</a></li>
+                            
+                        
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    
+
+
+<div class="inner" style="position:relative;">
+  
+  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
+  
+<div class="blog-post">
+  <h2>redis持久化配置</h2>
+        
+
+<h1 id="持久化级别">持久化级别</h1>
+
+<p>redis提供如下四中持久化方案:</p>
+
+<p>1) 完全不持久化，纯内存操作。比如做缓存服务器时。</p>
+
+<p>2) RDB持久化，配置时间间隔，异步持久化。默认的持久化方案。</p>
+
+<p>3) AOF持久化，所有操作都是记录到日志文件，保证所有数据都被记录。
+   在redis重启时，会使用AOF重建数据集。</p>
+
+<p>4) 结合使用RDB和AOF的持久化方案.重启时会使用AOF重建。</p>
+
+<h2 id="rdb优缺点">RDB优缺点</h2>
+
+<p>优点:</p>
+
+<p>1) 结构紧凑的文件，相当与系统的实时快照，很适合做数据库备份和灾难恢复。</p>
+
+<p>2) 性能优秀，服务线程不需要处理i/o.</p>
+
+<p>3) 大数据集上重启很快。不需要重建</p>
+
+<p>缺点:</p>
+
+<p>1) 间隔性同步到磁盘，导致有可能会丢失部分数据。</p>
+
+<p>2) fork有可能堵塞导致暂不可用.</p>
+
+<h2 id="aof优缺点">AOF优缺点</h2>
+
+<p>优点:</p>
+
+<p>1) 更加稳定，可以设置为 不同步/每秒同步/完全同步.</p>
+
+<p>2) redis可以rewrite过大的AOF log.</p>
+
+<p>3) 保存了所有操作，可以从误操作中回复数据库。</p>
+
+<p>缺点:</p>
+
+<p>1) 所需的文件通常比RDB更大</p>
+
+<p>2) 查询性能相对比RDB更差。</p>
+
+<p>3) 有很稀有的bug存在，RDB没有此类bug.</p>
+
+<h1 id="如何使用">如何使用</h1>
+
+<p>1) 如果想要更强的数据一致性，则应该组合使用AOF和RDB</p>
+
+<p>2) 如果可以容忍少量的数据丢失,可以只使用RDB.</p>
+
+<p>3) 不推荐只是AOF. RDB可以很好的处理备份和灾难恢复.</p>
+
+<p>redis最终会合并两种持久化策略，不过时间比较久</p>
+
+<h1 id="其他">其他</h1>
+
+<h2 id="快照">快照</h2>
+
+<p>默认情况下RDB数据被存到dump.rdb文件下.</p>
+
+<p>可以手动掉 save/bgsave命令调用.</p>
+
+<p>配置保存策略</p>
+
+<pre><code># save &lt;seconds&gt; &lt;keys&gt;
+save 5 10
+save 1 50
+</code></pre>
+
+<p>RDB数据会先写到临时文件，然后替换掉旧的RDB文件.</p>
+
+  </div>
+
+
+
+
+
+<footer>
+  <hr>
+  <small style="font-size:16px;float:right;margin:0 1rem;">
+    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
+    
+  </small>
+</footer>
+</div> 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+    
+
+</body>
+
+</html>
+
