@@ -1,294 +1,60 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="content-language" content="en-us" />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-    
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-4925505157170964",
-        enable_page_level_ads: true
-      });
-    </script>
-    
-    <title>python代码风格</title>
-    
-
-
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
-    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
-
-    
-        
-
-        
-        
-        
-        
-            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
-        
-
-        
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    
-    
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-
-    
-
-    
-    
-</head>
-
-
-<body>
-    <script>
-        window.addEventListener("resize", resizeThrottler, false);
-
-        var resizeTimeout;
-        function resizeThrottler() {
-        
-        if ( !resizeTimeout ) {
-            resizeTimeout = setTimeout(function() {
-            resizeTimeout = null;
-            actualResizeHandler();
-        
-            
-            }, 66);
-        }
-        }
-        actualResizeHandler()
-        function actualResizeHandler() {
-                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
-                {
-                    document.body.classList.add('mobile');
-                }else{
-                    document.body.classList.remove('mobile');  
-                }
-    }</script>
-
-    
-    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
-        <div class="container-fluid">
-            
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="big-icon icon-bar"></span>
-                    <span class="big-icon icon-bar"></span>
-                    <span class="big-icon icon-bar"></span>
-
-                </button>
-                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
-            </div>
-
-            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
-                <ul class="nav navbar-nav navbar-right">
-                    
-                        
-                            
-                            <li class=""><a href="/">Home</a></li>
-                            
-                            <li class=""><a href="/about">about</a></li>
-                            
-                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
-                            
-                            <li class=""><a href="/tags">Tags</a></li>
-                            
-                        
-                    
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    
-
-
-<div class="inner" style="position:relative;">
-  
-  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
-  
-<div class="blog-post">
-  <h2>python代码风格</h2>
-        
-
-<p>代码建议统一使用pep8规范加上部分最佳实践。</p>
-
-<p>风格指南是关于一致性的。风格一致对一个项目更重要。</p>
-
-<p>Guido 的主要洞察力 (key insights) 之一是：代码更多是用来读而不是写。</p>
-
-<p>故本指南致力于改善 Python 代码的可读性、使不同的 (wide spectrum) Python 代码 保持一致性。</p>
-
-<p><a href="./python_code_comment_style.md">python code comment style</a></p>
-
-<h1 id="pep8规范">pep8规范</h1>
-
-<p>代码pep8规范可以使用python pep8工具做检查.</p>
-
-<p>安装方法 <code>pip install pep8</code></p>
-
-<p>使用方法 <code>pep8 &lt;python文件&gt;</code></p>
-
-<p>一般IDE工具都会有集成，可以在编写代码的工程中做pep8校验. 可自行google设置方法。</p>
-
-<h2 id="代码布局">代码布局</h2>
-
-<p>1) 每级缩进用 4 个空格。</p>
-
-<p>2) 建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格</p>
-
-<p>3) 绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。</p>
-
-<p>4) 限制所有行的最大行宽为 79 字符。</p>
-
-<p>折叠长行的首选方法是使用 Python 支持的圆括号、方括号 (brackets) 和花括号 (braces) 内的行延续。</p>
-
-<p>如果需要，你可以在表达式周围增加一对额外的圆括号，但是 有时使用反斜杠看起来更好。确认恰当地缩进了延续的行.</p>
-
-<p>6) 用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。</p>
-
-<p>在函数中使用空行时，请谨慎的用于表示一个逻辑段落 (logical sections)。</p>
-
-<p>7) python文件应统一使用utf8编码，并建议在文件头加生utf8声明。
-   申明头如下</p>
-
-<pre><code class="language-python">## 格式一
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>python代码风格 | Eureka Demo</title><link rel=icon type=image/png sizes=32x32 href=https://example.com/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://example.com/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://example.com/css/eureka.min.css><script defer src=https://example.com/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="python代码风格 | Eureka Demo"><meta itemprop=description content="代码建议统一使用pep8规范加上部分最佳实践。
+风格指南是关于一致性的。风格一致对一个项目更重要。
+Guido 的主要洞察力 (key insights) 之一是：代码更多是用来读而不是写。
+故本指南致力于改善 Python 代码的可读性、使不同的 (wide spectrum) Python 代码 保持一致性。
+python code comment style
+pep8规范 代码pep8规范可以使用python pep8工具做检查.
+安装方法 pip install pep8
+使用方法 pep8 <python文件>
+一般IDE工具都会有集成，可以在编写代码的工程中做pep8校验. 可自行google设置方法。
+代码布局   每级缩进用 4 个空格。
+  建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格
+  绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。
+  限制所有行的最大行宽为 79 字符。
+折叠长行的首选方法是使用 Python 支持的圆括号、方括号 (brackets) 和花括号 (braces) 内的行延续。
+如果需要，你可以在表达式周围增加一对额外的圆括号，但是 有时使用反斜杠看起来更好。确认恰当地缩进了延续的行.
+  用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。
+在函数中使用空行时，请谨慎的用于表示一个逻辑段落 (logical sections)。
+  python文件应统一使用utf8编码，并建议在文件头加生utf8声明。 申明头如下
+  ## 格式一 # -*- coding: utf-8 -*- ## 格式二 #!"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Eureka Demo","item":"https://example.com/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://example.com/post/"},{"@type":"ListItem","position":3,"name":"python代码风格","item":"https://example.com/post/python_code_style/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://example.com/post/python_code_style/"},"headline":"python代码风格 | Eureka Demo","datePublished":"2016-01-08T00:00:00+00:00","dateModified":"2016-01-08T00:00:00+00:00","wordCount":153,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://example.com/images/icon.png"}},"description":"代码建议统一使用pep8规范加上部分最佳实践。\n风格指南是关于一致性的。风格一致对一个项目更重要。\nGuido 的主要洞察力 (key insights) 之一是：代码更多是用来读而不是写。\n故本指南致力于改善 Python 代码的可读性、使不同的 (wide spectrum) Python 代码 保持一致性。\npython code comment style\npep8规范 代码pep8规范可以使用python pep8工具做检查.\n安装方法 pip install pep8\n使用方法 pep8 \u0026lt;python文件\u0026gt;\n一般IDE工具都会有集成，可以在编写代码的工程中做pep8校验. 可自行google设置方法。\n代码布局   每级缩进用 4 个空格。\n  建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格\n  绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。\n  限制所有行的最大行宽为 79 字符。\n折叠长行的首选方法是使用 Python 支持的圆括号、方括号 (brackets) 和花括号 (braces) 内的行延续。\n如果需要，你可以在表达式周围增加一对额外的圆括号，但是 有时使用反斜杠看起来更好。确认恰当地缩进了延续的行.\n  用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。\n在函数中使用空行时，请谨慎的用于表示一个逻辑段落 (logical sections)。\n  python文件应统一使用utf8编码，并建议在文件头加生utf8声明。 申明头如下\n  ## 格式一 # -*- coding: utf-8 -*- ## 格式二 #!"}</script><meta property="og:title" content="python代码风格 | Eureka Demo"><meta property="og:type" content="article"><meta property="og:url" content="https://example.com/post/python_code_style/"><meta property="og:description" content="代码建议统一使用pep8规范加上部分最佳实践。
+风格指南是关于一致性的。风格一致对一个项目更重要。
+Guido 的主要洞察力 (key insights) 之一是：代码更多是用来读而不是写。
+故本指南致力于改善 Python 代码的可读性、使不同的 (wide spectrum) Python 代码 保持一致性。
+python code comment style
+pep8规范 代码pep8规范可以使用python pep8工具做检查.
+安装方法 pip install pep8
+使用方法 pep8 <python文件>
+一般IDE工具都会有集成，可以在编写代码的工程中做pep8校验. 可自行google设置方法。
+代码布局   每级缩进用 4 个空格。
+  建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格
+  绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。
+  限制所有行的最大行宽为 79 字符。
+折叠长行的首选方法是使用 Python 支持的圆括号、方括号 (brackets) 和花括号 (braces) 内的行延续。
+如果需要，你可以在表达式周围增加一对额外的圆括号，但是 有时使用反斜杠看起来更好。确认恰当地缩进了延续的行.
+  用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。
+在函数中使用空行时，请谨慎的用于表示一个逻辑段落 (logical sections)。
+  python文件应统一使用utf8编码，并建议在文件头加生utf8声明。 申明头如下
+  ## 格式一 # -*- coding: utf-8 -*- ## 格式二 #!"><meta property="og:locale" content="en"><meta property="og:site_name" content="Eureka Demo"><meta property="article:published_time" content="2016-01-08T00:00:00+00:00"><meta property="article:modified_time" content="2016-01-08T00:00:00+00:00"><meta property="article:section" content="post"><meta property="article:tag" content="python"><meta property="article:tag" content="pep8"><meta property="og:see_also" content="https://example.com/post/note_about_django_generic_view/"><meta property="og:see_also" content="https://example.com/post/python_module_struct/"><meta property="og:see_also" content="https://example.com/post/mongoengine_questions/"><meta property="og:see_also" content="https://example.com/post/ipython_usage_tips/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Eureka Demo</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://example.com/post/python_code_style/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
+<a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
+<a href=/posts/writing-hugo-blog-in-org-subtree-export/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">writing hugo blog in org subtree</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">python代码风格</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>Jan 8, 2016</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>1 min read</span></div></div><div class=content><p>代码建议统一使用pep8规范加上部分最佳实践。</p><p>风格指南是关于一致性的。风格一致对一个项目更重要。</p><p>Guido 的主要洞察力 (key insights) 之一是：代码更多是用来读而不是写。</p><p>故本指南致力于改善 Python 代码的可读性、使不同的 (wide spectrum) Python 代码 保持一致性。</p><p><a href=./python_code_comment_style.md>python code comment style</a></p><h1 id=pep8规范>pep8规范</h1><p>代码pep8规范可以使用python pep8工具做检查.</p><p>安装方法 <code>pip install pep8</code></p><p>使用方法 <code>pep8 &lt;python文件></code></p><p>一般IDE工具都会有集成，可以在编写代码的工程中做pep8校验. 可自行google设置方法。</p><h2 id=代码布局>代码布局</h2><ol><li><p>每级缩进用 4 个空格。</p></li><li><p>建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格</p></li><li><p>绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。</p></li><li><p>限制所有行的最大行宽为 79 字符。</p><p>折叠长行的首选方法是使用 Python 支持的圆括号、方括号 (brackets) 和花括号 (braces) 内的行延续。</p><p>如果需要，你可以在表达式周围增加一对额外的圆括号，但是 有时使用反斜杠看起来更好。确认恰当地缩进了延续的行.</p></li><li><p>用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。</p><p>在函数中使用空行时，请谨慎的用于表示一个逻辑段落 (logical sections)。</p></li><li><p>python文件应统一使用utf8编码，并建议在文件头加生utf8声明。
+申明头如下</p></li></ol><pre><code class=language-python>## 格式一
 # -*- coding: utf-8 -*-
 ## 格式二
 #!/usr/bin/env python
 # encoding: utf-8
-</code></pre>
-
-<h2 id="导入import">导入import</h2>
-
-<p>1) 模块应在单行导入,模块内属性可以一行导入。</p>
-
-<p>2) Imports 通常被放置在文件的顶部，仅在模块注释和文档字符串之后，在模块的全局变量和常量之前。</p>
-
-<p>3) mports应该按照如下顺序成组安放, 你应该在每组导入之间放置一个空行。</p>
-
-<ol>
-<li>标准库的导入</li>
-<li>相关的第三方包的导入</li>
-<li>本地应用/库的特定导入</li>
-</ol>
-
-<p>4) 对于内部包的导入是非常不推荐使用相对导入的。对所有导入总是使用包的absolute improt.</p>
-
-<p>具体可以参见pep328.</p>
-
-<h2 id="空格处理">空格处理</h2>
-
-<p>空格问题大多可以通过pgp8工具检测出来，只要时间操作几次基本就能养出习惯。</p>
-
-<p>宠物的烦恼 (Pet Peeves) (注：即无伤大雅的小问题)</p>
-
-<p>1) 避免在下述情形中使用无关的空格.</p>
-
-<ol>
-<li>紧挨着圆括号、方括号和花括号</li>
-<li>紧贴在逗号、分号或冒号前</li>
-</ol>
-
-<p>2) 始终在这些二元运算符两边放置一个空格</p>
-
-<p>3) 在数学运算符两边使用空格</p>
-
-<p>4) 不要在用于指定关键字参数 (keyword argument) 或默认参数值的 &lsquo;=&rsquo; 号周围使用</p>
-
-<p>5) 复合语句 (Compound statements) (多条语句写在同一行) 一般不推荐。</p>
-
-<h2 id="注释">注释</h2>
-
-<p>同代码不一致的注释比没注释更差。当代码修改时，始终优先更新注释！注释应该是完整的句子。</p>
-
-<p>1) 节俭使用行内注释。一个行内注释是和语句在同一行的注释。</p>
-
-<p>行内注释应该至少用两个空格和语句分开。 它们应该以一个 &lsquo;#&rsquo; 和单个空格开始</p>
-
-<p>2) 为所有公共模块、函数、类和方法书写文档字符串。</p>
-
-<p>文档字符串对非公开的方法不是必要的，但你应该有一条注释来描述这个方法做什么；</p>
-
-<p>这条注释应该出现在 &ldquo;def&rdquo; 行之后</p>
-
-<h2 id="命名风格">命名风格</h2>
-
-<p>命名风格是为了保持代码的可读性.</p>
-
-<p>1) 模块名应该是简短的、全部小写的名字。可以在模块名中使用下划线以提高可读性。</p>
-
-<p>Python包名也应该是简短的、全部小写的名字，尽管不推荐使用下划线。</p>
-
-<p>2) 类名使用首字母大写单词串 (CapWords) 的约定.</p>
-
-<p>内部使用的类使用一个额外的前导下划线</p>
-
-<p>3) 异常名同类命名约定。然而，你应该对异常名添加后缀 Error/Exception .</p>
-
-<p>4) 函数名应该为小写，必要时可用下划线分隔单词以增加可读性</p>
-
-<p>5) 对实例的方法，总是用 &lsquo;self&rsquo; 做第一个参数。
-   对类的方法，总是用 &lsquo;cls&rsquo; 做第一个参数。</p>
-
-<p>6) 方法名和实例变量 (Method Names and Instance Variables)</p>
-
-<p>采用函数命名规则：小写单词，必要时可用下划线分隔单词以增加可读性</p>
-
-<p>7) 对 non-public方法和实例变量采用一个前导下划线</p>
-
-<h2 id="最佳实践">最佳实践</h2>
-
-<p>内容源自: <code>Hitchhiker's Guide
-&lt;https://www.python-guide.readthedocs.org/en/latest/writing/style/&gt;</code>_.</p>
-
-<p>这里内容比较散乱，不太好整理.内容也不是必须要求，可以自行尝试实践。</p>
-
-  </div>
-
-
-
-
-
-<footer>
-  <hr>
-  <small style="font-size:16px;float:right;margin:0 1rem;">
-    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
-    
-  </small>
-</footer>
-</div> 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-
-
-
-
-
-
-
-    
-
-</body>
-
-</html>
-
+</code></pre><h2 id=导入import>导入import</h2><ol><li><p>模块应在单行导入,模块内属性可以一行导入。</p></li><li><p>Imports 通常被放置在文件的顶部，仅在模块注释和文档字符串之后，在模块的全局变量和常量之前。</p></li><li><p>mports应该按照如下顺序成组安放, 你应该在每组导入之间放置一个空行。</p><ol><li>标准库的导入</li><li>相关的第三方包的导入</li><li>本地应用/库的特定导入</li></ol></li><li><p>对于内部包的导入是非常不推荐使用相对导入的。对所有导入总是使用包的absolute improt.</p><p>具体可以参见pep328.</p></li></ol><h2 id=空格处理>空格处理</h2><p>空格问题大多可以通过pgp8工具检测出来，只要时间操作几次基本就能养出习惯。</p><p>宠物的烦恼 (Pet Peeves) (注：即无伤大雅的小问题)</p><ol><li><p>避免在下述情形中使用无关的空格.</p><ol><li>紧挨着圆括号、方括号和花括号</li><li>紧贴在逗号、分号或冒号前</li></ol></li><li><p>始终在这些二元运算符两边放置一个空格</p></li><li><p>在数学运算符两边使用空格</p></li><li><p>不要在用于指定关键字参数 (keyword argument) 或默认参数值的 &lsquo;=&rsquo; 号周围使用</p></li><li><p>复合语句 (Compound statements) (多条语句写在同一行) 一般不推荐。</p></li></ol><h2 id=注释>注释</h2><p>同代码不一致的注释比没注释更差。当代码修改时，始终优先更新注释！注释应该是完整的句子。</p><ol><li><p>节俭使用行内注释。一个行内注释是和语句在同一行的注释。</p><p>行内注释应该至少用两个空格和语句分开。 它们应该以一个 &lsquo;#&rsquo; 和单个空格开始</p></li><li><p>为所有公共模块、函数、类和方法书写文档字符串。</p><p>文档字符串对非公开的方法不是必要的，但你应该有一条注释来描述这个方法做什么；</p><p>这条注释应该出现在 &ldquo;def&rdquo; 行之后</p></li></ol><h2 id=命名风格>命名风格</h2><p>命名风格是为了保持代码的可读性.</p><ol><li><p>模块名应该是简短的、全部小写的名字。可以在模块名中使用下划线以提高可读性。</p><p>Python包名也应该是简短的、全部小写的名字，尽管不推荐使用下划线。</p></li><li><p>类名使用首字母大写单词串 (CapWords) 的约定.</p><p>内部使用的类使用一个额外的前导下划线</p></li><li><p>异常名同类命名约定。然而，你应该对异常名添加后缀 Error/Exception .</p></li><li><p>函数名应该为小写，必要时可用下划线分隔单词以增加可读性</p></li><li><p>对实例的方法，总是用 &lsquo;self&rsquo; 做第一个参数。
+对类的方法，总是用 &lsquo;cls&rsquo; 做第一个参数。</p></li><li><p>方法名和实例变量 (Method Names and Instance Variables)</p><p>采用函数命名规则：小写单词，必要时可用下划线分隔单词以增加可读性</p></li><li><p>对 non-public方法和实例变量采用一个前导下划线</p></li></ol><h2 id=最佳实践>最佳实践</h2><p>内容源自: <code>Hitchhiker's Guide &lt;https://www.python-guide.readthedocs.org/en/latest/writing/style/></code>_.</p><p>这里内容比较散乱，不太好整理.内容也不是必须要求，可以自行尝试实践。</p></div><div class=my-4><a href=https://example.com/tags/python/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#python</a>
+<a href=https://example.com/tags/pep8/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#pep8</a></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
+<a href=https://example.com/post/redis_replication/ class=block>redis复制配置相关</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
+<a href=https://example.com/post/redis_sentinel/ class=block>redis sentinel(redis监控)</a></div></div></div><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">See Also</h2><div class=content><a href=https://example.com/post/note_about_django_generic_view/>django generic-view使用笔记</a><br><a href=https://example.com/post/python_module_struct/>python标准模块struct笔记</a><br><a href=https://example.com/post/mongoengine_questions/>mongodb库设计问题</a><br><a href=https://example.com/post/ipython_usage_tips/>ipython使用技巧</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>

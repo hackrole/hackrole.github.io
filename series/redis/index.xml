@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>redis on Eureka Demo</title><link>https://example.com/series/redis/</link><description>Recent content in redis on Eureka Demo</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Fri, 08 Jan 2016 14:35:13 +0000</lastBuildDate><atom:link href="https://example.com/series/redis/index.xml" rel="self" type="application/rss+xml"/><item><title>redis持久化配置</title><link>https://example.com/post/redis_persistence/</link><pubDate>Fri, 08 Jan 2016 14:35:13 +0000</pubDate><guid>https://example.com/post/redis_persistence/</guid><description>持久化级别 redis提供如下四中持久化方案:
+完全不持久化，纯内存操作。比如做缓存服务器时。
+RDB持久化，配置时间间隔，异步持久化。默认的持久化方案。
+AOF持久化，所有操作都是记录到日志文件，保证所有数据都被记录。 在redis重启时，会使用AOF重建数据集。
+结合使用RDB和AOF的持久化方案.重启时会使用AOF重建。
+RDB优缺点 优点:
+结构紧凑的文件，相当与系统的实时快照，很适合做数据库备份和灾难恢复。
+性能优秀，服务线程不需要处理i/o.
+大数据集上重启很快。不需要重建
+缺点:
+间隔性同步到磁盘，导致有可能会丢失部分数据。
+fork有可能堵塞导致暂不可用.
+AOF优缺点 优点:
+更加稳定，可以设置为 不同步/每秒同步/完全同步.
+redis可以rewrite过大的AOF log.
+保存了所有操作，可以从误操作中回复数据库。
+缺点:
+所需的文件通常比RDB更大
+查询性能相对比RDB更差。
+有很稀有的bug存在，RDB没有此类bug.
+如何使用 如果想要更强的数据一致性，则应该组合使用AOF和RDB
+如果可以容忍少量的数据丢失,可以只使用RDB.
+不推荐只是AOF.</description></item><item><title>redis服务管理需知</title><link>https://example.com/post/redis_admin_hint/</link><pubDate>Fri, 08 Jan 2016 14:34:49 +0000</pubDate><guid>https://example.com/post/redis_admin_hint/</guid><description>介绍一些redis部署时的注意事项
+注意事项 建议使用linux部署。
+sysctl vm.overcommit_memory=1 或者 vm.overcommit_memory = 1 (/etc/sysctl.conf)
+echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled
+设置一个和内存一样大或更大的swap分区，不然redis有可能在内存不足时被系统杀死。
+设置一个明确的maxmemory. 这样redis会在内存到限后抛出错误，而不会falling.
+在写比较重的场景下需要有大约2倍于normal的内存。这些是来在内存中保留那些需要被写回磁盘的数据.
+配置supervisor类工具时，设置 daemonize no
+开启slave特性时，即便不使用持久化特性,redis也会perform RDB save. 除非使用实验性的diskless-sync.
+开启slave特性时，要确保要么打开master节点的保存特性，要么关闭master节点的自动重启。
+注意开发redis安全相关配置. require-pass/rewrite-command/bind-ip
+aws注意事项 使用HWS实例，不要使用pv实例
+不要使用太老的实例。 m3 good than m1
+redis在EBS的持久话需要注意，EBS可能会太慢。
+你可能想尝试diskless-sync. 如果replication-sync有问题的话。
+redis升级或重启建议 TODO</description></item><item><title>redis复制配置相关</title><link>https://example.com/post/redis_replication/</link><pubDate>Fri, 08 Jan 2016 14:31:05 +0000</pubDate><guid>https://example.com/post/redis_replication/</guid><description>原内容来自redis官方文档: redis-replication官方文档
+基本来说，只要在配置文件里加上
+# slaveof &amp;lt;ip&amp;gt; &amp;lt;port&amp;gt; slaveof 127.0.0.1 6379 就可以完成配置.
+如下配置可能有用
+# 不使用磁盘同步 repl-diskless-sync # 同步前的延时, 以等待其他的要链接的slave repl-diskless-sync-delay 安全问题 如果redis开启复制特性，同时master节点关闭持久化特性。
+这时应该避免master节点的自动重启，避免slave节点上的数据被重启的master节点清空。
+同步策略 redis默认使用磁盘同步, 数据被存到RDB file文件, 之后通过同步该文件做full-sync.
+但是如果磁盘太慢会导致性能不好，2.8新增直接通过socket来同步的方式.(该方式目前仍然是实验阶段)
+只读复制 redis默认slave是只读的,所有写操作会报错. 通过如下方式可以打开读写
+# 配置文件 slave-read-only noconfig # redis-cli运行时 set slave-read-only no 即便是只读slave也不应该暴露在公网下. debug/config等命令仍会带来完全问题(使用rename-command配置)
+读写slave在较少场景下会有用。未来redis有可能移除该特性.
+认证 redis很快，所以需要设置足够强的密码，不然会很容易被破解。
+master节点可以通过配置，要求所有链接需要认证
+requirepass &amp;lt;password&amp;gt; 这时slave节点需要做如下配置
+# 运行时 config set masterauth &amp;lt;password&amp;gt; # 配置文件 masterauth &amp;lt;password&amp;gt; 部分同步 TODO
+控制slave链接数 TODO</description></item><item><title>redis sentinel(redis监控)</title><link>https://example.com/post/redis_sentinel/</link><pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate><guid>https://example.com/post/redis_sentinel/</guid><description>sentinel功能 监控集群中所有节点是否正常工作.
+在任一节点fail, 可以通过api通知管理员或pramgram
+自动故障转移， 如果一个master节点fail, 会自动把slaver节点提升为master节点.并通知client使用新的节点.
+配置提供， client通过链接sentinel获取所有节点信息等。相当与是proxy的作用, 类似mogos
+提供redis高可用性
+sentinel分布式特性 sentinel天生具有分布式特性，sentinel被设计为使用多个sentinel进程协同合作。
+这样做有以下好处:
+由多台sential做fail判断, 减少误判。
+避免sentinel单点故障。
+快速试用 sentinel当前稳定版本是2, 在redis2.8/redis3.0上工作. 早先的sentinel 1 在redis2.6上工作，已被depressed.
+sentinel使用更好的预测算法重写而成。
+使用如下方式启动sentinel
+redis-sentinel sentinel.conf redis-server sentinel.conf --sentinel sentinel默认使用 26379端口监听client和其他sentinel链接。确保打开这一端口。并正确设置防火墙.
+sentinel部署须知 一个稳健的redis集群，应该使用至少三个sentinel实例，并且保证讲这些实例放到不同的机器上，甚至不同的物理区域。
+sentinel无法保证强一致性, 大概分布式环境都会有这方面的权衡.
+确保client库支持sentinel.
+sentinel需要通过不断的测试和观察，才能保证高可用。
+sentinel配合docker使用时，要注意端口映射带来的影响.
+sentinel配置 实例如下
+sentinel monitor mymaster 127.</description></item><item><title>redis分片相关</title><link>https://example.com/post/redis_partition/</link><pubDate>Wed, 30 Dec 2015 15:37:33 +0000</pubDate><guid>https://example.com/post/redis_partition/</guid><description>介绍redis分片相关内容.
+分片相关 分片是将数据分布到不同的redis实例上, 让每个redis服务实例只保存部分数据。
+为何需要分片 突破单机的内存和磁盘存储限制.
+复用多机的cpu计算和网络传输能力。
+分片方法 分片有不同的实现方式, 如
+范围分片, R0(1-10000), R1(10001-2000)&amp;hellip; 缺点: 需要记录键的对应情况，所以比较低效, redis中不建议这种方式.
+hash分片. 对每个key通过hash函数，计算到对应的实例。 redis中部分client和proxy实现了一致性hash来做分片处理。
+分片实现层面 分片可以做不同层面实现.
+客户端, 直接在客户端选择正确的实例完成操作。部分redis-client库实现这一功能.
+proxy, 类似mogos. 客户端链接到proxy, 由proxy代为转发到正确的redis实例上. 比如twemproxy::
+https://github.com/twitter/twemproxy
+查询路由. 查询被发到集群中任一台实例上, 由实例来转发到正确的实例上. redis集群实现了一个混合风格的查询路由，需要配合client端使用(不是由redis来做定位，而是重定向client来实现).
+分片的缺点 跨越多个key的操作通常都不能使用, 部分操作可以通过间接的方式实现.
+跨越多个key的事务无法被支持.
+XXX 以key的粒度来做分片，所以无法通过很多的key来共享一个大数据集，比如一个很大的sortedSet.
+使用分片会让业务逻辑更加复杂，包括运维工作。
+增加和删除节点/容量比较麻烦，是要平衡重新分片。redis集群支持这一个特性。 client/proxy实现需要通过Pre-sharding来支持。
+数据库还是缓存 redis作为缓存和数据库时，对待分片的策略有所不同.</description></item><item><title>redis集群教程</title><link>https://example.com/post/redis_cluster_tutorial/</link><pubDate>Wed, 30 Dec 2015 00:00:00 +0000</pubDate><guid>https://example.com/post/redis_cluster_tutorial/</guid><description>redis集群相关内容, 讲解如何设置集群，对集群做测试和常规操作。 不涵盖redis集群的细节，只从用户的角度讲如何使用redis集群, 以及redis的高可用性和一致性相关内容。 更具体内容参见::
+http://redis.io/topics/cluster-spec redis集群的作用 自动把数据分布到多台redis实例上.
+再部分节点失败后，保持可用性。再大多数redis节点失败后,redis集群仍然会失败.
+redis集群tcp端口 redis集群需要所有节点开启两个端口.
+normal-port. 如6379. 用于客户端的请求处理。
+high-port(normal-port+10000). 如16379. 用于集群内节点间使用2进制协议交换数据， 同时完成节点的错误检测，配置更新，故障转移认证等.
+确定开启这两个端口，并正确的设置防火墙。不然集群可以无法正常工作.
+redis集群与docker redis集群无法的NAT网络下使用。
+配合docker使用时，需要开启docker host-networking-mode. 具体参见docker相关文档。
+redis集群数据共享方式 redis集群不是通过一致性hash实现. 而且通过hash-slot概念实现(hash槽) hash槽实现方式: CRC16(key) % 16384. 所以redis集群最多只能包含16384个实例。 每个redis实例都是复制一部分hash槽。如A: 1-5500. B: 5501-11000 这样的实现方式的好处是可以方便的增加和删除节点。只需将对应的槽做移动
+如果一个操作涉及多个key, 只要这些key再同一个hash槽中，redis集群允许这类multi-key操作. 可以通过hash-tag的概念强制一系列键保存到同一个hash槽中。
+hash-tag概念, 如果一个key里包含{tag}, 则只是用tag来做hash, 以此保证数据被hash到相同的槽中。 如: foo{bar} never{bar}
+redis集群的主从模式 redis的分片配置redis主从复制， 来保证高可用性。
+数据一致性 redis集群没法保证数据的一致性。再特定的场景下,redis会丢失部分数据. 主要原因在于redis的异步同步的方式上。这是在性能和一致性上的权衡.
+还要注意处理集群分裂的问题. 如一个6节点的集群分裂为两个3节点集群，然后各自工作 导致两边数据不同步的问题.
+redis集群配置 配置参数 .. _TODO:
+cluster-enabled &amp;lt;yes/no&amp;gt; # 用于保存集群状态和节点信息，由集群自动更新 cluster-config-file &amp;lt;filename&amp;gt; # 超时时间，超时后认为节点不再可用 cluster-node-timeout &amp;lt;milliseconds&amp;gt; cluster-slave-validity-factor &amp;lt;factor&amp;gt; cluster-migration-barrier &amp;lt;count&amp;gt; cluster-require-full-coverage &amp;lt;yes/no&amp;gt; 创建和使用redis集群 一般都需要安装ruby的redis包</description></item></channel></rss>

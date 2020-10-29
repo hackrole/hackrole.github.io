@@ -1,46 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>vim on hackrole&#39;s note</title>
-    <link>https://hackrole.github.io/tags/vim/</link>
-    <description>Recent content in vim on hackrole&#39;s note</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 03 Feb 2016 11:06:47 +0000</lastBuildDate>
-    
-	<atom:link href="https://hackrole.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>vim中使用nerdcomment来注释python代码tips</title>
-      <link>https://hackrole.github.io/post/vim_use_nerdcomment_with_python/</link>
-      <pubDate>Wed, 03 Feb 2016 11:06:47 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/vim_use_nerdcomment_with_python/</guid>
-      <description>intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>vim on Eureka Demo</title><link>https://example.com/tags/vim/</link><description>Recent content in vim on Eureka Demo</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Wed, 03 Feb 2016 11:06:47 +0000</lastBuildDate><atom:link href="https://example.com/tags/vim/index.xml" rel="self" type="application/rss+xml"/><item><title>vim中使用nerdcomment来注释python代码tips</title><link>https://example.com/post/vim_use_nerdcomment_with_python/</link><pubDate>Wed, 03 Feb 2016 11:06:47 +0000</pubDate><guid>https://example.com/post/vim_use_nerdcomment_with_python/</guid><description>intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。
 项目地址: https://github.com/scrooloose/nerdcommenter.git
 常用的按键有:
 .. csv-table:: nerdcommnet按键 :header: keymap, 描述, key-mode :class: table :name: csv-table
-&amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;, 切换代码注释状态, v &amp;lt;leader&amp;gt;cc, 注释代码, v &amp;lt;leader&amp;gt;cl, 注释代码.但是保持左边对齐, v &amp;lt;leader&amp;gt;cb, 同上both-side.暂时没看出区别, v &amp;lt;leader&amp;gt;ca, 切换alt注释符号, n &amp;lt;leader&amp;gt;cA, 在行尾添加注释, n &amp;lt;leader&amp;gt;c$, 从当前cursor注释到行尾, n  配合python使用tips 添加空格
- 设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐  使用 &amp;lt;leader&amp;gt;cl 取代 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;.
-我一般也是用 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.</description>
-    </item>
-    
-    <item>
-      <title>vim中使用riv插件输出表格</title>
-      <link>https://hackrole.github.io/post/write_rst_table_in_vim_with_riv/</link>
-      <pubDate>Tue, 02 Feb 2016 16:29:59 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/write_rst_table_in_vim_with_riv/</guid>
-      <description>使用 严格来说, 是使用rst里支持的directives来写表格.
+&amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;, 切换代码注释状态, v &amp;lt;leader&amp;gt;cc, 注释代码, v &amp;lt;leader&amp;gt;cl, 注释代码.但是保持左边对齐, v &amp;lt;leader&amp;gt;cb, 同上both-side.暂时没看出区别, v &amp;lt;leader&amp;gt;ca, 切换alt注释符号, n &amp;lt;leader&amp;gt;cA, 在行尾添加注释, n &amp;lt;leader&amp;gt;c$, 从当前cursor注释到行尾, n 配合python使用tips 添加空格
+设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐 使用 &amp;lt;leader&amp;gt;cl 取代 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;.
+我一般也是用 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.效果如下.
+c.. image:: /static/vim-nerdcomment/bad-align.jpg :alt: bad-pep8</description></item><item><title>vim中使用riv插件输出表格</title><link>https://example.com/post/write_rst_table_in_vim_with_riv/</link><pubDate>Tue, 02 Feb 2016 16:29:59 +0000</pubDate><guid>https://example.com/post/write_rst_table_in_vim_with_riv/</guid><description>使用 严格来说, 是使用rst里支持的directives来写表格.
 想对于默认的表格写起来方便很多，而且不用烦心对齐的问题.
 第一种方式: csv-table
 .. code-block:: rst
 .. csv-table:: options整理 :header: &amp;ldquo;键名&amp;rdquo;, &amp;ldquo;描述&amp;rdquo;, &amp;ldquo;默认值&amp;rdquo;, &amp;ldquo;建议值&amp;rdquo; :class: table :name: csv-table
- quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1  第二种方式: list-table
+quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 第二种方式: list-table
 .. code-block:: rst
-.. list-table:: Frozen Delights! :widths: 15 10 30 :class: table :name: list-table :header-rows: 1 * - Treat - Quantity - Description * - Albatross - 2.</description>
-    </item>
-    
-  </channel>
-</rss>
+.. list-table:: Frozen Delights! :widths: 15 10 30 :class: table :name: list-table :header-rows: 1 * - Treat - Quantity - Description * - Albatross - 2.99 - On a stick!</description></item></channel></rss>

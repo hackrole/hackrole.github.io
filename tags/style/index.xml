@@ -1,42 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>style on hackrole&#39;s note</title>
-    <link>https://hackrole.github.io/tags/style/</link>
-    <description>Recent content in style on hackrole&#39;s note</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 08 Jun 2015 15:32:35 +0000</lastBuildDate>
-    
-	<atom:link href="https://hackrole.github.io/tags/style/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>django generic-view使用笔记</title>
-      <link>https://hackrole.github.io/post/note_about_django_generic_view/</link>
-      <pubDate>Mon, 08 Jun 2015 15:32:35 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/note_about_django_generic_view/</guid>
-      <description>做了一个django app, 由于数据库使用mongodb, 所以没法使用django-admin. 就自己写了个admin. 起初用的是最简单的一个视图一个函数，forms/generic-view都没用。但是问题很明显，容易出现bug，代码重复度很高。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>style on Eureka Demo</title><link>https://example.com/tags/style/</link><description>Recent content in style on Eureka Demo</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Mon, 08 Jun 2015 15:32:35 +0000</lastBuildDate><atom:link href="https://example.com/tags/style/index.xml" rel="self" type="application/rss+xml"/><item><title>django generic-view使用笔记</title><link>https://example.com/post/note_about_django_generic_view/</link><pubDate>Mon, 08 Jun 2015 15:32:35 +0000</pubDate><guid>https://example.com/post/note_about_django_generic_view/</guid><description>做了一个django app, 由于数据库使用mongodb, 所以没法使用django-admin. 就自己写了个admin. 起初用的是最简单的一个视图一个函数，forms/generic-view都没用。但是问题很明显，容易出现bug，代码重复度很高。
 后来改用django-generic view配合forms, 总的来是开发效率和代码质量确实会有不错的提升，但是相对的，代码逻辑被分散在各处， 即便是自己写的代码，过一段时间回头看都有点看不太懂。
 所以这里坐下笔记，整理下django generic-view的功能和流程, 以及自己开发过程中的一些感想，以备后用.
 与django-rest-framework的对比 django-rest-framework里也有类似generic-view的概念。 两者的目的比较相似，都是为了减少重复代码，加快开发速度.
 比较大的区别是: 适用目标不同. django-rest-framework的目标是api接口，所以使用了get/post/delete/put/等method, 设计上就想是对一个model的CURD操作的映射。 django-generic-view的目标是web界面，所以只使用了get/post方法，设计上也不是一眼就能看出每个类的目的。
-django-generic-view主要组成 最基础的View/TemplateView/RedirectView/StaticView等 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-listView
- 提供对象列表视图 detailView ~~~~~~~~~~ 单个对象的详情视图 formView/createView/updateView/deleteView ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 用于编辑信息的视图 yearView/monthView等暂时没理解 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ django-generic_view内部流程 --------------------------- listView  实现了默认的get方法， 先调用get_queryset获取queryset, 之后通过paginate_querset对queryset进行分页. 之后通过调用get_context_data获取一些必要的context, 并把view/request放入其中， 之后调用render_to_response返回页面.
-1) get_queryset默认返回但强的queryset属性，或者model.objects.all.
-2) 可以重写get_queryset来返回特定的查询，结果会被设置到self.object_list.
-3) 可以通过分页相关的属性或方法设置分页相关的流程。
-4) 通过get_context_data可以获取额外的属性输出到页面.
-5) render_to_response使用templateMixin来输出结果.
-detailView ~~~~~~~~~~
-实现默认的get方法. 先调用get_object方法获取对象, 之后通过get_context_data获取必要的context, 之后返回render_to_response方法
-1) get_object默认会调用get_queryset来获取对象.
-2) 可以通过定义slug_field等，设置get_object查询条件.
-3) 通过定义get_context_data设置额外的页面属性.
-formView ~~~~~~~~</description>
-    </item>
-    
-  </channel>
-</rss>
+django-generic-view主要组成 最基础的View/TemplateView/RedirectView/StaticView等
+listView ~~~~~~~~ 提供对象列表视图 detailView ~~~~~~~~~~ 单个对象的详情视图 formView/createView/updateView/deleteView ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 用于编辑信息的视图 yearView/monthView等暂时没理解 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ django-generic_view内部流程 --------------------------- listView ~~~~~~~~ 实现了默认的get方法， 先调用get_queryset获取queryset, 之后通过paginate_querset对queryset进行分页. 之后通过调用get_context_data获取一些必要的context, 并把view/request放入其中， 之后调用render_to_response返回页面. 1) get_queryset默认返回但强的queryset属性，或者model.objects.all. 2) 可以重写get_queryset来返回特定的查询，结果会被设置到self.object_list. 3) 可以通过分页相关的属性或方法设置分页相关的流程。 4) 通过get_context_data可以获取额外的属性输出到页面. 5) render_to_response使用templateMixin来输出结果. detailView ~~~~~~~~~~ 实现默认的get方法. 先调用get_object方法获取对象, 之后通过get_context_data获取必要的context, 之后返回render_to_response方法 1) get_object默认会调用get_queryset来获取对象. 2) 可以通过定义slug_field等，设置get_object查询条件. 3) 通过定义get_context_data设置额外的页面属性. formView ~~~~~~~~ 实现默认的get方法， 通过get_form_class返回默认的form类，. 通过get_form来获取form实例，其中会调用get_initial(), get_prefix()获取form initial. 然后通过get_context_data获取必要的页面属性 之后通过render_to_response返回页面 1) 可以通过get_form_class这里返回特殊choices的form等.</description></item></channel></rss>

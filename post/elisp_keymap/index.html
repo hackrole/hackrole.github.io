@@ -1,285 +1,69 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="content-language" content="en-us" />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-    
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-4925505157170964",
-        enable_page_level_ads: true
-      });
-    </script>
-    
-    <title>elisp keymap相关</title>
-    
-
-
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
-    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
-
-    
-        
-
-        
-        
-        
-        
-            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
-        
-
-        
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    
-    
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-
-    
-
-    
-    
-</head>
-
-
-<body>
-    <script>
-        window.addEventListener("resize", resizeThrottler, false);
-
-        var resizeTimeout;
-        function resizeThrottler() {
-        
-        if ( !resizeTimeout ) {
-            resizeTimeout = setTimeout(function() {
-            resizeTimeout = null;
-            actualResizeHandler();
-        
-            
-            }, 66);
-        }
-        }
-        actualResizeHandler()
-        function actualResizeHandler() {
-                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
-                {
-                    document.body.classList.add('mobile');
-                }else{
-                    document.body.classList.remove('mobile');  
-                }
-    }</script>
-
-    
-    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
-        <div class="container-fluid">
-            
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="big-icon icon-bar"></span>
-                    <span class="big-icon icon-bar"></span>
-                    <span class="big-icon icon-bar"></span>
-
-                </button>
-                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
-            </div>
-
-            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
-                <ul class="nav navbar-nav navbar-right">
-                    
-                        
-                            
-                            <li class=""><a href="/">Home</a></li>
-                            
-                            <li class=""><a href="/about">about</a></li>
-                            
-                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
-                            
-                            <li class=""><a href="/tags">Tags</a></li>
-                            
-                        
-                    
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    
-
-
-<div class="inner" style="position:relative;">
-  
-  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
-  
-<div class="blog-post">
-  <h2>elisp keymap相关</h2>
-        
-
-<h2 id="elisp按键序列概念">elisp按键序列概念</h2>
-
-<p>elisp按键在elisp中有两种表达方式:</p>
-
-<p>1&gt; 字符串 &ldquo;\C-x1&rdquo;</p>
-
-<p>2&gt; 列表vector [?\C-x ?1]</p>
-
-<p>函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)</p>
-
-<p>功能键用 &lt;&gt;表示, <RET> <SPC> <F1>等</p>
-
-<h2 id="keymap基本概念">keymap基本概念</h2>
-
-<p>keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上</p>
-
-<p>按键序列可以分为两种</p>
-
-<p>1&gt; prefix key 前缀键,如 C-x</p>
-
-<p>2&gt; complete key 完整的按键,如 x, C-k, C-x C-q</p>
-
-<p>定义一个complete key前，需要定义所有需要的prefix key.</p>
-
-<h2 id="一般都会有多个keymap处于激活状态-分类如下">一般都会有多个keymap处于激活状态，分类如下</h2>
-
-<p>1&gt; global keymap (shared by all buffers)</p>
-
-<p>2&gt; local keymap (通常由major mode设置)</p>
-
-<p>3&gt; zero or many minor keymap(通常有minor mode提供)</p>
-
-<p>local keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap</p>
-
-<h2 id="create-keymap-and-keymap-format">create keymap and keymap format</h2>
-
-<p>keymap format</p>
-
-<pre><code>
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>elisp keymap相关 | Eureka Demo</title><link rel=icon type=image/png sizes=32x32 href=https://example.com/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://example.com/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://example.com/css/eureka.min.css><script defer src=https://example.com/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="elisp keymap相关 | Eureka Demo"><meta itemprop=description content="elisp按键序列概念 elisp按键在elisp中有两种表达方式:
+1> 字符串 &ldquo;\C-x1&rdquo;
+2> 列表vector [?\C-x ?1]
+函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)
+功能键用 <>表示, 等
+keymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上
+按键序列可以分为两种
+1> prefix key 前缀键,如 C-x
+2> complete key 完整的按键,如 x, C-k, C-x C-q
+定义一个complete key前，需要定义所有需要的prefix key.
+一般都会有多个keymap处于激活状态，分类如下 1> global keymap (shared by all buffers)
+2> local keymap (通常由major mode设置)
+3> zero or many minor keymap(通常有minor mode提供)
+local keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap
+create keymap and keymap format keymap format
+ **TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap     function desc others     (make-sparse-keymap &optional prompt create and return a new keymap with no entries the usually keymap you need   (make-keymap &optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys   (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap    新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Eureka Demo","item":"https://example.com/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://example.com/post/"},{"@type":"ListItem","position":3,"name":"elisp keymap相关","item":"https://example.com/post/elisp_keymap/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://example.com/post/elisp_keymap/"},"headline":"elisp keymap相关 | Eureka Demo","datePublished":"2014-01-03T14:58:24+00:00","dateModified":"2014-01-03T14:58:24+00:00","wordCount":262,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://example.com/images/icon.png"}},"description":"elisp按键序列概念 elisp按键在elisp中有两种表达方式:\n1\u0026gt; 字符串 \u0026ldquo;\\C-x1\u0026rdquo;\n2\u0026gt; 列表vector [?\\C-x ?1]\n函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)\n功能键用 \u0026lt;\u0026gt;表示, 等\nkeymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上\n按键序列可以分为两种\n1\u0026gt; prefix key 前缀键,如 C-x\n2\u0026gt; complete key 完整的按键,如 x, C-k, C-x C-q\n定义一个complete key前，需要定义所有需要的prefix key.\n一般都会有多个keymap处于激活状态，分类如下 1\u0026gt; global keymap (shared by all buffers)\n2\u0026gt; local keymap (通常由major mode设置)\n3\u0026gt; zero or many minor keymap(通常有minor mode提供)\nlocal keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap\ncreate keymap and keymap format keymap format\n **TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap     function desc others     (make-sparse-keymap \u0026amp;optional prompt create and return a new keymap with no entries the usually keymap you need   (make-keymap \u0026amp;optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys   (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap    新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置"}</script><meta property="og:title" content="elisp keymap相关 | Eureka Demo"><meta property="og:type" content="article"><meta property="og:url" content="https://example.com/post/elisp_keymap/"><meta property="og:description" content="elisp按键序列概念 elisp按键在elisp中有两种表达方式:
+1> 字符串 &ldquo;\C-x1&rdquo;
+2> 列表vector [?\C-x ?1]
+函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)
+功能键用 <>表示, 等
+keymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上
+按键序列可以分为两种
+1> prefix key 前缀键,如 C-x
+2> complete key 完整的按键,如 x, C-k, C-x C-q
+定义一个complete key前，需要定义所有需要的prefix key.
+一般都会有多个keymap处于激活状态，分类如下 1> global keymap (shared by all buffers)
+2> local keymap (通常由major mode设置)
+3> zero or many minor keymap(通常有minor mode提供)
+local keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap
+create keymap and keymap format keymap format
+ **TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap     function desc others     (make-sparse-keymap &optional prompt create and return a new keymap with no entries the usually keymap you need   (make-keymap &optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys   (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap    新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置"><meta property="og:locale" content="en"><meta property="og:site_name" content="Eureka Demo"><meta property="article:published_time" content="2014-01-03T14:58:24+00:00"><meta property="article:modified_time" content="2014-01-03T14:58:24+00:00"><meta property="article:section" content="post"><meta property="article:tag" content="emacs"><meta property="og:see_also" content="https://example.com/post/elisp_variable/"><meta property="og:see_also" content="https://example.com/post/elisp_buffer/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Eureka Demo</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://example.com/post/elisp_keymap/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
+<a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
+<a href=/posts/writing-hugo-blog-in-org-subtree-export/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">writing hugo blog in org subtree</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">elisp keymap相关</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>Jan 3, 2014</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>2 min read</span></div></div><div class=content><h2 id=elisp按键序列概念>elisp按键序列概念</h2><p>elisp按键在elisp中有两种表达方式:</p><p>1> 字符串 &ldquo;\C-x1&rdquo;</p><p>2> 列表vector [?\C-x ?1]</p><p>函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)</p><p>功能键用 &lt;>表示, 等</p><h2 id=keymap基本概念>keymap基本概念</h2><p>keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上</p><p>按键序列可以分为两种</p><p>1> prefix key 前缀键,如 C-x</p><p>2> complete key 完整的按键,如 x, C-k, C-x C-q</p><p>定义一个complete key前，需要定义所有需要的prefix key.</p><h2 id=一般都会有多个keymap处于激活状态分类如下>一般都会有多个keymap处于激活状态，分类如下</h2><p>1> global keymap (shared by all buffers)</p><p>2> local keymap (通常由major mode设置)</p><p>3> zero or many minor keymap(通常有minor mode提供)</p><p>local keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap</p><h2 id=create-keymap-and-keymap-format>create keymap and keymap format</h2><p>keymap format</p><pre><code>
 **TODO**
 
 函数(keymapp symbal)用于判断指定symbal是否为keymap
 
 create keymap
-</code></pre>
-
-<p>| function                             | desc                                               | others                                   |
-| (make-sparse-keymap &amp;optional prompt | create and return a new keymap with no entries     | the usually keymap you need              |
-| (make-keymap &amp;optional prompt)       | create and return a new keymap with char-tables    | use this if you want bind a lots of keys |
-| (copy-keymap keymap)                 | return a copy of keymap, recursive copy sub keymap | recursive copy fails on function keymap  |</p>
-
-<p>新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置</p>
-
-<p>一般使用sparse来新建keymap做按键绑定，按键较多时可以考虑keymap</p>
-
-<p>keymap结构里可以递归的包含其他keymaps</p>
-
-<h2 id="keymap继承">keymap继承</h2>
-
-<p>keymap可以继承其他keymap(单继承，多继承有其他实现方式),继承的逻辑和一般的类继承类似</p>
-
-<p>| function                          | desc                                                                                 | others |
-| (keymap-parent keymap)            | return the keymap&rsquo;s parent keymap, nil if no                                         |        |
-| (set-keymap-parent keymap parent) | set the keymap parent to parent, if nil, do nothing, recursive set the parent parent |        |</p>
-
-<p>一般用sparse keymap指定parent,non-sparse也可以制定不过因为所有键都会被重写，一般没有意义.</p>
-
-<p>多继承用make-composed-keymap,</p>
-
-<p>| function                                     | desc                                                                     | others |
-| (make-composed-keymap maps &amp;optional parent) | return a new keymap, whose key is first find in (first maps then parent) |        |</p>
-
-<p>例如::</p>
-
-<pre><code>(set-keymap-parent map (make-composed-keymap button-buffer-map special-mode-map))
-</code></pre>
-
-<h2 id="定义prefix-key">定义prefix key</h2>
-
-<p><strong>TODO</strong></p>
-
-<h2 id="定义按键前缀">定义按键前缀</h2>
-
-<p><strong>TODO</strong></p>
-
-<p>(define-prefix-comamnd symbal &amp;optional mapvar prompt)</p>
-
-<h2 id="active-keymaps">active keymaps</h2>
-
-<p><strong>TODO</strong></p>
-
-<p>| function                | desc |
-| current-global-map      |      |
-| current-local-map       |      |
-| current-monor-mode-maps |      |
-| use-global-map          |      |
-| use-local-map           |      |</p>
-
-<h2 id="key-lookup">key lookup</h2>
-
-<p><strong>TODO</strong></p>
-
-<h2 id="change-remapping-translation-bind-keymaps">change/remapping/translation/bind keymaps</h2>
-
-<p>remap command
-~~~~~~~~~~~~~</p>
-
-<p>keymaps for translating sequences
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</p>
-
-<p>command for binding keys
-~~~~~~~~~~~~~~~~~~~~~~~~</p>
-
-<p>| function         | desc |
+</code></pre><table><thead><tr><th>function</th><th>desc</th><th>others</th></tr></thead><tbody><tr><td>(make-sparse-keymap &optional prompt</td><td>create and return a new keymap with no entries</td><td>the usually keymap you need</td></tr><tr><td>(make-keymap &optional prompt)</td><td>create and return a new keymap with char-tables</td><td>use this if you want bind a lots of keys</td></tr><tr><td>(copy-keymap keymap)</td><td>return a copy of keymap, recursive copy sub keymap</td><td>recursive copy fails on function keymap</td></tr></tbody></table><p>新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置</p><p>一般使用sparse来新建keymap做按键绑定，按键较多时可以考虑keymap</p><p>keymap结构里可以递归的包含其他keymaps</p><h2 id=keymap继承>keymap继承</h2><p>keymap可以继承其他keymap(单继承，多继承有其他实现方式),继承的逻辑和一般的类继承类似</p><table><thead><tr><th>function</th><th>desc</th><th>others</th></tr></thead><tbody><tr><td>(keymap-parent keymap)</td><td>return the keymap&rsquo;s parent keymap, nil if no</td><td></td></tr><tr><td>(set-keymap-parent keymap parent)</td><td>set the keymap parent to parent, if nil, do nothing, recursive set the parent parent</td><td></td></tr></tbody></table><p>一般用sparse keymap指定parent,non-sparse也可以制定不过因为所有键都会被重写，一般没有意义.</p><p>多继承用make-composed-keymap,</p><table><thead><tr><th>function</th><th>desc</th><th>others</th></tr></thead><tbody><tr><td>(make-composed-keymap maps &optional parent)</td><td>return a new keymap, whose key is first find in (first maps then parent)</td><td></td></tr></tbody></table><p>例如::</p><pre><code>(set-keymap-parent map (make-composed-keymap button-buffer-map special-mode-map))
+</code></pre><h2 id=定义prefix-key>定义prefix key</h2><p><strong>TODO</strong></p><h2 id=定义按键前缀>定义按键前缀</h2><p><strong>TODO</strong></p><p>(define-prefix-comamnd symbal &optional mapvar prompt)</p><h2 id=active-keymaps>active keymaps</h2><p><strong>TODO</strong></p><table><thead><tr><th>function</th><th>desc</th></tr></thead><tbody><tr><td>current-global-map</td><td></td></tr><tr><td>current-local-map</td><td></td></tr><tr><td>current-monor-mode-maps</td><td></td></tr><tr><td>use-global-map</td><td></td></tr><tr><td>use-local-map</td><td></td></tr></tbody></table><h2 id=key-lookup>key lookup</h2><p><strong>TODO</strong></p><h2 id=changeremappingtranslationbind-keymaps>change/remapping/translation/bind keymaps</h2><p>remap command</p><pre><code>
+keymaps for translating sequences
+</code></pre><p>command for binding keys</p><pre><code>
+| function         | desc |
+|------------------|------|
 | global-set-key   |      |
 | global-unset-key |      |
 | local-set-key    |      |
 | local-unset-key  |      |
-| define-key       |      |</p>
+| define-key       |      |
 
-<h2 id="scanning-keymaps">scanning keymaps</h2>
+scanning keymaps
+----------------
 
-<h2 id="menu-keymaps">menu keymaps</h2>
-
-  </div>
-
-
-
-
-
-<footer>
-  <hr>
-  <small style="font-size:16px;float:right;margin:0 1rem;">
-    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
-    
-  </small>
-</footer>
-</div> 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-
-
-
-
-
-
-
-    
-
-</body>
-
-</html>
-
+menu keymaps
+------------
+</code></pre></div><div class=my-4><a href=https://example.com/tags/emacs/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#emacs</a></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
+<a href=https://example.com/post/ruby_install_from_source/ class=block>编译安装ruby问题总结</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
+<a href=https://example.com/post/elisp_variable/ class=block>elisp变量相关</a></div></div></div><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">See Also</h2><div class=content><a href=https://example.com/post/elisp_variable/>elisp变量相关</a><br><a href=https://example.com/post/elisp_buffer/>elisp buffer处理相关</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>

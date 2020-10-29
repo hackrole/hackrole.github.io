@@ -1,201 +1,56 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta http-equiv="content-language" content="en-us" />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-    
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-4925505157170964",
-        enable_page_level_ads: true
-      });
-    </script>
-    
-    <title>mongodb索引建立和优化</title>
-    
-
-
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="https://hackrole.github.io/css/stylesheet.css">
-    <link rel="stylesheet" href="https://hackrole.github.io/css/home.css">
-
-    
-        
-
-        
-        
-        
-        
-            <link rel="stylesheet" href="https://hackrole.github.io/css/main.css">
-        
-
-        
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    
-    
-    
-    <script>hljs.initHighlightingOnLoad();</script>
-
-    
-
-    
-    
-</head>
-
-
-<body>
-    <script>
-        window.addEventListener("resize", resizeThrottler, false);
-
-        var resizeTimeout;
-        function resizeThrottler() {
-        
-        if ( !resizeTimeout ) {
-            resizeTimeout = setTimeout(function() {
-            resizeTimeout = null;
-            actualResizeHandler();
-        
-            
-            }, 66);
-        }
-        }
-        actualResizeHandler()
-        function actualResizeHandler() {
-                if (/mobile/i.test(navigator.userAgent) || /android/i.test(navigator.userAgent))
-                {
-                    document.body.classList.add('mobile');
-                }else{
-                    document.body.classList.remove('mobile');  
-                }
-    }</script>
-
-    
-    <nav class="navbar navbar-default navbar-fixed-top" style="opacity: .9" role="navigation">
-        <div class="container-fluid">
-            
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="big-icon icon-bar"></span>
-                    <span class="big-icon icon-bar"></span>
-                    <span class="big-icon icon-bar"></span>
-
-                </button>
-                <a class="navbar-brand" href="https://hackrole.github.io/">hackrole&#39;s note</a>
-            </div>
-
-            <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: auto;">
-                <ul class="nav navbar-nav navbar-right">
-                    
-                        
-                            
-                            <li class=""><a href="/">Home</a></li>
-                            
-                            <li class=""><a href="/about">about</a></li>
-                            
-                            <li class=""><a href="https://github.com/hackrole">Github</a></li>
-                            
-                            <li class=""><a href="/tags">Tags</a></li>
-                            
-                        
-                    
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    
-
-
-<div class="inner" style="position:relative;">
-  
-  <div class="side-btn"><a href="https://hackrole.github.io/" class="back">Home</a></div>
-  
-<div class="blog-post">
-  <h2>mongodb索引建立和优化</h2>
-        
-
-<p><strong>TODO</strong>: 来源</p>
-
-<ul>
-<li><p>索引可以加快读取操作，但是会降低写入和更新操作，
-一般要根据文档的读写比决定是否使用索引</p></li>
-
-<li><p>可以使用hint和explain来比较和测试索引的实际效果，
-但要注意mongodb热数据缓存带来的影响</p></li>
-
-<li><p>对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读</p></li>
-
-<li><p>nosqlfan是个学习和找问题的好地方</p></li>
-</ul>
-
-<h1 id="mongodb索引简介">mongodb索引简介</h1>
-
-<h1 id="基本操作">基本操作</h1>
-
-<p>索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用</p>
-
-<pre><code class="language-js">db.things.ensureIndex({j:1})
-</code></pre>
-
-<h2 id="默认单列-文档-组合索引">默认单列/文档/组合索引</h2>
-
-<ul>
-<li><p>每个集合都会有个默认索引 <code>_id</code> ,该字段不能删除</p></li>
-
-<li><p>单列索引可以是独立字段，也可以是嵌套文档字段</p></li>
-
-<li><p>建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 <strong>TODO</strong></p></li>
-
-<li><p>稀疏索引的概念与sql中的稀疏索引概念不同</p></li>
-
-<li><p>mongodb不会为字段值不存在的文档加入索引,null值不能被查出</p></li>
-
-<li><p>唯一索引</p>
-
-<pre><code class="language-js">db.ensureIndex({j:1}, {unique: true})
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>mongodb索引建立和优化 | Eureka Demo</title><link rel=icon type=image/png sizes=32x32 href=https://example.com/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://example.com/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://example.com/css/eureka.min.css><script defer src=https://example.com/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="mongodb索引建立和优化 | Eureka Demo"><meta itemprop=description content="TODO: 来源
+  索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引
+  可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响
+  对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读
+  nosqlfan是个学习和找问题的好地方
+  mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用
+db.things.ensureIndex({j:1})  默认单列/文档/组合索引   每个集合都会有个默认索引 _id ,该字段不能删除
+  单列索引可以是独立字段，也可以是嵌套文档字段
+  建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO
+  稀疏索引的概念与sql中的稀疏索引概念不同
+  mongodb不会为字段值不存在的文档加入索引,null值不能被查出
+  唯一索引
+  db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})  特殊索引 mongodb支持2d索引，用于地理位置服务。
+mongodb支持text全文索引，但是功能较弱.
+须注意：
+  mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html
+  mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Eureka Demo","item":"https://example.com/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://example.com/post/"},{"@type":"ListItem","position":3,"name":"mongodb索引建立和优化","item":"https://example.com/post/mongodb_indexes_pretty/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://example.com/post/mongodb_indexes_pretty/"},"headline":"mongodb索引建立和优化 | Eureka Demo","datePublished":"2014-06-27T17:38:06+00:00","dateModified":"2014-06-27T17:38:06+00:00","wordCount":86,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://example.com/images/icon.png"}},"description":"TODO: 来源\n  索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引\n  可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响\n  对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读\n  nosqlfan是个学习和找问题的好地方\n  mongodb索引简介 基本操作 索引一般使用B\u002b树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用\ndb.things.ensureIndex({j:1})  默认单列\/文档\/组合索引   每个集合都会有个默认索引 _id ,该字段不能删除\n  单列索引可以是独立字段，也可以是嵌套文档字段\n  建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO\n  稀疏索引的概念与sql中的稀疏索引概念不同\n  mongodb不会为字段值不存在的文档加入索引,null值不能被查出\n  唯一索引\n  db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})  特殊索引 mongodb支持2d索引，用于地理位置服务。\nmongodb支持text全文索引，但是功能较弱.\n须注意：\n  mongodb 2d索引使用B\u002b树结构，不会造成性能上的问题。勿轻信性能问题 http:\/\/blog.nosqlfan.com\/html\/1811.html\n  mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 \/111, 或是\/65535处理"}</script><meta property="og:title" content="mongodb索引建立和优化 | Eureka Demo"><meta property="og:type" content="article"><meta property="og:url" content="https://example.com/post/mongodb_indexes_pretty/"><meta property="og:description" content="TODO: 来源
+  索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引
+  可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响
+  对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读
+  nosqlfan是个学习和找问题的好地方
+  mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用
+db.things.ensureIndex({j:1})  默认单列/文档/组合索引   每个集合都会有个默认索引 _id ,该字段不能删除
+  单列索引可以是独立字段，也可以是嵌套文档字段
+  建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO
+  稀疏索引的概念与sql中的稀疏索引概念不同
+  mongodb不会为字段值不存在的文档加入索引,null值不能被查出
+  唯一索引
+  db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})  特殊索引 mongodb支持2d索引，用于地理位置服务。
+mongodb支持text全文索引，但是功能较弱.
+须注意：
+  mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html
+  mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理"><meta property="og:locale" content="en"><meta property="og:site_name" content="Eureka Demo"><meta property="article:published_time" content="2014-06-27T17:38:06+00:00"><meta property="article:modified_time" content="2014-06-27T17:38:06+00:00"><meta property="article:section" content="post"><meta property="article:tag" content="mongodb"><meta property="article:tag" content="tips"><meta property="og:see_also" content="https://example.com/post/mongoengine_questions/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Eureka Demo</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://example.com/post/mongodb_indexes_pretty/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
+<a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
+<a href=/posts/writing-hugo-blog-in-org-subtree-export/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">writing hugo blog in org subtree</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">mongodb索引建立和优化</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>Jun 27, 2014</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>1 min read</span></div><div class="mr-6 my-2"><i class="fas fa-th-list mr-1"></i><a href=https://example.com/series/mongodb/ class=hover:text-eureka>mongodb</a></div></div><div class=content><p><strong>TODO</strong>: 来源</p><ul><li><p>索引可以加快读取操作，但是会降低写入和更新操作，
+一般要根据文档的读写比决定是否使用索引</p></li><li><p>可以使用hint和explain来比较和测试索引的实际效果，
+但要注意mongodb热数据缓存带来的影响</p></li><li><p>对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读</p></li><li><p>nosqlfan是个学习和找问题的好地方</p></li></ul><h1 id=mongodb索引简介>mongodb索引简介</h1><h1 id=基本操作>基本操作</h1><p>索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用</p><pre><code class=language-js>db.things.ensureIndex({j:1})
+</code></pre><h2 id=默认单列文档组合索引>默认单列/文档/组合索引</h2><ul><li><p>每个集合都会有个默认索引 <code>_id</code> ,该字段不能删除</p></li><li><p>单列索引可以是独立字段，也可以是嵌套文档字段</p></li><li><p>建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 <strong>TODO</strong></p></li><li><p>稀疏索引的概念与sql中的稀疏索引概念不同</p></li><li><p>mongodb不会为字段值不存在的文档加入索引,null值不能被查出</p></li><li><p>唯一索引</p></li></ul><pre><code class=language-js>db.ensureIndex({j:1}, {unique: true})
 db.ensureIndex({j:1}. {unique: true, dropDups: true})
-</code></pre></li>
-</ul>
-
-<h1 id="特殊索引">特殊索引</h1>
-
-<p>mongodb支持2d索引，用于地理位置服务。</p>
-
-<p>mongodb支持text全文索引，但是功能较弱.</p>
-
-<p>须注意：</p>
-
-<p>1) mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题
-   <a href="http://blog.nosqlfan.com/html/1811.html">http://blog.nosqlfan.com/html/1811.html</a></p>
-
-<p>2) mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理</p>
-
-<p>mongodb支持两种2d索引:</p>
-
-<p>1) 平面2d索引</p>
-
-<p>2) 球面2d索引（最新特性，距离计算更加准确）</p>
-
-<p>不同的索引在用于地理位置服务时的处理方式不同，具体可以参见：
-<a href="http://www.tuicool.com/articles/MVrqAn">http://www.tuicool.com/articles/MVrqAn</a></p>
-
-<h1 id="索引管理">索引管理</h1>
-
-<p>建立索引:</p>
-
-<pre><code class="language-js">db.ensureIndex({j:1})
+</code></pre><h1 id=特殊索引>特殊索引</h1><p>mongodb支持2d索引，用于地理位置服务。</p><p>mongodb支持text全文索引，但是功能较弱.</p><p>须注意：</p><ol><li><p>mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题
+<a href=http://blog.nosqlfan.com/html/1811.html>http://blog.nosqlfan.com/html/1811.html</a></p></li><li><p>mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理</p></li></ol><p>mongodb支持两种2d索引:</p><ol><li><p>平面2d索引</p></li><li><p>球面2d索引（最新特性，距离计算更加准确）</p></li></ol><p>不同的索引在用于地理位置服务时的处理方式不同，具体可以参见：
+<a href=http://www.tuicool.com/articles/MVrqAn>http://www.tuicool.com/articles/MVrqAn</a></p><h1 id=索引管理>索引管理</h1><p>建立索引:</p><pre><code class=language-js>db.ensureIndex({j:1})
 db.ensureIndex({j:1}, {name: &quot;j&quot;})
 db.ensureIndex({j:1}, {background: true})
 db.ensureIndex({j: -1})
@@ -203,55 +58,12 @@ db.ensureIndex({j:1, i: 1})
 db.ensureIndex({j:1, i.j: 1})
 db.ensureIndex({j:1}, {unique: true, dropDups: true})
 db.ensureIndex({j: &quot;2d&quot;}, {'min': -1000, &quot;max&quot;: 1000})
-</code></pre>
-
-<p>查看索引:</p>
-
-<pre><code class="language-js">db.colletions.getIndexes()
+</code></pre><p>查看索引:</p><pre><code class=language-js>db.colletions.getIndexes()
 db.system.indexes.find()
-</code></pre>
-
-<p>更新索引:</p>
-
-<pre><code class="language-js">db.collection.reIndex()
-</code></pre>
-
-<p>删除索引:</p>
-
-<pre><code class="language-js">db.collection.dropIndexes()
+</code></pre><p>更新索引:</p><pre><code class=language-js>db.collection.reIndex()
+</code></pre><p>删除索引:</p><pre><code class=language-js>db.collection.dropIndexes()
 db.collection.dropIndex()
-</code></pre>
-
-  </div>
-
-
-
-
-
-<footer>
-  <hr>
-  <small style="font-size:16px;float:right;margin:0 1rem;">
-    &copy; 2019 <a href="https://github.com/hackrole">hackrole.</a>
-    
-  </small>
-</footer>
-</div> 
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-  crossorigin="anonymous"></script>
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-
-
-
-
-
-
-
-    
-
-</body>
-
-</html>
-
+</code></pre></div><div class=my-4><a href=https://example.com/tags/mongodb/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#mongodb</a>
+<a href=https://example.com/tags/tips/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#tips</a></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
+<a href=https://example.com/post/mongoengine_questions/ class=block>mongodb库设计问题</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
+<a href=https://example.com/post/ipython_usage_tips/ class=block>ipython使用技巧</a></div></div></div><div class=col-span-2><div class="bg-secondary-bg rounded p-6"><h3 class="text-lg font-semibold mb-4">Series of Posts</h3><div class=content><a href=https://example.com/post/mongoengine_questions/>mongodb库设计问题</a><br><a href=https://example.com/post/mongodb_indexes_pretty/>mongodb索引建立和优化</a><br></div></div></div><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">See Also</h2><div class=content><a href=https://example.com/post/ruby_install_from_source/>编译安装ruby问题总结</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>

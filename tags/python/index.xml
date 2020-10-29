@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>python on hackrole&#39;s note</title>
-    <link>https://hackrole.github.io/tags/python/</link>
-    <description>Recent content in python on hackrole&#39;s note</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 29 Mar 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://hackrole.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>django tools</title>
-      <link>https://hackrole.github.io/post/django_tools/</link>
-      <pubDate>Wed, 29 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/django_tools/</guid>
-      <description>django guardian provide object-level permissions on top of django&amp;rsquo;s authorization backend
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python on Eureka Demo</title><link>https://example.com/tags/python/</link><description>Recent content in python on Eureka Demo</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Wed, 29 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>django tools</title><link>https://example.com/post/django_tools/</link><pubDate>Wed, 29 Mar 2017 00:00:00 +0000</pubDate><guid>https://example.com/post/django_tools/</guid><description>django guardian provide object-level permissions on top of django&amp;rsquo;s authorization backend
 django-guardian github
 django-guadian doc
 celery distributed system to process vast amounts of messages.
@@ -28,31 +9,15 @@ django cors-headers provide cross-origin resource Sharing
 django-debug-toolbar provider debug tools for django app
 django-storages collect static file to backend, for example s3.
 django-pipeline process static content like comprass
-django-compressor package static file</description>
-    </item>
-    
-    <item>
-      <title>vim中使用nerdcomment来注释python代码tips</title>
-      <link>https://hackrole.github.io/post/vim_use_nerdcomment_with_python/</link>
-      <pubDate>Wed, 03 Feb 2016 11:06:47 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/vim_use_nerdcomment_with_python/</guid>
-      <description>intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。
+django-compressor package static file
+django-reversion provide version control for model instances.</description></item><item><title>vim中使用nerdcomment来注释python代码tips</title><link>https://example.com/post/vim_use_nerdcomment_with_python/</link><pubDate>Wed, 03 Feb 2016 11:06:47 +0000</pubDate><guid>https://example.com/post/vim_use_nerdcomment_with_python/</guid><description>intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。
 项目地址: https://github.com/scrooloose/nerdcommenter.git
 常用的按键有:
 .. csv-table:: nerdcommnet按键 :header: keymap, 描述, key-mode :class: table :name: csv-table
-&amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;, 切换代码注释状态, v &amp;lt;leader&amp;gt;cc, 注释代码, v &amp;lt;leader&amp;gt;cl, 注释代码.但是保持左边对齐, v &amp;lt;leader&amp;gt;cb, 同上both-side.暂时没看出区别, v &amp;lt;leader&amp;gt;ca, 切换alt注释符号, n &amp;lt;leader&amp;gt;cA, 在行尾添加注释, n &amp;lt;leader&amp;gt;c$, 从当前cursor注释到行尾, n  配合python使用tips 添加空格
- 设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐  使用 &amp;lt;leader&amp;gt;cl 取代 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;.
-我一般也是用 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.</description>
-    </item>
-    
-    <item>
-      <title>python代码风格</title>
-      <link>https://hackrole.github.io/post/python_code_style/</link>
-      <pubDate>Fri, 08 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/python_code_style/</guid>
-      <description>代码建议统一使用pep8规范加上部分最佳实践。
+&amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;, 切换代码注释状态, v &amp;lt;leader&amp;gt;cc, 注释代码, v &amp;lt;leader&amp;gt;cl, 注释代码.但是保持左边对齐, v &amp;lt;leader&amp;gt;cb, 同上both-side.暂时没看出区别, v &amp;lt;leader&amp;gt;ca, 切换alt注释符号, n &amp;lt;leader&amp;gt;cA, 在行尾添加注释, n &amp;lt;leader&amp;gt;c$, 从当前cursor注释到行尾, n 配合python使用tips 添加空格
+设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐 使用 &amp;lt;leader&amp;gt;cl 取代 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;.
+我一般也是用 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.效果如下.
+c.. image:: /static/vim-nerdcomment/bad-align.jpg :alt: bad-pep8</description></item><item><title>python代码风格</title><link>https://example.com/post/python_code_style/</link><pubDate>Fri, 08 Jan 2016 00:00:00 +0000</pubDate><guid>https://example.com/post/python_code_style/</guid><description>代码建议统一使用pep8规范加上部分最佳实践。
 风格指南是关于一致性的。风格一致对一个项目更重要。
 Guido 的主要洞察力 (key insights) 之一是：代码更多是用来读而不是写。
 故本指南致力于改善 Python 代码的可读性、使不同的 (wide spectrum) Python 代码 保持一致性。
@@ -61,105 +26,50 @@ pep8规范 代码pep8规范可以使用python pep8工具做检查.
 安装方法 pip install pep8
 使用方法 pep8 &amp;lt;python文件&amp;gt;
 一般IDE工具都会有集成，可以在编写代码的工程中做pep8校验. 可自行google设置方法。
-代码布局 1) 每级缩进用 4 个空格。
-2) 建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格
-3) 绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。
-4) 限制所有行的最大行宽为 79 字符。
+代码布局 每级缩进用 4 个空格。
+建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格
+绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。
+限制所有行的最大行宽为 79 字符。
 折叠长行的首选方法是使用 Python 支持的圆括号、方括号 (brackets) 和花括号 (braces) 内的行延续。
 如果需要，你可以在表达式周围增加一对额外的圆括号，但是 有时使用反斜杠看起来更好。确认恰当地缩进了延续的行.
-6) 用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。
+用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。
 在函数中使用空行时，请谨慎的用于表示一个逻辑段落 (logical sections)。
-7) python文件应统一使用utf8编码，并建议在文件头加生utf8声明。 申明头如下
-## 格式一 # -*- coding: utf-8 -*- ## 格式二 #!</description>
-    </item>
-    
-    <item>
-      <title>django generic-view使用笔记</title>
-      <link>https://hackrole.github.io/post/note_about_django_generic_view/</link>
-      <pubDate>Mon, 08 Jun 2015 15:32:35 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/note_about_django_generic_view/</guid>
-      <description>做了一个django app, 由于数据库使用mongodb, 所以没法使用django-admin. 就自己写了个admin. 起初用的是最简单的一个视图一个函数，forms/generic-view都没用。但是问题很明显，容易出现bug，代码重复度很高。
+python文件应统一使用utf8编码，并建议在文件头加生utf8声明。 申明头如下
+## 格式一 # -*- coding: utf-8 -*- ## 格式二 #!</description></item><item><title>django generic-view使用笔记</title><link>https://example.com/post/note_about_django_generic_view/</link><pubDate>Mon, 08 Jun 2015 15:32:35 +0000</pubDate><guid>https://example.com/post/note_about_django_generic_view/</guid><description>做了一个django app, 由于数据库使用mongodb, 所以没法使用django-admin. 就自己写了个admin. 起初用的是最简单的一个视图一个函数，forms/generic-view都没用。但是问题很明显，容易出现bug，代码重复度很高。
 后来改用django-generic view配合forms, 总的来是开发效率和代码质量确实会有不错的提升，但是相对的，代码逻辑被分散在各处， 即便是自己写的代码，过一段时间回头看都有点看不太懂。
 所以这里坐下笔记，整理下django generic-view的功能和流程, 以及自己开发过程中的一些感想，以备后用.
 与django-rest-framework的对比 django-rest-framework里也有类似generic-view的概念。 两者的目的比较相似，都是为了减少重复代码，加快开发速度.
 比较大的区别是: 适用目标不同. django-rest-framework的目标是api接口，所以使用了get/post/delete/put/等method, 设计上就想是对一个model的CURD操作的映射。 django-generic-view的目标是web界面，所以只使用了get/post方法，设计上也不是一眼就能看出每个类的目的。
-django-generic-view主要组成 最基础的View/TemplateView/RedirectView/StaticView等 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-listView
- 提供对象列表视图 detailView ~~~~~~~~~~ 单个对象的详情视图 formView/createView/updateView/deleteView ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 用于编辑信息的视图 yearView/monthView等暂时没理解 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ django-generic_view内部流程 --------------------------- listView  实现了默认的get方法， 先调用get_queryset获取queryset, 之后通过paginate_querset对queryset进行分页. 之后通过调用get_context_data获取一些必要的context, 并把view/request放入其中， 之后调用render_to_response返回页面.
-1) get_queryset默认返回但强的queryset属性，或者model.objects.all.
-2) 可以重写get_queryset来返回特定的查询，结果会被设置到self.object_list.
-3) 可以通过分页相关的属性或方法设置分页相关的流程。
-4) 通过get_context_data可以获取额外的属性输出到页面.
-5) render_to_response使用templateMixin来输出结果.
-detailView ~~~~~~~~~~
-实现默认的get方法. 先调用get_object方法获取对象, 之后通过get_context_data获取必要的context, 之后返回render_to_response方法
-1) get_object默认会调用get_queryset来获取对象.
-2) 可以通过定义slug_field等，设置get_object查询条件.
-3) 通过定义get_context_data设置额外的页面属性.
-formView ~~~~~~~~</description>
-    </item>
-    
-    <item>
-      <title>python标准模块struct笔记</title>
-      <link>https://hackrole.github.io/post/python_module_struct/</link>
-      <pubDate>Thu, 11 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/python_module_struct/</guid>
-      <description>struct模块的作用为，完成字节串到python对象的转换.
-基本的api接口 python对象 -&amp;gt; 字节串 1) pack(fmt, v1, v2, v3&amp;hellip;)
-2) pack_info(fmt, buffer, offset, v1, v2&amp;hellip;) 将多个python对象按固定的格式转化为字节串
-字节串 -&amp;gt; python对象 1) unpack(fmt, str)
-2) unpack_from(fmt, buffer, offset=0)
-其他 1) calcsize(fmt) 计算一个fmt需要多少字节
-2) Struct(fmt), 包含pack/unpack等方法。
+django-generic-view主要组成 最基础的View/TemplateView/RedirectView/StaticView等
+listView ~~~~~~~~ 提供对象列表视图 detailView ~~~~~~~~~~ 单个对象的详情视图 formView/createView/updateView/deleteView ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 用于编辑信息的视图 yearView/monthView等暂时没理解 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ django-generic_view内部流程 --------------------------- listView ~~~~~~~~ 实现了默认的get方法， 先调用get_queryset获取queryset, 之后通过paginate_querset对queryset进行分页. 之后通过调用get_context_data获取一些必要的context, 并把view/request放入其中， 之后调用render_to_response返回页面. 1) get_queryset默认返回但强的queryset属性，或者model.objects.all. 2) 可以重写get_queryset来返回特定的查询，结果会被设置到self.object_list. 3) 可以通过分页相关的属性或方法设置分页相关的流程。 4) 通过get_context_data可以获取额外的属性输出到页面. 5) render_to_response使用templateMixin来输出结果. detailView ~~~~~~~~~~ 实现默认的get方法. 先调用get_object方法获取对象, 之后通过get_context_data获取必要的context, 之后返回render_to_response方法 1) get_object默认会调用get_queryset来获取对象. 2) 可以通过定义slug_field等，设置get_object查询条件. 3) 通过定义get_context_data设置额外的页面属性. formView ~~~~~~~~ 实现默认的get方法， 通过get_form_class返回默认的form类，. 通过get_form来获取form实例，其中会调用get_initial(), get_prefix()获取form initial. 然后通过get_context_data获取必要的页面属性 之后通过render_to_response返回页面 1) 可以通过get_form_class这里返回特殊choices的form等.</description></item><item><title>python标准模块struct笔记</title><link>https://example.com/post/python_module_struct/</link><pubDate>Thu, 11 Sep 2014 00:00:00 +0000</pubDate><guid>https://example.com/post/python_module_struct/</guid><description>struct模块的作用为，完成字节串到python对象的转换.
+基本的api接口 python对象 -&amp;gt; 字节串 pack(fmt, v1, v2, v3&amp;hellip;)
+pack_info(fmt, buffer, offset, v1, v2&amp;hellip;) 将多个python对象按固定的格式转化为字节串
+字节串 -&amp;gt; python对象 unpack(fmt, str)
+unpack_from(fmt, buffer, offset=0)
+其他 calcsize(fmt) 计算一个fmt需要多少字节
+Struct(fmt), 包含pack/unpack等方法。
 转换说明 转换中要重要的有以下四项：
 byte order 字节顺序有大端和小端两种。 不同机器可能使用不同的字节序， 网络字节序统一采用大端.
-1) native 本地字节序(与机器和本地环境相关)
-2) little-endian 小端
-3) big-endian 大端
-4) network 网络字节序（使用大端)
+native 本地字节序(与机器和本地环境相关)
+little-endian 小端
+big-endian 大端
+network 网络字节序（使用大端)
 size 同一个c type在不同机器上可能有不同的大小。
-1) native 于机器和本地环境相关的大小
-2) standard 于环境无关的标准大小
-TODO alignment 对齐方式
-format char    char c type python type size     x pad bytes  1   c char string(len 1) 1   b signed char integer 1   B unsigned char integer 1   ?</description>
-    </item>
-    
-    <item>
-      <title>mongodb库设计问题</title>
-      <link>https://hackrole.github.io/post/mongoengine_questions/</link>
-      <pubDate>Thu, 31 Jul 2014 17:49:57 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/mongoengine_questions/</guid>
-      <description>TODO
+native 于机器和本地环境相关的大小</description></item><item><title>mongodb库设计问题</title><link>https://example.com/post/mongoengine_questions/</link><pubDate>Thu, 31 Jul 2014 17:49:57 +0000</pubDate><guid>https://example.com/post/mongoengine_questions/</guid><description>TODO
 项目地址:: TODO ref
 mongodb本身是无模式的，但是使用时都要在application层实现模式约束.
 mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).
 使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.
 mongoengine问题 索引问题 索引应该跟document分开.并且有自动化建立和删除的command.
 把索引定在Document/meta/indexes里很糟糕：
-1) 写法很乱，不易管理。
-2) 有时会失效，没有建立对应的索引
+写法很乱，不易管理。
+有时会失效，没有建立对应的索引
 listField校验问题 listField没法做长度限制 set/sortset/max-len list/ sort-list等结构没有实现
 不支持自定义字段验证/文档级验证 pre_save/after_save hooks 不可存储的EmbdDocumment TODO 待考虑
-可扩展的Document TODO 待考虑</description>
-    </item>
-    
-    <item>
-      <title>ipython使用技巧</title>
-      <link>https://hackrole.github.io/post/ipython_usage_tips/</link>
-      <pubDate>Fri, 21 Mar 2014 17:18:33 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/ipython_usage_tips/</guid>
-      <description>内容参考: 来自 TODO
-调用timeit做性能测试 %timeit range(10000)  ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO
+可扩展的Document TODO 待考虑</description></item><item><title>ipython使用技巧</title><link>https://example.com/post/ipython_usage_tips/</link><pubDate>Fri, 21 Mar 2014 17:18:33 +0000</pubDate><guid>https://example.com/post/ipython_usage_tips/</guid><description>内容参考: 来自 TODO
+调用timeit做性能测试 %timeit range(10000) ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO
 ipython里load代码 %load根据路径加载文件
-debug调试代码 1) 在出异常后,调用 %debug进入pdb开始调试程序
-2) 调用%pdb,在出异常时.会自动进入pdb调试
+debug调试代码 在出异常后,调用 %debug进入pdb开始调试程序
+调用%pdb,在出异常时.会自动进入pdb调试
 TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚本文件 调用ipython -i &amp;lt;pyfile&amp;gt; 在加载脚本文件后在启动ipython
-在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载</description>
-    </item>
-    
-  </channel>
-</rss>
+在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载</description></item></channel></rss>

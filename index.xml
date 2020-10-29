@@ -1,23 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>hackrole&#39;s note</title>
-    <link>https://hackrole.github.io/</link>
-    <description>Recent content on hackrole&#39;s note</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 26 Mar 2019 13:49:21 +0800</lastBuildDate>
-    
-	<atom:link href="https://hackrole.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>django tools</title>
-      <link>https://hackrole.github.io/post/django_tools/</link>
-      <pubDate>Wed, 29 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/django_tools/</guid>
-      <description>django guardian provide object-level permissions on top of django&amp;rsquo;s authorization backend
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Eureka Demo</title><link>https://example.com/</link><description>Recent content on Eureka Demo</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Thu, 29 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml"/><item><title>django tools</title><link>https://example.com/post/django_tools/</link><pubDate>Wed, 29 Mar 2017 00:00:00 +0000</pubDate><guid>https://example.com/post/django_tools/</guid><description>django guardian provide object-level permissions on top of django&amp;rsquo;s authorization backend
 django-guardian github
 django-guadian doc
 celery distributed system to process vast amounts of messages.
@@ -28,47 +9,22 @@ django cors-headers provide cross-origin resource Sharing
 django-debug-toolbar provider debug tools for django app
 django-storages collect static file to backend, for example s3.
 django-pipeline process static content like comprass
-django-compressor package static file</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://hackrole.github.io/about/</link>
-      <pubDate>Tue, 26 Mar 2019 13:49:21 +0800</pubDate>
-      
-      <guid>https://hackrole.github.io/about/</guid>
-      <description> about me A python-developer work in Shanghai now.
+django-compressor package static file
+django-reversion provide version control for model instances.</description></item><item><title>writing hugo blog in org subtree</title><link>https://example.com/posts/writing-hugo-blog-in-org-subtree-export/</link><pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate><guid>https://example.com/posts/writing-hugo-blog-in-org-subtree-export/</guid><description>first heading within the post this post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md its title will be &amp;ldquo;writing Hugo blog in org it will have hugo and org tags and emacs as category the lastmod property in the front-matter is set automatically to the time of export. the menuitem identifier is auto-set the menu item weight and post weight if needed have to be manully specified as show abve. a sub-heading under the heading it&amp;rsquo;s draft state will be marked as true because of #+HUGO_DRAFT: true.</description></item><item><title>writing hugo subtree</title><link>https://example.com/posts/subtree-export/</link><pubDate>Wed, 28 Oct 2020 00:20:00 +0800</pubDate><guid>https://example.com/posts/subtree-export/</guid><description>first heading within the post this post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md its title will be &amp;ldquo;writing Hugo blog in org it will have hugo and org tags and emacs as category the lastmod property in the front-matter is set automatically to the time of export. the menuitem identifier is auto-set the menu item weight and post weight if needed have to be manully specified as show abve. a sub-heading under the heading it&amp;rsquo;s draft state will be marked as true because of #+HUGO_DRAFT: true.</description></item><item><title>writing Hugo Org</title><link>https://example.com/posts/write_hugo_blog_in_org/</link><pubDate>Tue, 27 Oct 2020 00:00:00 +0000</pubDate><guid>https://example.com/posts/write_hugo_blog_in_org/</guid><description>first heading within the post this post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md its title will be &amp;ldquo;writing Hugo blog in org it will have hugo and org tags and emacs as category the lastmod property in the front-matter is set automatically to the time of export. the menuitem identifier is auto-set the menu item weight and post weight if needed have to be manully specified as show abve. a sub-heading under the heading it&amp;rsquo;s draft state will be marked as true because of #+HUGO_DRAFT: true.</description></item><item><title/><link>https://example.com/subtree/</link><pubDate>Tue, 27 Oct 2020 01:23:15 +0800</pubDate><guid>https://example.com/subtree/</guid><description>emacs all posts in here will have category set to emacs
+TODOwriting hugo blog in org :PROPERTIES: :EXPORT_FILE_NAME: writing-hugo-blog-in-org-subtree-export :EXPORT_DATE: 2020-10-29 :EXPORT_HUGO_MENU: :menu &amp;ldquo;main&amp;rdquo; :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :foo bar :baz zoo :alpha 1 :beta &amp;ldquo;two words&amp;rdquo; :gamma 10
+first heading within the post this post will be exported as content/posts/writing-hugo-blog-in-org-file-export.md its title will be &amp;ldquo;writing Hugo blog in org it will have hugo and org tags and emacs as category the lastmod property in the front-matter is set automatically to the time of export.</description></item><item><title>About</title><link>https://example.com/about/</link><pubDate>Tue, 26 Mar 2019 13:49:21 +0800</pubDate><guid>https://example.com/about/</guid><description>about me A python-developer work in Shanghai now.
 Love TDD and only TDD.
 github
 twitter
-Links  向日葵的博客
- solos的网络日志
- leei blog
-  </description>
-    </item>
-    
-    <item>
-      <title>sort algorithms note</title>
-      <link>https://hackrole.github.io/post/sort/</link>
-      <pubDate>Fri, 08 Mar 2019 10:05:30 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/sort/</guid>
-      <description>heap sort 1) in-place sort algorithms
-2) O(nlgn)
-过程要点 1) left/right/parent可以通过(2n, 2n+1, n/2)算出.
-2) 一般数组索引从0开始，left/right/parent为(2n+1, 2n+2, (n-1)/2)
-3) 建堆算法 O(n)
-4) 堆有一个cap和一个len(当前长度)
-步骤 # max-heap 保持堆性质 def max_heap(h, i): l = left(i) r = right(i) if l &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[l] &amp;gt; A[i]: lg = l if r &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[r] &amp;gt; A[i]: lg = r if lg != i: A[i], A[lg] = A[lg], A[i] max_heap(h, lg) # build-heap 建堆 def build_heap(h): hs = len(h) for i = hs/2; i &amp;gt;= 0; i--: build_heap(h, i) # heap-sort 排序 def heap_sort(A): build_heap(A) for i = len(A); i&amp;gt;0; i--: A[0], A[i] = A[i], A[0] A.</description>
-    </item>
-    
-    <item>
-      <title>anisble note</title>
-      <link>https://hackrole.github.io/post/ansible_note/</link>
-      <pubDate>Wed, 23 Jan 2019 10:30:39 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/ansible_note/</guid>
-      <description>playbook组织 应该按项目组织playbook, 而不是按组件.
+Links 向日葵的博客
+solos的网络日志
+leei blog</description></item><item><title>sort algorithms note</title><link>https://example.com/post/sort/</link><pubDate>Fri, 08 Mar 2019 10:05:30 +0000</pubDate><guid>https://example.com/post/sort/</guid><description>heap sort in-place sort algorithms
+O(nlgn)
+过程要点 left/right/parent可以通过(2n, 2n+1, n/2)算出.
+一般数组索引从0开始，left/right/parent为(2n+1, 2n+2, (n-1)/2)
+建堆算法 O(n)
+堆有一个cap和一个len(当前长度)
+步骤 # max-heap 保持堆性质 def max_heap(h, i): l = left(i) r = right(i) if l &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[l] &amp;gt; A[i]: lg = l if r &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[r] &amp;gt; A[i]: lg = r if lg != i: A[i], A[lg] = A[lg], A[i] max_heap(h, lg) # build-heap 建堆 def build_heap(h): hs = len(h) for i = hs/2; i &amp;gt;= 0; i--: build_heap(h, i) # heap-sort 排序 def heap_sort(A): build_heap(A) for i = len(A); i&amp;gt;0; i--: A[0], A[i] = A[i], A[0] A.</description></item><item><title>anisble note</title><link>https://example.com/post/ansible_note/</link><pubDate>Wed, 23 Jan 2019 10:30:39 +0000</pubDate><guid>https://example.com/post/ansible_note/</guid><description>playbook组织 应该按项目组织playbook, 而不是按组件.
 比如一个畅通的web应用, api-server, db, 负载均衡, redis-cache, 日志收集 应该在一个playbook里写,而不是分成四个play,每个装一块.
 playbook的粒度控制在项目级别.
 在hosts中列出host,之后按项目分好组.设置好组变量和全局变量.一般如果需要设置太多host变量,多半都是ansible组织出现问题. 简单变量可是使用hosts来完成,配合部分group vars_files, 少使用host vars_files
@@ -76,67 +32,33 @@ playbook的粒度控制在项目级别.
 playbook编写注意 尽量保证每个playbook考虑周全,不然出现第一次跑ok,第二次跑就挂的情况.
 还有可以考虑实现判断某一步是否已完成,避免每次都重复在一遍,也要考虑通过命令传参来强制跳过判断重复执行.
 个人更喜欢用supervisor取代systemctl/init.d, supervisor加载新配制的方式是, 使用service supervisor restart的方式有不少问题.
-- name: reload supervisor cmd: supervisorctl reread &amp;amp;&amp;amp; supervisorctl update - name: ensure programming running supervisorctl: name: program state: started  supervisor记得设置minfds, 避免因为ulimits的问题无法启动进程,如elasticsearch
+- name: reload supervisor cmd: supervisorctl reread &amp;amp;&amp;amp; supervisorctl update - name: ensure programming running supervisorctl: name: program state: started supervisor记得设置minfds, 避免因为ulimits的问题无法启动进程,如elasticsearch
 ansible系统加固 ansible有个用来加固系统的roles, 建议加上. 包亏一些sysctl配置都是运行linux server需要的.
 常用module debug/ping copy/file/template/content_in_file user/group services/supervisorctl roles 多使用roles, 使用ansible-galaxy查找roles, 每个roles记得查看支持的系统版本, 看看role的源码, 也可适当作出修改.
-测试 molecule官方推出的测试roles, playbook的工具, 文档比较少. 基于docker自动跑roles,完成测试.</description>
-    </item>
-    
-    <item>
-      <title>minikube tips</title>
-      <link>https://hackrole.github.io/post/k8s_minikube_tips/</link>
-      <pubDate>Fri, 03 Aug 2018 10:23:01 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/k8s_minikube_tips/</guid>
-      <description> minikube搭建issuses 1) 启动失败
-最新的28.2版本有bug,使用25.2版本
+测试 molecule官方推出的测试roles, playbook的工具, 文档比较少. 基于docker自动跑roles,完成测试.
+本地也可以使用vagrant来测试.
+best practice TODO link</description></item><item><title>minikube tips</title><link>https://example.com/post/k8s_minikube_tips/</link><pubDate>Fri, 03 Aug 2018 10:23:01 +0000</pubDate><guid>https://example.com/post/k8s_minikube_tips/</guid><description>minikube搭建issuses 启动失败 最新的28.2版本有bug,使用25.2版本
 同时25.2版本应该使用kvm,kvm2启动会失败
 注意要rm -rf ~/.minikube删除旧文件
 国内须开启代理,代理不能使用127.0.0.1, 不然docker pull会失败. 须设置no_proxy=192.168.99.0/24
 .. code-block:: bash
-https_proxy=192.168.88.242:8118 minikube start --docker-env \ https_proxy=192.168.88.242:8118 --docker-env \ http_proxy=192.168.88.242:8118 --docker-env \ no_proxy=192.168.99.0/24 --vm-driver kvm  启动后验证是否成功:
+https_proxy=192.168.88.242:8118 minikube start --docker-env \ https_proxy=192.168.88.242:8118 --docker-env \ http_proxy=192.168.88.242:8118 --docker-env \ no_proxy=192.168.99.0/24 --vm-driver kvm 启动后验证是否成功:
 .. code-block:: bash
-minikube status kubectl cluster-info kubectl get pod --all-namespaces=true minikube dashboard  </description>
-    </item>
-    
-    <item>
-      <title>vim中使用nerdcomment来注释python代码tips</title>
-      <link>https://hackrole.github.io/post/vim_use_nerdcomment_with_python/</link>
-      <pubDate>Wed, 03 Feb 2016 11:06:47 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/vim_use_nerdcomment_with_python/</guid>
-      <description>intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。
+minikube status kubectl cluster-info kubectl get pod --all-namespaces=true minikube dashboard</description></item><item><title>vim中使用nerdcomment来注释python代码tips</title><link>https://example.com/post/vim_use_nerdcomment_with_python/</link><pubDate>Wed, 03 Feb 2016 11:06:47 +0000</pubDate><guid>https://example.com/post/vim_use_nerdcomment_with_python/</guid><description>intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。
 项目地址: https://github.com/scrooloose/nerdcommenter.git
 常用的按键有:
 .. csv-table:: nerdcommnet按键 :header: keymap, 描述, key-mode :class: table :name: csv-table
-&amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;, 切换代码注释状态, v &amp;lt;leader&amp;gt;cc, 注释代码, v &amp;lt;leader&amp;gt;cl, 注释代码.但是保持左边对齐, v &amp;lt;leader&amp;gt;cb, 同上both-side.暂时没看出区别, v &amp;lt;leader&amp;gt;ca, 切换alt注释符号, n &amp;lt;leader&amp;gt;cA, 在行尾添加注释, n &amp;lt;leader&amp;gt;c$, 从当前cursor注释到行尾, n  配合python使用tips 添加空格
- 设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐  使用 &amp;lt;leader&amp;gt;cl 取代 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;.
-我一般也是用 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.</description>
-    </item>
-    
-    <item>
-      <title>vim中使用riv插件输出表格</title>
-      <link>https://hackrole.github.io/post/write_rst_table_in_vim_with_riv/</link>
-      <pubDate>Tue, 02 Feb 2016 16:29:59 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/write_rst_table_in_vim_with_riv/</guid>
-      <description>使用 严格来说, 是使用rst里支持的directives来写表格.
+&amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;, 切换代码注释状态, v &amp;lt;leader&amp;gt;cc, 注释代码, v &amp;lt;leader&amp;gt;cl, 注释代码.但是保持左边对齐, v &amp;lt;leader&amp;gt;cb, 同上both-side.暂时没看出区别, v &amp;lt;leader&amp;gt;ca, 切换alt注释符号, n &amp;lt;leader&amp;gt;cA, 在行尾添加注释, n &amp;lt;leader&amp;gt;c$, 从当前cursor注释到行尾, n 配合python使用tips 添加空格
+设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐 使用 &amp;lt;leader&amp;gt;cl 取代 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt;.
+我一般也是用 &amp;lt;leader&amp;gt;c&amp;lt;space&amp;gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.效果如下.
+c.. image:: /static/vim-nerdcomment/bad-align.jpg :alt: bad-pep8</description></item><item><title>vim中使用riv插件输出表格</title><link>https://example.com/post/write_rst_table_in_vim_with_riv/</link><pubDate>Tue, 02 Feb 2016 16:29:59 +0000</pubDate><guid>https://example.com/post/write_rst_table_in_vim_with_riv/</guid><description>使用 严格来说, 是使用rst里支持的directives来写表格.
 想对于默认的表格写起来方便很多，而且不用烦心对齐的问题.
 第一种方式: csv-table
 .. code-block:: rst
 .. csv-table:: options整理 :header: &amp;ldquo;键名&amp;rdquo;, &amp;ldquo;描述&amp;rdquo;, &amp;ldquo;默认值&amp;rdquo;, &amp;ldquo;建议值&amp;rdquo; :class: table :name: csv-table
- quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1  第二种方式: list-table
+quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 第二种方式: list-table
 .. code-block:: rst
-.. list-table:: Frozen Delights! :widths: 15 10 30 :class: table :name: list-table :header-rows: 1 * - Treat - Quantity - Description * - Albatross - 2.</description>
-    </item>
-    
-    <item>
-      <title>pelican使用tips</title>
-      <link>https://hackrole.github.io/post/pelican_tips/</link>
-      <pubDate>Fri, 29 Jan 2016 11:15:34 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/pelican_tips/</guid>
-      <description>不要配置SITEURL 在pelicanconf.py里配置SITEURL后，生成的页面里所有url都会带上这个url. 使用起来反而更加麻烦.
+.. list-table:: Frozen Delights! :widths: 15 10 30 :class: table :name: list-table :header-rows: 1 * - Treat - Quantity - Description * - Albatross - 2.99 - On a stick!</description></item><item><title>pelican使用tips</title><link>https://example.com/post/pelican_tips/</link><pubDate>Fri, 29 Jan 2016 11:15:34 +0000</pubDate><guid>https://example.com/post/pelican_tips/</guid><description>不要配置SITEURL 在pelicanconf.py里配置SITEURL后，生成的页面里所有url都会带上这个url. 使用起来反而更加麻烦.
 .. code-block:: html
 设置时间默认的格式 默认的时间格式看着挺不习惯. 在pelicanconf.py里加入如下配置修改.
 .. code-block:: python
@@ -147,172 +69,98 @@ TIMEZONE = &amp;lsquo;Asia/Shanghai&amp;rsquo; DEFAULT_DATE_FORMAT = &amp;lsquo;
 .. code-block:: python
 SLUGIFY_SOUTCE = &amp;lsquo;basename&amp;rsquo; # use filename. default use article title.
 设置文件draft状态 在文件头加入:
-# rst-mode :draft: true # markdown-mode draft: true  可将文件设置为drafted, 不会发布到网上
+# rst-mode :draft: true # markdown-mode draft: true 可将文件设置为drafted, 不会发布到网上
 文件internal-link rst-mode
 .. code-block:: rst
 TODO
 markdown-mode
 .. code-block:: mardown
-description text # 例如 python-code-style</description>
-    </item>
-    
-    <item>
-      <title>文章写作tips</title>
-      <link>https://hackrole.github.io/post/how_to_write_good_article/</link>
-      <pubDate>Wed, 20 Jan 2016 10:04:46 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/how_to_write_good_article/</guid>
-      <description>本文是对 图灵社区文章http://www.ituring.com.cn/article/210924 的整理。
+description text
+例如 python-code-style
+忽略部分文件 有时会想再content目录下放些暂时不想被pelican解析的内容. 比如用org做的临时性笔记.
+.. code-block:: python</description></item><item><title>文章写作tips</title><link>https://example.com/post/how_to_write_good_article/</link><pubDate>Wed, 20 Jan 2016 10:04:46 +0000</pubDate><guid>https://example.com/post/how_to_write_good_article/</guid><description>本文是对 图灵社区文章http://www.ituring.com.cn/article/210924 的整理。
 why this 作为一名程序员，工作中学习中要记录很多东西。本人也一直使用rst记录各种学习笔记.
 但是, 比较苦恼的是写作能力实在太差。自己写的笔记回头读总感觉各种不通顺,错别字一堆. 最搞的就是过一段时间看的时候感觉完全看不懂自己的笔记.
 大多数人估计都面临和我一样的问题，我也在寻找一些能提高写作能力，更好的记录笔记，做好个人知识管理。
-如何良好的写作 口语与写作分不清 ~~~~~~~~~~~~~~~~
-写做前没有思考，想到哪写到哪。导致文章里口语话严重。容易出现歧义，表述不清或太冗余的问题. 建议如下:
-1) 尽量把单字组成词语。
-2) 去除口语话词，如 了 .
-缺少重点，内容太过冗余 ~~~~~~~~~~~~~~~~~~~~~~
-事前没整理要表达的重点，内容重复严重.建议如下.
-1) 去重, 语句去重和语义去重.
-2) 避免内容多次重复.
-3) 精简语句
-4) 扣题， 扣题 ， 扣题. 重要的技能放三遍。
-行文逻辑差 ~~~~~~~~~~
-建议提前写大纲，做必要的整理准备.
-正确的使用标点符号 ~~~~~~~~~~~~~~~~~~
-注重行文排版 ~~~~~~~~~~~~
-总结 内容大致总结如下:
-1) 写作最好先整理大纲和重点，避免行文天马行空或太冗余.
-2) 练习写作, 锻炼语句和行文的安排.
-3) 注意文章结构的安排和排版.
-4) 区别口语话和写作文体的区别.</description>
-    </item>
-    
-    <item>
-      <title>redis持久化配置</title>
-      <link>https://hackrole.github.io/post/redis_persistence/</link>
-      <pubDate>Fri, 08 Jan 2016 14:35:13 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/redis_persistence/</guid>
-      <description>持久化级别 redis提供如下四中持久化方案:
-1) 完全不持久化，纯内存操作。比如做缓存服务器时。
-2) RDB持久化，配置时间间隔，异步持久化。默认的持久化方案。
-3) AOF持久化，所有操作都是记录到日志文件，保证所有数据都被记录。 在redis重启时，会使用AOF重建数据集。
-4) 结合使用RDB和AOF的持久化方案.重启时会使用AOF重建。
+如何良好的写作 口语与写作分不清
+写做前没有思考，想到哪写到哪。导致文章里口语话严重。容易出现歧义，表述不清或太冗余的问题. 建议如下: 1) 尽量把单字组成词语。 2) 去除口语话词，如 *了* . 缺少重点，内容太过冗余 事前没整理要表达的重点，内容重复严重.建议如下.
+去重, 语句去重和语义去重.
+避免内容多次重复.
+精简语句
+扣题， 扣题 ， 扣题. 重要的技能放三遍。
+行文逻辑差
+建议提前写大纲，做必要的整理准备. 正确的使用标点符号 注重行文排版
+总结 ---- 内容大致总结如下: 1) 写作最好先整理大纲和重点，避免行文天马行空或太冗余. 2) 练习写作, 锻炼语句和行文的安排. 3) 注意文章结构的安排和排版. 4) 区别口语话和写作文体的区别.</description></item><item><title>redis持久化配置</title><link>https://example.com/post/redis_persistence/</link><pubDate>Fri, 08 Jan 2016 14:35:13 +0000</pubDate><guid>https://example.com/post/redis_persistence/</guid><description>持久化级别 redis提供如下四中持久化方案:
+完全不持久化，纯内存操作。比如做缓存服务器时。
+RDB持久化，配置时间间隔，异步持久化。默认的持久化方案。
+AOF持久化，所有操作都是记录到日志文件，保证所有数据都被记录。 在redis重启时，会使用AOF重建数据集。
+结合使用RDB和AOF的持久化方案.重启时会使用AOF重建。
 RDB优缺点 优点:
-1) 结构紧凑的文件，相当与系统的实时快照，很适合做数据库备份和灾难恢复。
-2) 性能优秀，服务线程不需要处理i/o.
-3) 大数据集上重启很快。不需要重建
+结构紧凑的文件，相当与系统的实时快照，很适合做数据库备份和灾难恢复。
+性能优秀，服务线程不需要处理i/o.
+大数据集上重启很快。不需要重建
 缺点:
-1) 间隔性同步到磁盘，导致有可能会丢失部分数据。
-2) fork有可能堵塞导致暂不可用.
+间隔性同步到磁盘，导致有可能会丢失部分数据。
+fork有可能堵塞导致暂不可用.
 AOF优缺点 优点:
-1) 更加稳定，可以设置为 不同步/每秒同步/完全同步.
-2) redis可以rewrite过大的AOF log.
-3) 保存了所有操作，可以从误操作中回复数据库。
+更加稳定，可以设置为 不同步/每秒同步/完全同步.
+redis可以rewrite过大的AOF log.
+保存了所有操作，可以从误操作中回复数据库。
 缺点:
-1) 所需的文件通常比RDB更大
-2) 查询性能相对比RDB更差。
-3) 有很稀有的bug存在，RDB没有此类bug.
-如何使用 1) 如果想要更强的数据一致性，则应该组合使用AOF和RDB
-2) 如果可以容忍少量的数据丢失,可以只使用RDB.
-3) 不推荐只是AOF. RDB可以很好的处理备份和灾难恢复.
-redis最终会合并两种持久化策略，不过时间比较久
-其他 快照 默认情况下RDB数据被存到dump.rdb文件下.
-可以手动掉 save/bgsave命令调用.
-配置保存策略
-# save &amp;lt;seconds&amp;gt; &amp;lt;keys&amp;gt; save 5 10 save 1 50  RDB数据会先写到临时文件，然后替换掉旧的RDB文件.</description>
-    </item>
-    
-    <item>
-      <title>redis服务管理需知</title>
-      <link>https://hackrole.github.io/post/redis_admin_hint/</link>
-      <pubDate>Fri, 08 Jan 2016 14:34:49 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/redis_admin_hint/</guid>
-      <description>介绍一些redis部署时的注意事项
-注意事项 1) 建议使用linux部署。
-2) sysctl vm.overcommit_memory=1 或者 vm.overcommit_memory = 1 (/etc/sysctl.conf)
-3) echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled
-4) 设置一个和内存一样大或更大的swap分区，不然redis有可能在内存不足时被系统杀死。
-5) 设置一个明确的maxmemory. 这样redis会在内存到限后抛出错误，而不会falling.
-6) 在写比较重的场景下需要有大约2倍于normal的内存。这些是来在内存中保留那些需要被写回磁盘的数据.
-7) 配置supervisor类工具时，设置 daemonize no
-8) 开启slave特性时，即便不使用持久化特性,redis也会perform RDB save. 除非使用实验性的diskless-sync.
-9) 开启slave特性时，要确保要么打开master节点的保存特性，要么关闭master节点的自动重启。
-10) 注意开发redis安全相关配置. require-pass/rewrite-command/bind-ip
-aws注意事项 1) 使用HWS实例，不要使用pv实例
-2) 不要使用太老的实例。 m3 good than m1
-3) redis在EBS的持久话需要注意，EBS可能会太慢。
-4) 你可能想尝试diskless-sync. 如果replication-sync有问题的话。
-redis升级或重启建议 TODO</description>
-    </item>
-    
-    <item>
-      <title>linux(ubuntu)下安装mongodb服务器</title>
-      <link>https://hackrole.github.io/post/mongodb_install_on_linux/</link>
-      <pubDate>Fri, 08 Jan 2016 14:34:30 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/mongodb_install_on_linux/</guid>
-      <description>概述 安装过程可以参考官网，文档很详细.
+所需的文件通常比RDB更大
+查询性能相对比RDB更差。
+有很稀有的bug存在，RDB没有此类bug.
+如何使用 如果想要更强的数据一致性，则应该组合使用AOF和RDB
+如果可以容忍少量的数据丢失,可以只使用RDB.
+不推荐只是AOF.</description></item><item><title>redis服务管理需知</title><link>https://example.com/post/redis_admin_hint/</link><pubDate>Fri, 08 Jan 2016 14:34:49 +0000</pubDate><guid>https://example.com/post/redis_admin_hint/</guid><description>介绍一些redis部署时的注意事项
+注意事项 建议使用linux部署。
+sysctl vm.overcommit_memory=1 或者 vm.overcommit_memory = 1 (/etc/sysctl.conf)
+echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled
+设置一个和内存一样大或更大的swap分区，不然redis有可能在内存不足时被系统杀死。
+设置一个明确的maxmemory. 这样redis会在内存到限后抛出错误，而不会falling.
+在写比较重的场景下需要有大约2倍于normal的内存。这些是来在内存中保留那些需要被写回磁盘的数据.
+配置supervisor类工具时，设置 daemonize no
+开启slave特性时，即便不使用持久化特性,redis也会perform RDB save. 除非使用实验性的diskless-sync.
+开启slave特性时，要确保要么打开master节点的保存特性，要么关闭master节点的自动重启。
+注意开发redis安全相关配置. require-pass/rewrite-command/bind-ip
+aws注意事项 使用HWS实例，不要使用pv实例
+不要使用太老的实例。 m3 good than m1
+redis在EBS的持久话需要注意，EBS可能会太慢。
+你可能想尝试diskless-sync. 如果replication-sync有问题的话。
+redis升级或重启建议 TODO</description></item><item><title>linux(ubuntu)下安装mongodb服务器</title><link>https://example.com/post/mongodb_install_on_linux/</link><pubDate>Fri, 08 Jan 2016 14:34:30 +0000</pubDate><guid>https://example.com/post/mongodb_install_on_linux/</guid><description>概述 安装过程可以参考官网，文档很详细.
 ubuntu官网源有提供mongodb安装，但是一般版本都比较落后，更新不及时。 所以可以采用mongodb提供的安装源，安装最新的mongodb.
 mongodb只为64-bit的长期支持版本提供安装源，即ubuntu12.04/ubuntu14.04. 其他版本也许可以使用，但是不推荐。
-mongodb官网有5个主要的包: 1) mongodb-dev. meta-pacage. 自动安装其他四个包. 2) mongodb-org-server. mongod-daemon以及配置文件/init脚本 3) mongodb-org-mongos. mongos-daemon. 4) mongodb-org-shell. mongo-shell 5) mongodb-org-tools. mongoimport/mongodump/bsondump/mongoexport/retore/stat/perf/oplog等工具.
-安装过程 具体过程如下
-# import mongodb GPK key sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 # add source # 12.04 echo &amp;quot;deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse&amp;quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list # 14.04 echo &amp;quot;deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse&amp;quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list sudo apt-get update sudo apt-get install -y mongodb-org  如果想安装特定版本mongodb</description>
-    </item>
-    
-    <item>
-      <title>redis数据结构介绍</title>
-      <link>https://hackrole.github.io/post/redis_data_type_intro/</link>
-      <pubDate>Fri, 08 Jan 2016 14:31:57 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/redis_data_type_intro/</guid>
-      <description>概述 redis并不是单纯的缓存服务器，而是被设计为一个数据结构服务器。为服务提供有用高效的数据类型.
+mongodb官网有5个主要的包:
+mongodb-dev. meta-pacage. 自动安装其他四个包. mongodb-org-server. mongod-daemon以及配置文件/init脚本 mongodb-org-mongos. mongos-daemon. mongodb-org-shell. mongo-shell mongodb-org-tools. mongoimport/mongodump/bsondump/mongoexport/retore/stat/perf/oplog等工具. 安装过程 具体过程如下
+# import mongodb GPK key sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 # add source # 12.04 echo &amp;quot;deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse&amp;quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list # 14.04 echo &amp;quot;deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse&amp;quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list sudo apt-get update sudo apt-get install -y mongodb-org 如果想安装特定版本mongodb
+# 如果只mongodb-org=3.2.0，会安装最新版本mongodb. 后面的必须也制定。 sudo apt-get install -y mongodb-org=3.</description></item><item><title>redis数据结构介绍</title><link>https://example.com/post/redis_data_type_intro/</link><pubDate>Fri, 08 Jan 2016 14:31:57 +0000</pubDate><guid>https://example.com/post/redis_data_type_intro/</guid><description>概述 redis并不是单纯的缓存服务器，而是被设计为一个数据结构服务器。为服务提供有用高效的数据类型.
 redis中主要包含如下数据类型:
-1) 字符串,二进制安全。 2) 列表list， 链表实现。不是array. 3) 集合set, 值不可重复. 4) 排序集合ordered-set. 同时存储一个value和一个score. score用于排序. 5) 字典hash, 类似python的字典和ruby的hash,但是field-key/field-value只能是字符串. 6) bit-array或bitmaps. 7) HyperLogLogs, 概率行数据结构. TODO
-不同数据结构可以根据需要解决不同的任务集。
+字符串,二进制安全。 列表list， 链表实现。不是array. 集合set, 值不可重复. 排序集合ordered-set. 同时存储一个value和一个score. score用于排序. 字典hash, 类似python的字典和ruby的hash,但是field-key/field-value只能是字符串. bit-array或bitmaps. HyperLogLogs, 概率行数据结构. TODO 不同数据结构可以根据需要解决不同的任务集。
 类型具体说明 redis-key redis-key只能是字符串，并且是2进制安全。
-1) 空字符串也能做为key. 2) 太长的key不被推荐，compare性能不好. 3) 太短的key不好，可读性不好 u1000flw =&amp;gt; user:1000:followers 4) 对键做良好的管理，引入命名空间和键前缀等概念. user:1000, comment:1234.replys 5) 最大长度512MB, 不会成为限制。 6) exists判断key是否存在, del用于删除key, keys用于列出keys.type获取key类型. 7) ttl/expire用于获取和设置过期时间. persist移除key的过期设置。pttl/pexpire返回/设置millsecond级别的过期时间.
-redis-string 最简单的数据结构，应该也是最常用的数据结构(缓存).
-1) 通过get/set设置和换取
-2) set在没有key时会创建key,在key存在时做update.同时可以制定second/millsecond级别的过期时间.
-3) 可以支持incr/incrby/decr/decrby，把字符串作为数字执行原子性的+/-.底层使用的是同一个命令。
-4) getset获取key的old-value, 同时设置为最新的value.
-5) mset/mget一次对多个key做操作.
-redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度为O(1), 查找元素的复杂度为O(N).</description>
-    </item>
-    
-    <item>
-      <title>redis复制配置相关</title>
-      <link>https://hackrole.github.io/post/redis_replication/</link>
-      <pubDate>Fri, 08 Jan 2016 14:31:05 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/redis_replication/</guid>
-      <description>原内容来自redis官方文档: redis-replication官方文档
+空字符串也能做为key. 太长的key不被推荐，compare性能不好. 太短的key不好，可读性不好 u1000flw =&amp;gt; user:1000:followers 对键做良好的管理，引入命名空间和键前缀等概念. user:1000, comment:1234.replys 最大长度512MB, 不会成为限制。 exists判断key是否存在, del用于删除key, keys用于列出keys.type获取key类型. ttl/expire用于获取和设置过期时间. persist移除key的过期设置。pttl/pexpire返回/设置millsecond级别的过期时间. redis-string 最简单的数据结构，应该也是最常用的数据结构(缓存).
+通过get/set设置和换取
+set在没有key时会创建key,在key存在时做update.同时可以制定second/millsecond级别的过期时间.
+可以支持incr/incrby/decr/decrby，把字符串作为数字执行原子性的+/-.底层使用的是同一个命令。
+getset获取key的old-value, 同时设置为最新的value.
+mset/mget一次对多个key做操作.
+redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度为O(1), 查找元素的复杂度为O(N).
+大多数操作都支持左右两个方向， lpush/rpush. l-&amp;gt;list前缀/r-&amp;gt;reverse-order
+两个方向的push/pop可以作为队列/栈使用. lrange用于获取列表内容.常用的场景:</description></item><item><title>redis复制配置相关</title><link>https://example.com/post/redis_replication/</link><pubDate>Fri, 08 Jan 2016 14:31:05 +0000</pubDate><guid>https://example.com/post/redis_replication/</guid><description>原内容来自redis官方文档: redis-replication官方文档
 基本来说，只要在配置文件里加上
-# slaveof &amp;lt;ip&amp;gt; &amp;lt;port&amp;gt; slaveof 127.0.0.1 6379  就可以完成配置.
+# slaveof &amp;lt;ip&amp;gt; &amp;lt;port&amp;gt; slaveof 127.0.0.1 6379 就可以完成配置.
 如下配置可能有用
-# 不使用磁盘同步 repl-diskless-sync # 同步前的延时, 以等待其他的要链接的slave repl-diskless-sync-delay  安全问题 如果redis开启复制特性，同时master节点关闭持久化特性。
+# 不使用磁盘同步 repl-diskless-sync # 同步前的延时, 以等待其他的要链接的slave repl-diskless-sync-delay 安全问题 如果redis开启复制特性，同时master节点关闭持久化特性。
 这时应该避免master节点的自动重启，避免slave节点上的数据被重启的master节点清空。
 同步策略 redis默认使用磁盘同步, 数据被存到RDB file文件, 之后通过同步该文件做full-sync.
 但是如果磁盘太慢会导致性能不好，2.8新增直接通过socket来同步的方式.(该方式目前仍然是实验阶段)
 只读复制 redis默认slave是只读的,所有写操作会报错. 通过如下方式可以打开读写
-# 配置文件 slave-read-only noconfig # redis-cli运行时 set slave-read-only no  即便是只读slave也不应该暴露在公网下. debug/config等命令仍会带来完全问题(使用rename-command配置)
+# 配置文件 slave-read-only noconfig # redis-cli运行时 set slave-read-only no 即便是只读slave也不应该暴露在公网下. debug/config等命令仍会带来完全问题(使用rename-command配置)
 读写slave在较少场景下会有用。未来redis有可能移除该特性.
 认证 redis很快，所以需要设置足够强的密码，不然会很容易被破解。
 master节点可以通过配置，要求所有链接需要认证
-requirepass &amp;lt;password&amp;gt;  这时slave节点需要做如下配置
-# 运行时 config set masterauth &amp;lt;password&amp;gt; # 配置文件 masterauth &amp;lt;password&amp;gt;  部分同步 TODO
-控制slave链接数 TODO</description>
-    </item>
-    
-    <item>
-      <title>python代码风格</title>
-      <link>https://hackrole.github.io/post/python_code_style/</link>
-      <pubDate>Fri, 08 Jan 2016 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/python_code_style/</guid>
-      <description>代码建议统一使用pep8规范加上部分最佳实践。
+requirepass &amp;lt;password&amp;gt; 这时slave节点需要做如下配置
+# 运行时 config set masterauth &amp;lt;password&amp;gt; # 配置文件 masterauth &amp;lt;password&amp;gt; 部分同步 TODO
+控制slave链接数 TODO</description></item><item><title>python代码风格</title><link>https://example.com/post/python_code_style/</link><pubDate>Fri, 08 Jan 2016 00:00:00 +0000</pubDate><guid>https://example.com/post/python_code_style/</guid><description>代码建议统一使用pep8规范加上部分最佳实践。
 风格指南是关于一致性的。风格一致对一个项目更重要。
 Guido 的主要洞察力 (key insights) 之一是：代码更多是用来读而不是写。
 故本指南致力于改善 Python 代码的可读性、使不同的 (wide spectrum) Python 代码 保持一致性。
@@ -321,86 +169,57 @@ pep8规范 代码pep8规范可以使用python pep8工具做检查.
 安装方法 pip install pep8
 使用方法 pep8 &amp;lt;python文件&amp;gt;
 一般IDE工具都会有集成，可以在编写代码的工程中做pep8校验. 可自行google设置方法。
-代码布局 1) 每级缩进用 4 个空格。
-2) 建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格
-3) 绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。
-4) 限制所有行的最大行宽为 79 字符。
+代码布局 每级缩进用 4 个空格。
+建议使用4个空格代替tab,最流行的 Python 缩进方式是仅使用空格
+绝不要混合使用 tab 和空格。建议打开IDE中的tab和空格(或至少显示行尾空格)显示。
+限制所有行的最大行宽为 79 字符。
 折叠长行的首选方法是使用 Python 支持的圆括号、方括号 (brackets) 和花括号 (braces) 内的行延续。
 如果需要，你可以在表达式周围增加一对额外的圆括号，但是 有时使用反斜杠看起来更好。确认恰当地缩进了延续的行.
-6) 用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。
+用两行空行分割顶层函数和类的定义。 类内方法的定义用单个空行分割。
 在函数中使用空行时，请谨慎的用于表示一个逻辑段落 (logical sections)。
-7) python文件应统一使用utf8编码，并建议在文件头加生utf8声明。 申明头如下
-## 格式一 # -*- coding: utf-8 -*- ## 格式二 #!</description>
-    </item>
-    
-    <item>
-      <title>redis sentinel(redis监控)</title>
-      <link>https://hackrole.github.io/post/redis_sentinel/</link>
-      <pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/redis_sentinel/</guid>
-      <description>sentinel功能 1) 监控集群中所有节点是否正常工作.
-2) 在任一节点fail, 可以通过api通知管理员或pramgram
-3) 自动故障转移， 如果一个master节点fail, 会自动把slaver节点提升为master节点.并通知client使用新的节点.
-4) 配置提供， client通过链接sentinel获取所有节点信息等。相当与是proxy的作用, 类似mogos
-5) 提供redis高可用性
+python文件应统一使用utf8编码，并建议在文件头加生utf8声明。 申明头如下
+## 格式一 # -*- coding: utf-8 -*- ## 格式二 #!</description></item><item><title>redis sentinel(redis监控)</title><link>https://example.com/post/redis_sentinel/</link><pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate><guid>https://example.com/post/redis_sentinel/</guid><description>sentinel功能 监控集群中所有节点是否正常工作.
+在任一节点fail, 可以通过api通知管理员或pramgram
+自动故障转移， 如果一个master节点fail, 会自动把slaver节点提升为master节点.并通知client使用新的节点.
+配置提供， client通过链接sentinel获取所有节点信息等。相当与是proxy的作用, 类似mogos
+提供redis高可用性
 sentinel分布式特性 sentinel天生具有分布式特性，sentinel被设计为使用多个sentinel进程协同合作。
 这样做有以下好处:
-1) 由多台sential做fail判断, 减少误判。
-2) 避免sentinel单点故障。
+由多台sential做fail判断, 减少误判。
+避免sentinel单点故障。
 快速试用 sentinel当前稳定版本是2, 在redis2.8/redis3.0上工作. 早先的sentinel 1 在redis2.6上工作，已被depressed.
 sentinel使用更好的预测算法重写而成。
 使用如下方式启动sentinel
-redis-sentinel sentinel.conf redis-server sentinel.conf --sentinel  sentinel默认使用 26379端口监听client和其他sentinel链接。确保打开这一端口。并正确设置防火墙.
-sentinel部署须知 1) 一个稳健的redis集群，应该使用至少三个sentinel实例，并且保证讲这些实例放到不同的机器上，甚至不同的物理区域。
-2) sentinel无法保证强一致性, 大概分布式环境都会有这方面的权衡.
-3) 确保client库支持sentinel.
-4) sentinel需要通过不断的测试和观察，才能保证高可用。
-5) sentinel配合docker使用时，要注意端口映射带来的影响.
+redis-sentinel sentinel.conf redis-server sentinel.conf --sentinel sentinel默认使用 26379端口监听client和其他sentinel链接。确保打开这一端口。并正确设置防火墙.
+sentinel部署须知 一个稳健的redis集群，应该使用至少三个sentinel实例，并且保证讲这些实例放到不同的机器上，甚至不同的物理区域。
+sentinel无法保证强一致性, 大概分布式环境都会有这方面的权衡.
+确保client库支持sentinel.
+sentinel需要通过不断的测试和观察，才能保证高可用。
+sentinel配合docker使用时，要注意端口映射带来的影响.
 sentinel配置 实例如下
-sentinel monitor mymaster 127.0.0.1 6379 2 sentinel down-after-milliseconds mymaster 60000 sentinel failover-timeout mymaster 180000 sentinel parallel-syncs mymaster 1 sentinel monitor resque 192.</description>
-    </item>
-    
-    <item>
-      <title>redis分片相关</title>
-      <link>https://hackrole.github.io/post/redis_partition/</link>
-      <pubDate>Wed, 30 Dec 2015 15:37:33 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/redis_partition/</guid>
-      <description>介绍redis分片相关内容.
+sentinel monitor mymaster 127.</description></item><item><title>redis分片相关</title><link>https://example.com/post/redis_partition/</link><pubDate>Wed, 30 Dec 2015 15:37:33 +0000</pubDate><guid>https://example.com/post/redis_partition/</guid><description>介绍redis分片相关内容.
 分片相关 分片是将数据分布到不同的redis实例上, 让每个redis服务实例只保存部分数据。
-为何需要分片 1) 突破单机的内存和磁盘存储限制.
-2) 复用多机的cpu计算和网络传输能力。
+为何需要分片 突破单机的内存和磁盘存储限制.
+复用多机的cpu计算和网络传输能力。
 分片方法 分片有不同的实现方式, 如
-1) 范围分片, R0(1-10000), R1(10001-2000)&amp;hellip; 缺点: 需要记录键的对应情况，所以比较低效, redis中不建议这种方式.
-2) hash分片. 对每个key通过hash函数，计算到对应的实例。 redis中部分client和proxy实现了一致性hash来做分片处理。
+范围分片, R0(1-10000), R1(10001-2000)&amp;hellip; 缺点: 需要记录键的对应情况，所以比较低效, redis中不建议这种方式.
+hash分片. 对每个key通过hash函数，计算到对应的实例。 redis中部分client和proxy实现了一致性hash来做分片处理。
 分片实现层面 分片可以做不同层面实现.
-1) 客户端, 直接在客户端选择正确的实例完成操作。部分redis-client库实现这一功能.
-2) proxy, 类似mogos. 客户端链接到proxy, 由proxy代为转发到正确的redis实例上. 比如twemproxy::
-https://github.com/twitter/twemproxy  3) 查询路由. 查询被发到集群中任一台实例上, 由实例来转发到正确的实例上. redis集群实现了一个混合风格的查询路由，需要配合client端使用(不是由redis来做定位，而是重定向client来实现).
-分片的缺点 1) 跨越多个key的操作通常都不能使用, 部分操作可以通过间接的方式实现.
-2) 跨越多个key的事务无法被支持.
-3) XXX 以key的粒度来做分片，所以无法通过很多的key来共享一个大数据集，比如一个很大的sortedSet.
-4) 使用分片会让业务逻辑更加复杂，包括运维工作。
-5) 增加和删除节点/容量比较麻烦，是要平衡重新分片。redis集群支持这一个特性。 client/proxy实现需要通过Pre-sharding来支持。
-数据库还是缓存 redis作为缓存和数据库时，对待分片的策略有所不同.
-缓存可以容忍定位失败。而数据库不允许。 所以在增加和删除节点时，或是部分节点失败时，数据库要良好的处理再分片/再路由操作。
-redis分片 1) redis集群是自动分片和高可用的首选方案. 具体参见 redis_cluster::
-http://redis.io/topics/cluster-tutorial  2) Twemproxy, 更易用,速度很快。 具体参见</description>
-    </item>
-    
-    <item>
-      <title>redis集群教程</title>
-      <link>https://hackrole.github.io/post/redis_cluster_tutorial/</link>
-      <pubDate>Wed, 30 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/redis_cluster_tutorial/</guid>
-      <description>redis集群相关内容, 讲解如何设置集群，对集群做测试和常规操作。 不涵盖redis集群的细节，只从用户的角度讲如何使用redis集群, 以及redis的高可用性和一致性相关内容。 更具体内容参见::
-http://redis.io/topics/cluster-spec  redis集群的作用 1) 自动把数据分布到多台redis实例上.
-2) 再部分节点失败后，保持可用性。再大多数redis节点失败后,redis集群仍然会失败.
+客户端, 直接在客户端选择正确的实例完成操作。部分redis-client库实现这一功能.
+proxy, 类似mogos. 客户端链接到proxy, 由proxy代为转发到正确的redis实例上. 比如twemproxy::
+https://github.com/twitter/twemproxy
+查询路由. 查询被发到集群中任一台实例上, 由实例来转发到正确的实例上. redis集群实现了一个混合风格的查询路由，需要配合client端使用(不是由redis来做定位，而是重定向client来实现).
+分片的缺点 跨越多个key的操作通常都不能使用, 部分操作可以通过间接的方式实现.
+跨越多个key的事务无法被支持.
+XXX 以key的粒度来做分片，所以无法通过很多的key来共享一个大数据集，比如一个很大的sortedSet.
+使用分片会让业务逻辑更加复杂，包括运维工作。
+增加和删除节点/容量比较麻烦，是要平衡重新分片。redis集群支持这一个特性。 client/proxy实现需要通过Pre-sharding来支持。
+数据库还是缓存 redis作为缓存和数据库时，对待分片的策略有所不同.</description></item><item><title>redis集群教程</title><link>https://example.com/post/redis_cluster_tutorial/</link><pubDate>Wed, 30 Dec 2015 00:00:00 +0000</pubDate><guid>https://example.com/post/redis_cluster_tutorial/</guid><description>redis集群相关内容, 讲解如何设置集群，对集群做测试和常规操作。 不涵盖redis集群的细节，只从用户的角度讲如何使用redis集群, 以及redis的高可用性和一致性相关内容。 更具体内容参见::
+http://redis.io/topics/cluster-spec redis集群的作用 自动把数据分布到多台redis实例上.
+再部分节点失败后，保持可用性。再大多数redis节点失败后,redis集群仍然会失败.
 redis集群tcp端口 redis集群需要所有节点开启两个端口.
-1) normal-port. 如6379. 用于客户端的请求处理。
-2) high-port(normal-port+10000). 如16379. 用于集群内节点间使用2进制协议交换数据， 同时完成节点的错误检测，配置更新，故障转移认证等.
+normal-port. 如6379. 用于客户端的请求处理。
+high-port(normal-port+10000). 如16379. 用于集群内节点间使用2进制协议交换数据， 同时完成节点的错误检测，配置更新，故障转移认证等.
 确定开启这两个端口，并正确的设置防火墙。不然集群可以无法正常工作.
 redis集群与docker redis集群无法的NAT网络下使用。
 配合docker使用时，需要开启docker host-networking-mode. 具体参见docker相关文档。
@@ -411,43 +230,13 @@ redis集群的主从模式 redis的分片配置redis主从复制， 来保证高
 数据一致性 redis集群没法保证数据的一致性。再特定的场景下,redis会丢失部分数据. 主要原因在于redis的异步同步的方式上。这是在性能和一致性上的权衡.
 还要注意处理集群分裂的问题. 如一个6节点的集群分裂为两个3节点集群，然后各自工作 导致两边数据不同步的问题.
 redis集群配置 配置参数 .. _TODO:
-cluster-enabled &amp;lt;yes/no&amp;gt; # 用于保存集群状态和节点信息，由集群自动更新 cluster-config-file &amp;lt;filename&amp;gt; # 超时时间，超时后认为节点不再可用 cluster-node-timeout &amp;lt;milliseconds&amp;gt; cluster-slave-validity-factor &amp;lt;factor&amp;gt; cluster-migration-barrier &amp;lt;count&amp;gt; cluster-require-full-coverage &amp;lt;yes/no&amp;gt;  创建和使用redis集群 一般都需要安装ruby的redis包</description>
-    </item>
-    
-    <item>
-      <title>django generic-view使用笔记</title>
-      <link>https://hackrole.github.io/post/note_about_django_generic_view/</link>
-      <pubDate>Mon, 08 Jun 2015 15:32:35 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/note_about_django_generic_view/</guid>
-      <description>做了一个django app, 由于数据库使用mongodb, 所以没法使用django-admin. 就自己写了个admin. 起初用的是最简单的一个视图一个函数，forms/generic-view都没用。但是问题很明显，容易出现bug，代码重复度很高。
+cluster-enabled &amp;lt;yes/no&amp;gt; # 用于保存集群状态和节点信息，由集群自动更新 cluster-config-file &amp;lt;filename&amp;gt; # 超时时间，超时后认为节点不再可用 cluster-node-timeout &amp;lt;milliseconds&amp;gt; cluster-slave-validity-factor &amp;lt;factor&amp;gt; cluster-migration-barrier &amp;lt;count&amp;gt; cluster-require-full-coverage &amp;lt;yes/no&amp;gt; 创建和使用redis集群 一般都需要安装ruby的redis包</description></item><item><title>django generic-view使用笔记</title><link>https://example.com/post/note_about_django_generic_view/</link><pubDate>Mon, 08 Jun 2015 15:32:35 +0000</pubDate><guid>https://example.com/post/note_about_django_generic_view/</guid><description>做了一个django app, 由于数据库使用mongodb, 所以没法使用django-admin. 就自己写了个admin. 起初用的是最简单的一个视图一个函数，forms/generic-view都没用。但是问题很明显，容易出现bug，代码重复度很高。
 后来改用django-generic view配合forms, 总的来是开发效率和代码质量确实会有不错的提升，但是相对的，代码逻辑被分散在各处， 即便是自己写的代码，过一段时间回头看都有点看不太懂。
 所以这里坐下笔记，整理下django generic-view的功能和流程, 以及自己开发过程中的一些感想，以备后用.
 与django-rest-framework的对比 django-rest-framework里也有类似generic-view的概念。 两者的目的比较相似，都是为了减少重复代码，加快开发速度.
 比较大的区别是: 适用目标不同. django-rest-framework的目标是api接口，所以使用了get/post/delete/put/等method, 设计上就想是对一个model的CURD操作的映射。 django-generic-view的目标是web界面，所以只使用了get/post方法，设计上也不是一眼就能看出每个类的目的。
-django-generic-view主要组成 最基础的View/TemplateView/RedirectView/StaticView等 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-listView
- 提供对象列表视图 detailView ~~~~~~~~~~ 单个对象的详情视图 formView/createView/updateView/deleteView ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 用于编辑信息的视图 yearView/monthView等暂时没理解 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ django-generic_view内部流程 --------------------------- listView  实现了默认的get方法， 先调用get_queryset获取queryset, 之后通过paginate_querset对queryset进行分页. 之后通过调用get_context_data获取一些必要的context, 并把view/request放入其中， 之后调用render_to_response返回页面.
-1) get_queryset默认返回但强的queryset属性，或者model.objects.all.
-2) 可以重写get_queryset来返回特定的查询，结果会被设置到self.object_list.
-3) 可以通过分页相关的属性或方法设置分页相关的流程。
-4) 通过get_context_data可以获取额外的属性输出到页面.
-5) render_to_response使用templateMixin来输出结果.
-detailView ~~~~~~~~~~
-实现默认的get方法. 先调用get_object方法获取对象, 之后通过get_context_data获取必要的context, 之后返回render_to_response方法
-1) get_object默认会调用get_queryset来获取对象.
-2) 可以通过定义slug_field等，设置get_object查询条件.
-3) 通过定义get_context_data设置额外的页面属性.
-formView ~~~~~~~~</description>
-    </item>
-    
-    <item>
-      <title>读人月神话</title>
-      <link>https://hackrole.github.io/post/read_the_human_and_month_mistry/</link>
-      <pubDate>Tue, 26 May 2015 15:37:30 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/read_the_human_and_month_mistry/</guid>
-      <description>TODO reupdate
+django-generic-view主要组成 最基础的View/TemplateView/RedirectView/StaticView等
+listView ~~~~~~~~ 提供对象列表视图 detailView ~~~~~~~~~~ 单个对象的详情视图 formView/createView/updateView/deleteView ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 用于编辑信息的视图 yearView/monthView等暂时没理解 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ django-generic_view内部流程 --------------------------- listView ~~~~~~~~ 实现了默认的get方法， 先调用get_queryset获取queryset, 之后通过paginate_querset对queryset进行分页. 之后通过调用get_context_data获取一些必要的context, 并把view/request放入其中， 之后调用render_to_response返回页面. 1) get_queryset默认返回但强的queryset属性，或者model.objects.all. 2) 可以重写get_queryset来返回特定的查询，结果会被设置到self.object_list. 3) 可以通过分页相关的属性或方法设置分页相关的流程。 4) 通过get_context_data可以获取额外的属性输出到页面. 5) render_to_response使用templateMixin来输出结果. detailView ~~~~~~~~~~ 实现默认的get方法. 先调用get_object方法获取对象, 之后通过get_context_data获取必要的context, 之后返回render_to_response方法 1) get_object默认会调用get_queryset来获取对象. 2) 可以通过定义slug_field等，设置get_object查询条件. 3) 通过定义get_context_data设置额外的页面属性. formView ~~~~~~~~ 实现默认的get方法， 通过get_form_class返回默认的form类，. 通过get_form来获取form实例，其中会调用get_initial(), get_prefix()获取form initial. 然后通过get_context_data获取必要的页面属性 之后通过render_to_response返回页面 1) 可以通过get_form_class这里返回特殊choices的form等.</description></item><item><title>读人月神话</title><link>https://example.com/post/read_the_human_and_month_mistry/</link><pubDate>Tue, 26 May 2015 15:37:30 +0000</pubDate><guid>https://example.com/post/read_the_human_and_month_mistry/</guid><description>TODO reupdate
 前面的废话 最初入手这本书是在2012年末，当时受同事的蛊惑买书上瘾。拿着实习生微薄的收入，玩命的买书。 但凡经典的、有名的，恨不得统统纳入收藏。人月神话这书也是在那是入手的，因为名气太大，到处都是好评和推荐。
 我书买的多，却不都有时间读。但是基本刚拿到手时会仔细阅读下前言、推荐序和导论部分。 随后就会随便翻翻内容，觉得感兴趣就会慢慢看看，不然就会先放一边想起时再翻翻。
 初翻这本书只能说相当失望。毕竟当时还只是初出茅芦的小子，只对一些“酷炫牛逼”的技术和工具颇有热情。 而这本书主要是如何管理项目/如何团队协作，自然看的昏昏欲睡。随丢之一旁。
@@ -455,128 +244,67 @@ formView ~~~~~~~~</description>
 是的，没有银弹 对程序猿而言, 这大概是最悲伤的事情. 同时也是这份工作莫大的乐趣。
 条条大陆通罗马，可是却没有一条绝对最优的路线。于是你不得不在众多的方案中做选择。
 错误的项目估时策略 技术负债 1+1必然小于2的人月规律 那些总希望员工可以 1+1&amp;gt;2 的老板大概要失望的关闭公司，找一份不错的卖汉堡的工作了。
-沟通，沟通，还是沟通 巴比伦塔与焦油坑</description>
-    </item>
-    
-    <item>
-      <title>python标准模块struct笔记</title>
-      <link>https://hackrole.github.io/post/python_module_struct/</link>
-      <pubDate>Thu, 11 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/python_module_struct/</guid>
-      <description>struct模块的作用为，完成字节串到python对象的转换.
-基本的api接口 python对象 -&amp;gt; 字节串 1) pack(fmt, v1, v2, v3&amp;hellip;)
-2) pack_info(fmt, buffer, offset, v1, v2&amp;hellip;) 将多个python对象按固定的格式转化为字节串
-字节串 -&amp;gt; python对象 1) unpack(fmt, str)
-2) unpack_from(fmt, buffer, offset=0)
-其他 1) calcsize(fmt) 计算一个fmt需要多少字节
-2) Struct(fmt), 包含pack/unpack等方法。
+沟通，沟通，还是沟通 巴比伦塔与焦油坑</description></item><item><title>python标准模块struct笔记</title><link>https://example.com/post/python_module_struct/</link><pubDate>Thu, 11 Sep 2014 00:00:00 +0000</pubDate><guid>https://example.com/post/python_module_struct/</guid><description>struct模块的作用为，完成字节串到python对象的转换.
+基本的api接口 python对象 -&amp;gt; 字节串 pack(fmt, v1, v2, v3&amp;hellip;)
+pack_info(fmt, buffer, offset, v1, v2&amp;hellip;) 将多个python对象按固定的格式转化为字节串
+字节串 -&amp;gt; python对象 unpack(fmt, str)
+unpack_from(fmt, buffer, offset=0)
+其他 calcsize(fmt) 计算一个fmt需要多少字节
+Struct(fmt), 包含pack/unpack等方法。
 转换说明 转换中要重要的有以下四项：
 byte order 字节顺序有大端和小端两种。 不同机器可能使用不同的字节序， 网络字节序统一采用大端.
-1) native 本地字节序(与机器和本地环境相关)
-2) little-endian 小端
-3) big-endian 大端
-4) network 网络字节序（使用大端)
+native 本地字节序(与机器和本地环境相关)
+little-endian 小端
+big-endian 大端
+network 网络字节序（使用大端)
 size 同一个c type在不同机器上可能有不同的大小。
-1) native 于机器和本地环境相关的大小
-2) standard 于环境无关的标准大小
-TODO alignment 对齐方式
-format char    char c type python type size     x pad bytes  1   c char string(len 1) 1   b signed char integer 1   B unsigned char integer 1   ?</description>
-    </item>
-    
-    <item>
-      <title>mongodb库设计问题</title>
-      <link>https://hackrole.github.io/post/mongoengine_questions/</link>
-      <pubDate>Thu, 31 Jul 2014 17:49:57 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/mongoengine_questions/</guid>
-      <description>TODO
+native 于机器和本地环境相关的大小</description></item><item><title>mongodb库设计问题</title><link>https://example.com/post/mongoengine_questions/</link><pubDate>Thu, 31 Jul 2014 17:49:57 +0000</pubDate><guid>https://example.com/post/mongoengine_questions/</guid><description>TODO
 项目地址:: TODO ref
 mongodb本身是无模式的，但是使用时都要在application层实现模式约束.
 mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).
 使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.
 mongoengine问题 索引问题 索引应该跟document分开.并且有自动化建立和删除的command.
 把索引定在Document/meta/indexes里很糟糕：
-1) 写法很乱，不易管理。
-2) 有时会失效，没有建立对应的索引
+写法很乱，不易管理。
+有时会失效，没有建立对应的索引
 listField校验问题 listField没法做长度限制 set/sortset/max-len list/ sort-list等结构没有实现
 不支持自定义字段验证/文档级验证 pre_save/after_save hooks 不可存储的EmbdDocumment TODO 待考虑
-可扩展的Document TODO 待考虑</description>
-    </item>
-    
-    <item>
-      <title>mongodb索引建立和优化</title>
-      <link>https://hackrole.github.io/post/mongodb_indexes_pretty/</link>
-      <pubDate>Fri, 27 Jun 2014 17:38:06 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/mongodb_indexes_pretty/</guid>
-      <description>TODO: 来源
- 索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引
- 可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响
- 对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读
- nosqlfan是个学习和找问题的好地方
-  mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用
-db.things.ensureIndex({j:1})  默认单列/文档/组合索引  每个集合都会有个默认索引 _id ,该字段不能删除
- 单列索引可以是独立字段，也可以是嵌套文档字段
- 建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO
- 稀疏索引的概念与sql中的稀疏索引概念不同
- mongodb不会为字段值不存在的文档加入索引,null值不能被查出
- 唯一索引
-db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})   特殊索引 mongodb支持2d索引，用于地理位置服务。
+可扩展的Document TODO 待考虑</description></item><item><title>mongodb索引建立和优化</title><link>https://example.com/post/mongodb_indexes_pretty/</link><pubDate>Fri, 27 Jun 2014 17:38:06 +0000</pubDate><guid>https://example.com/post/mongodb_indexes_pretty/</guid><description>TODO: 来源
+索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引
+可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响
+对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读
+nosqlfan是个学习和找问题的好地方
+mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用
+db.things.ensureIndex({j:1}) 默认单列/文档/组合索引 每个集合都会有个默认索引 _id ,该字段不能删除
+单列索引可以是独立字段，也可以是嵌套文档字段
+建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO
+稀疏索引的概念与sql中的稀疏索引概念不同
+mongodb不会为字段值不存在的文档加入索引,null值不能被查出
+唯一索引
+db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true}) 特殊索引 mongodb支持2d索引，用于地理位置服务。
 mongodb支持text全文索引，但是功能较弱.
 须注意：
-1) mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html
-2) mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理
-mongodb支持两种2d索引:
-1) 平面2d索引
-2) 球面2d索引（最新特性，距离计算更加准确）
-不同的索引在用于地理位置服务时的处理方式不同，具体可以参见： http://www.tuicool.com/articles/MVrqAn</description>
-    </item>
-    
-    <item>
-      <title>ipython使用技巧</title>
-      <link>https://hackrole.github.io/post/ipython_usage_tips/</link>
-      <pubDate>Fri, 21 Mar 2014 17:18:33 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/ipython_usage_tips/</guid>
-      <description>内容参考: 来自 TODO
-调用timeit做性能测试 %timeit range(10000)  ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO
+mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html
+mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理</description></item><item><title>ipython使用技巧</title><link>https://example.com/post/ipython_usage_tips/</link><pubDate>Fri, 21 Mar 2014 17:18:33 +0000</pubDate><guid>https://example.com/post/ipython_usage_tips/</guid><description>内容参考: 来自 TODO
+调用timeit做性能测试 %timeit range(10000) ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO
 ipython里load代码 %load根据路径加载文件
-debug调试代码 1) 在出异常后,调用 %debug进入pdb开始调试程序
-2) 调用%pdb,在出异常时.会自动进入pdb调试
+debug调试代码 在出异常后,调用 %debug进入pdb开始调试程序
+调用%pdb,在出异常时.会自动进入pdb调试
 TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚本文件 调用ipython -i &amp;lt;pyfile&amp;gt; 在加载脚本文件后在启动ipython
-在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载</description>
-    </item>
-    
-    <item>
-      <title>编译安装ruby问题总结</title>
-      <link>https://hackrole.github.io/post/ruby_install_from_source/</link>
-      <pubDate>Tue, 14 Jan 2014 17:59:31 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/ruby_install_from_source/</guid>
-      <description>多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.
+在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载</description></item><item><title>编译安装ruby问题总结</title><link>https://example.com/post/ruby_install_from_source/</link><pubDate>Tue, 14 Jan 2014 17:59:31 +0000</pubDate><guid>https://example.com/post/ruby_install_from_source/</guid><description>多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.
 rvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.
 .. note::
-多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同.  卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.
+多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同. 卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.
 解决方法. .. code-block:: ruby
-sudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome  卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了
+sudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome 卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了
 ldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url
 .. code-block:: shell
-ldd `which vim`  可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题
-编译ruby 编译前记得安装readline库, 不然无法使用补全。</description>
-    </item>
-    
-    <item>
-      <title>elisp keymap相关</title>
-      <link>https://hackrole.github.io/post/elisp_keymap/</link>
-      <pubDate>Fri, 03 Jan 2014 14:58:24 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/elisp_keymap/</guid>
-      <description>elisp按键序列概念 elisp按键在elisp中有两种表达方式:
+ldd `which vim` 可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题
+编译ruby 编译前记得安装readline库, 不然无法使用补全。</description></item><item><title>elisp keymap相关</title><link>https://example.com/post/elisp_keymap/</link><pubDate>Fri, 03 Jan 2014 14:58:24 +0000</pubDate><guid>https://example.com/post/elisp_keymap/</guid><description>elisp按键序列概念 elisp按键在elisp中有两种表达方式:
 1&amp;gt; 字符串 &amp;ldquo;\C-x1&amp;rdquo;
 2&amp;gt; 列表vector [?\C-x ?1]
 函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)
-功能键用 &amp;lt;&amp;gt;表示,   等
+功能键用 &amp;lt;&amp;gt;表示, 等
 keymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上
 按键序列可以分为两种
 1&amp;gt; prefix key 前缀键,如 C-x
@@ -587,16 +315,7 @@ keymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个
 3&amp;gt; zero or many minor keymap(通常有minor mode提供)
 local keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap
 create keymap and keymap format keymap format
- **TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap  | function | desc | others | | (make-sparse-keymap &amp;amp;optional prompt | create and return a new keymap with no entries | the usually keymap you need | | (make-keymap &amp;amp;optional prompt) | create and return a new keymap with char-tables | use this if you want bind a lots of keys | | (copy-keymap keymap) | return a copy of keymap, recursive copy sub keymap | recursive copy fails on function keymap |</description>
-    </item>
-    
-    <item>
-      <title>elisp变量相关</title>
-      <link>https://hackrole.github.io/post/elisp_variable/</link>
-      <pubDate>Thu, 02 Jan 2014 15:02:21 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/elisp_variable/</guid>
-      <description>全局变量 setq
+**TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap function desc others (make-sparse-keymap &amp;amp;optional prompt create and return a new keymap with no entries the usually keymap you need (make-keymap &amp;amp;optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap 新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置</description></item><item><title>elisp变量相关</title><link>https://example.com/post/elisp_variable/</link><pubDate>Thu, 02 Jan 2014 15:02:21 +0000</pubDate><guid>https://example.com/post/elisp_variable/</guid><description>全局变量 setq
 set
 常量 t
 nil
@@ -605,22 +324,9 @@ keyword(:)
 局部变量 let let*
 (shodow/setq)
 buffer local/terminal local
-变量命名规范 -hook -function -functions -form -forms -predicate -flag -program -command -switches</description>
-    </item>
-    
-    <item>
-      <title>elisp buffer处理相关</title>
-      <link>https://hackrole.github.io/post/elisp_buffer/</link>
-      <pubDate>Thu, 02 Jan 2014 14:55:08 +0000</pubDate>
-      
-      <guid>https://hackrole.github.io/post/elisp_buffer/</guid>
-      <description> buffer基本概念 buffer是一个elisp对象，包含一些必要的属性, 部分属性可以直接通过变量访问,部分属性要通过函数才能访问
+变量命名规范 -hook -function -functions -form -forms -predicate -flag -program -command -switches</description></item><item><title>elisp buffer处理相关</title><link>https://example.com/post/elisp_buffer/</link><pubDate>Thu, 02 Jan 2014 14:55:08 +0000</pubDate><guid>https://example.com/post/elisp_buffer/</guid><description>buffer基本概念 buffer是一个elisp对象，包含一些必要的属性, 部分属性可以直接通过变量访问,部分属性要通过函数才能访问
 buffer一般会关联一个打开的文件，也可不关联
 buffer都有一个唯一name属性
 buffer-local变量使得可以对不同buffer保存不同的状态等
 bufferp函数测试symbal是否为buffer
-buffer基本属性 the current buffer buffer name buffer file name buffer modify read-only buffer buffer list buffer操作函数 </description>
-    </item>
-    
-  </channel>
-</rss>
+buffer基本属性 the current buffer buffer name buffer file name buffer modify read-only buffer buffer list buffer操作函数</description></item></channel></rss>
