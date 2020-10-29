@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>redis on Eureka Demo</title><link>https://example.com/tags/redis/</link><description>Recent content in redis on Eureka Demo</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Fri, 08 Jan 2016 14:35:13 +0000</lastBuildDate><atom:link href="https://example.com/tags/redis/index.xml" rel="self" type="application/rss+xml"/><item><title>redis持久化配置</title><link>https://example.com/post/redis_persistence/</link><pubDate>Fri, 08 Jan 2016 14:35:13 +0000</pubDate><guid>https://example.com/post/redis_persistence/</guid><description>持久化级别 redis提供如下四中持久化方案:
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>redis on Hackrole's Blog</title><link>https://hackrole.github.io/tags/redis/</link><description>Recent content in redis on Hackrole's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Fri, 08 Jan 2016 14:35:13 +0000</lastBuildDate><atom:link href="https://hackrole.github.io/tags/redis/index.xml" rel="self" type="application/rss+xml"/><item><title>redis持久化配置</title><link>https://hackrole.github.io/post/redis_persistence/</link><pubDate>Fri, 08 Jan 2016 14:35:13 +0000</pubDate><guid>https://hackrole.github.io/post/redis_persistence/</guid><description>持久化级别 redis提供如下四中持久化方案:
 完全不持久化，纯内存操作。比如做缓存服务器时。
 RDB持久化，配置时间间隔，异步持久化。默认的持久化方案。
 AOF持久化，所有操作都是记录到日志文件，保证所有数据都被记录。 在redis重启时，会使用AOF重建数据集。
@@ -20,7 +20,7 @@ redis可以rewrite过大的AOF log.
 有很稀有的bug存在，RDB没有此类bug.
 如何使用 如果想要更强的数据一致性，则应该组合使用AOF和RDB
 如果可以容忍少量的数据丢失,可以只使用RDB.
-不推荐只是AOF.</description></item><item><title>redis服务管理需知</title><link>https://example.com/post/redis_admin_hint/</link><pubDate>Fri, 08 Jan 2016 14:34:49 +0000</pubDate><guid>https://example.com/post/redis_admin_hint/</guid><description>介绍一些redis部署时的注意事项
+不推荐只是AOF.</description></item><item><title>redis服务管理需知</title><link>https://hackrole.github.io/post/redis_admin_hint/</link><pubDate>Fri, 08 Jan 2016 14:34:49 +0000</pubDate><guid>https://hackrole.github.io/post/redis_admin_hint/</guid><description>介绍一些redis部署时的注意事项
 注意事项 建议使用linux部署。
 sysctl vm.overcommit_memory=1 或者 vm.overcommit_memory = 1 (/etc/sysctl.conf)
 echo never &amp;gt; /sys/kernel/mm/transparent_hugepage/enabled
@@ -35,7 +35,7 @@ aws注意事项 使用HWS实例，不要使用pv实例
 不要使用太老的实例。 m3 good than m1
 redis在EBS的持久话需要注意，EBS可能会太慢。
 你可能想尝试diskless-sync. 如果replication-sync有问题的话。
-redis升级或重启建议 TODO</description></item><item><title>redis数据结构介绍</title><link>https://example.com/post/redis_data_type_intro/</link><pubDate>Fri, 08 Jan 2016 14:31:57 +0000</pubDate><guid>https://example.com/post/redis_data_type_intro/</guid><description>概述 redis并不是单纯的缓存服务器，而是被设计为一个数据结构服务器。为服务提供有用高效的数据类型.
+redis升级或重启建议 TODO</description></item><item><title>redis数据结构介绍</title><link>https://hackrole.github.io/post/redis_data_type_intro/</link><pubDate>Fri, 08 Jan 2016 14:31:57 +0000</pubDate><guid>https://hackrole.github.io/post/redis_data_type_intro/</guid><description>概述 redis并不是单纯的缓存服务器，而是被设计为一个数据结构服务器。为服务提供有用高效的数据类型.
 redis中主要包含如下数据类型:
 字符串,二进制安全。 列表list， 链表实现。不是array. 集合set, 值不可重复. 排序集合ordered-set. 同时存储一个value和一个score. score用于排序. 字典hash, 类似python的字典和ruby的hash,但是field-key/field-value只能是字符串. bit-array或bitmaps. HyperLogLogs, 概率行数据结构. TODO 不同数据结构可以根据需要解决不同的任务集。
 类型具体说明 redis-key redis-key只能是字符串，并且是2进制安全。
@@ -47,7 +47,7 @@ getset获取key的old-value, 同时设置为最新的value.
 mset/mget一次对多个key做操作.
 redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度为O(1), 查找元素的复杂度为O(N).
 大多数操作都支持左右两个方向， lpush/rpush. l-&amp;gt;list前缀/r-&amp;gt;reverse-order
-两个方向的push/pop可以作为队列/栈使用. lrange用于获取列表内容.常用的场景:</description></item><item><title>redis复制配置相关</title><link>https://example.com/post/redis_replication/</link><pubDate>Fri, 08 Jan 2016 14:31:05 +0000</pubDate><guid>https://example.com/post/redis_replication/</guid><description>原内容来自redis官方文档: redis-replication官方文档
+两个方向的push/pop可以作为队列/栈使用. lrange用于获取列表内容.常用的场景:</description></item><item><title>redis复制配置相关</title><link>https://hackrole.github.io/post/redis_replication/</link><pubDate>Fri, 08 Jan 2016 14:31:05 +0000</pubDate><guid>https://hackrole.github.io/post/redis_replication/</guid><description>原内容来自redis官方文档: redis-replication官方文档
 基本来说，只要在配置文件里加上
 # slaveof &amp;lt;ip&amp;gt; &amp;lt;port&amp;gt; slaveof 127.0.0.1 6379 就可以完成配置.
 如下配置可能有用
@@ -62,7 +62,7 @@ redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度�
 master节点可以通过配置，要求所有链接需要认证
 requirepass &amp;lt;password&amp;gt; 这时slave节点需要做如下配置
 # 运行时 config set masterauth &amp;lt;password&amp;gt; # 配置文件 masterauth &amp;lt;password&amp;gt; 部分同步 TODO
-控制slave链接数 TODO</description></item><item><title>redis sentinel(redis监控)</title><link>https://example.com/post/redis_sentinel/</link><pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate><guid>https://example.com/post/redis_sentinel/</guid><description>sentinel功能 监控集群中所有节点是否正常工作.
+控制slave链接数 TODO</description></item><item><title>redis sentinel(redis监控)</title><link>https://hackrole.github.io/post/redis_sentinel/</link><pubDate>Thu, 31 Dec 2015 00:00:00 +0000</pubDate><guid>https://hackrole.github.io/post/redis_sentinel/</guid><description>sentinel功能 监控集群中所有节点是否正常工作.
 在任一节点fail, 可以通过api通知管理员或pramgram
 自动故障转移， 如果一个master节点fail, 会自动把slaver节点提升为master节点.并通知client使用新的节点.
 配置提供， client通过链接sentinel获取所有节点信息等。相当与是proxy的作用, 类似mogos
@@ -81,7 +81,7 @@ sentinel无法保证强一致性, 大概分布式环境都会有这方面的权�
 sentinel需要通过不断的测试和观察，才能保证高可用。
 sentinel配合docker使用时，要注意端口映射带来的影响.
 sentinel配置 实例如下
-sentinel monitor mymaster 127.</description></item><item><title>redis分片相关</title><link>https://example.com/post/redis_partition/</link><pubDate>Wed, 30 Dec 2015 15:37:33 +0000</pubDate><guid>https://example.com/post/redis_partition/</guid><description>介绍redis分片相关内容.
+sentinel monitor mymaster 127.</description></item><item><title>redis分片相关</title><link>https://hackrole.github.io/post/redis_partition/</link><pubDate>Wed, 30 Dec 2015 15:37:33 +0000</pubDate><guid>https://hackrole.github.io/post/redis_partition/</guid><description>介绍redis分片相关内容.
 分片相关 分片是将数据分布到不同的redis实例上, 让每个redis服务实例只保存部分数据。
 为何需要分片 突破单机的内存和磁盘存储限制.
 复用多机的cpu计算和网络传输能力。
@@ -98,7 +98,7 @@ https://github.com/twitter/twemproxy
 XXX 以key的粒度来做分片，所以无法通过很多的key来共享一个大数据集，比如一个很大的sortedSet.
 使用分片会让业务逻辑更加复杂，包括运维工作。
 增加和删除节点/容量比较麻烦，是要平衡重新分片。redis集群支持这一个特性。 client/proxy实现需要通过Pre-sharding来支持。
-数据库还是缓存 redis作为缓存和数据库时，对待分片的策略有所不同.</description></item><item><title>redis集群教程</title><link>https://example.com/post/redis_cluster_tutorial/</link><pubDate>Wed, 30 Dec 2015 00:00:00 +0000</pubDate><guid>https://example.com/post/redis_cluster_tutorial/</guid><description>redis集群相关内容, 讲解如何设置集群，对集群做测试和常规操作。 不涵盖redis集群的细节，只从用户的角度讲如何使用redis集群, 以及redis的高可用性和一致性相关内容。 更具体内容参见::
+数据库还是缓存 redis作为缓存和数据库时，对待分片的策略有所不同.</description></item><item><title>redis集群教程</title><link>https://hackrole.github.io/post/redis_cluster_tutorial/</link><pubDate>Wed, 30 Dec 2015 00:00:00 +0000</pubDate><guid>https://hackrole.github.io/post/redis_cluster_tutorial/</guid><description>redis集群相关内容, 讲解如何设置集群，对集群做测试和常规操作。 不涵盖redis集群的细节，只从用户的角度讲如何使用redis集群, 以及redis的高可用性和一致性相关内容。 更具体内容参见::
 http://redis.io/topics/cluster-spec redis集群的作用 自动把数据分布到多台redis实例上.
 再部分节点失败后，保持可用性。再大多数redis节点失败后,redis集群仍然会失败.
 redis集群tcp端口 redis集群需要所有节点开启两个端口.

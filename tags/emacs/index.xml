@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emacs on Eureka Demo</title><link>https://example.com/tags/emacs/</link><description>Recent content in emacs on Eureka Demo</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Fri, 03 Jan 2014 14:58:24 +0000</lastBuildDate><atom:link href="https://example.com/tags/emacs/index.xml" rel="self" type="application/rss+xml"/><item><title>elisp keymap相关</title><link>https://example.com/post/elisp_keymap/</link><pubDate>Fri, 03 Jan 2014 14:58:24 +0000</pubDate><guid>https://example.com/post/elisp_keymap/</guid><description>elisp按键序列概念 elisp按键在elisp中有两种表达方式:
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>emacs on Hackrole's Blog</title><link>https://hackrole.github.io/tags/emacs/</link><description>Recent content in emacs on Hackrole's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Fri, 03 Jan 2014 14:58:24 +0000</lastBuildDate><atom:link href="https://hackrole.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml"/><item><title>elisp keymap相关</title><link>https://hackrole.github.io/post/elisp_keymap/</link><pubDate>Fri, 03 Jan 2014 14:58:24 +0000</pubDate><guid>https://hackrole.github.io/post/elisp_keymap/</guid><description>elisp按键序列概念 elisp按键在elisp中有两种表达方式:
 1&amp;gt; 字符串 &amp;ldquo;\C-x1&amp;rdquo;
 2&amp;gt; 列表vector [?\C-x ?1]
 函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)
@@ -13,7 +13,7 @@ keymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个
 3&amp;gt; zero or many minor keymap(通常有minor mode提供)
 local keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap
 create keymap and keymap format keymap format
-**TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap function desc others (make-sparse-keymap &amp;amp;optional prompt create and return a new keymap with no entries the usually keymap you need (make-keymap &amp;amp;optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap 新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置</description></item><item><title>elisp变量相关</title><link>https://example.com/post/elisp_variable/</link><pubDate>Thu, 02 Jan 2014 15:02:21 +0000</pubDate><guid>https://example.com/post/elisp_variable/</guid><description>全局变量 setq
+**TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap function desc others (make-sparse-keymap &amp;amp;optional prompt create and return a new keymap with no entries the usually keymap you need (make-keymap &amp;amp;optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap 新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置</description></item><item><title>elisp变量相关</title><link>https://hackrole.github.io/post/elisp_variable/</link><pubDate>Thu, 02 Jan 2014 15:02:21 +0000</pubDate><guid>https://hackrole.github.io/post/elisp_variable/</guid><description>全局变量 setq
 set
 常量 t
 nil
@@ -22,7 +22,7 @@ keyword(:)
 局部变量 let let*
 (shodow/setq)
 buffer local/terminal local
-变量命名规范 -hook -function -functions -form -forms -predicate -flag -program -command -switches</description></item><item><title>elisp buffer处理相关</title><link>https://example.com/post/elisp_buffer/</link><pubDate>Thu, 02 Jan 2014 14:55:08 +0000</pubDate><guid>https://example.com/post/elisp_buffer/</guid><description>buffer基本概念 buffer是一个elisp对象，包含一些必要的属性, 部分属性可以直接通过变量访问,部分属性要通过函数才能访问
+变量命名规范 -hook -function -functions -form -forms -predicate -flag -program -command -switches</description></item><item><title>elisp buffer处理相关</title><link>https://hackrole.github.io/post/elisp_buffer/</link><pubDate>Thu, 02 Jan 2014 14:55:08 +0000</pubDate><guid>https://hackrole.github.io/post/elisp_buffer/</guid><description>buffer基本概念 buffer是一个elisp对象，包含一些必要的属性, 部分属性可以直接通过变量访问,部分属性要通过函数才能访问
 buffer一般会关联一个打开的文件，也可不关联
 buffer都有一个唯一name属性
 buffer-local变量使得可以对不同buffer保存不同的状态等
