@@ -1,0 +1,115 @@
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>引用循环和内存泄漏 | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="引用循环和内存泄漏 | Hackrole's Blog"><meta itemprop=description content="/// make a ref-circle, it's possible in rust. /// but rust make sure it safe. use std::rc::Rc; use std::cell::RefCell; use crate::List::{Cons, Nil}; #[derive(Debug)] enum List{ Cons(i32, RefCell<Rc<List>>), Nil } impl List { fn tail(&self) -> Option<&RefCell<Rc<List>>> { match self { Cons(_, item) => Some(item), Nil => None, } } } fn main() { let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil)))); println!(&#34;a initial rc count = {}&#34;, Rc::strong_count(&a)); println!(&#34;a next item = {:?}&#34;, a.tail()); let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&a)))); println!"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/posts/"},{"@type":"ListItem","position":3,"name":"引用循环和内存泄漏","item":"https://hackrole.github.io/posts/learn-rust/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/posts/learn-rust/"},"headline":"引用循环和内存泄漏 | Hackrole\u0027s Blog","datePublished":"2020-11-01T00:00:00+00:00","dateModified":"2020-11-04T00:19:55+08:00","wordCount":298,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"\/\/\/ make a ref-circle, it\u0027s possible in rust. \/\/\/ but rust make sure it safe. use std::rc::Rc; use std::cell::RefCell; use crate::List::{Cons, Nil}; #[derive(Debug)] enum List{ Cons(i32, RefCell\u0026lt;Rc\u0026lt;List\u0026gt;\u0026gt;), Nil } impl List { fn tail(\u0026amp;self) -\u0026gt; Option\u0026lt;\u0026amp;RefCell\u0026lt;Rc\u0026lt;List\u0026gt;\u0026gt;\u0026gt; { match self { Cons(_, item) =\u0026gt; Some(item), Nil =\u0026gt; None, } } } fn main() { let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil)))); println!(\u0026quot;a initial rc count = {}\u0026quot;, Rc::strong_count(\u0026amp;a)); println!(\u0026quot;a next item = {:?}\u0026quot;, a.tail()); let b = Rc::new(Cons(10, RefCell::new(Rc::clone(\u0026amp;a)))); println!"}</script><meta property="og:title" content="引用循环和内存泄漏 | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/posts/learn-rust/"><meta property="og:description" content="/// make a ref-circle, it's possible in rust. /// but rust make sure it safe. use std::rc::Rc; use std::cell::RefCell; use crate::List::{Cons, Nil}; #[derive(Debug)] enum List{ Cons(i32, RefCell<Rc<List>>), Nil } impl List { fn tail(&self) -> Option<&RefCell<Rc<List>>> { match self { Cons(_, item) => Some(item), Nil => None, } } } fn main() { let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil)))); println!(&#34;a initial rc count = {}&#34;, Rc::strong_count(&a)); println!(&#34;a next item = {:?}&#34;, a.tail()); let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&a)))); println!"><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2020-11-01T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-04T00:19:55+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="Rust"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/posts/learn-rust/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
+<a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
+<a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme();switchBurger();});let currenturl=document.getElementById('current-url').getAttribute('currenturl')
+if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
+sessionStorage.setItem("mainKey",currenturl)
+let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
+if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">引用循环和内存泄漏</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>Nov 1, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>2 min read</span></div></div><div class=content><pre><code class=language-rust>/// make a ref-circle, it's possible in rust.
+/// but rust make sure it safe.
+use std::rc::Rc;
+use std::cell::RefCell;
+use crate::List::{Cons, Nil};
+
+#[derive(Debug)]
+enum List{
+    Cons(i32, RefCell&lt;Rc&lt;List&gt;&gt;),
+    Nil
+}
+
+
+impl List {
+    fn tail(&amp;self) -&gt; Option&lt;&amp;RefCell&lt;Rc&lt;List&gt;&gt;&gt; {
+        match self {
+            Cons(_, item) =&gt; Some(item),
+            Nil =&gt; None,
+        }
+    }
+}
+
+fn main() {
+    let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil))));
+
+    println!(&quot;a initial rc count = {}&quot;, Rc::strong_count(&amp;a));
+    println!(&quot;a next item = {:?}&quot;, a.tail());
+
+    let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&amp;a))));
+
+    println!(&quot;a rc count after b creation = {}&quot;, Rc::strong_count(&amp;a));
+    println!(&quot;b initial rc count = {}&quot;, Rc::strong_count(&amp;b));
+    println!(&quot;b next item = {:?}&quot;, b.tail());
+
+    if let Some(link) = a.tail() {
+        *link.borrow_mut() = Rc::clone(&amp;b);
+    }
+
+    println!(&quot;b rc count after changing a = {}&quot;, Rc::strong_count(&amp;b));
+    println!(&quot;a rc count after chaning a = {}&quot;, Rc::strong_count(&amp;a));
+
+    /// Uncomment the next line to see that we have a cycle;
+    /// it will overflow the stack
+    //println!(&quot;a next item = {:?}&quot;, a.tail());
+}
+</code></pre><p>一般可以通过Weak来消除引用循环,
+Weak Ref通过Rc::downgrade创建，之后会增加并记录week_ref的count, 但是在strong_count为0时会清理数据.
+WeakRef通过 `rust`{Weak::upgrade() -> Option&lt;Rc>}</p><pre><code class=language-rust>use std::rc::{Rc, Weak};
+use std::cell::RefCell;
+
+#[derive(Debug)]
+struct Node {
+    value: i32,
+    parent: RefCell&lt;Weak&lt;Node&gt;&gt;,
+    children: RefCell&lt;Vec&lt;Rc&lt;Node&gt;&gt;&gt;,
+}
+
+fn main() {
+    let leaf = Rc::new(Node {
+        value: 3,
+        parent: RefCell::new(Weak:new()),
+        children: RefCell::new(vec![]),
+    });
+
+    println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
+
+    let branch = Rc::new(Node {
+        value: 5,
+        parent: RefCell::new(Weak::new()),
+        chidlren: RefCell::new(vec![Rc::clone(&amp;self)]),
+    });
+    *leaf.parent.borrow_mut() = Rc::downgrade(&amp;branch);
+
+    println!(&quot;leaf parent = {:?}&quot;, leaf.parent.borrow().upgrade());
+}
+</code></pre><p>visual <code>strong_count</code> and <code>weak_count</code></p><pre><code class=language-rust>fn main() {
+    let leat = Rc::new(Node {
+        value: 3,
+        parent: RefCell::new(Weak::new()),
+        children: RefCell::new(vec![]),
+    });
+
+    println!(&quot;leaf strong = {}, weak = {}&quot;, Rc::strong_count(&amp;leaf), Rc::weak_count(&amp;leaf));
+
+    {
+        let branch = Rc::new(Node {
+            value: 5,
+            parent: RefCell::new(Weak::new()),
+            children: RefCell::new(vec![Rc::clone(&amp;self)]),
+        });
+
+        *leaf.parent.borrow_mut() = Rc::downgrade(&amp;branch);
+
+        println!(&quot;branch strong = {}, weak = {}&quot;, Rc::strong_count(&amp;branch), Rc::weak_count(&amp;branch));
+        println!(&quot;leaf strong = {}, weak = {}&quot;, Rc::strong_count(&amp;leaf), Rc::weak_count(&amp;leaf));
+    }
+    println!(&quot;branch strong = {}, weak = {}&quot;, Rc::strong_count(&amp;branch), Rc::weak_count(&amp;branch));
+    println!(&quot;leaf strong = {}, weak = {}&quot;, Rc::strong_count(&amp;leaf), Rc::weak_count(&amp;leaf));
+}
+</code></pre></div><div class=my-4><a href=https://hackrole.github.io/tags/rust/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Rust</a></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
+<a href=https://hackrole.github.io/posts/write_hugo_blog_in_org/ class=block>writing Hugo Org</a></div><div class="md:text-right mt-4 md:mt-0"></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
