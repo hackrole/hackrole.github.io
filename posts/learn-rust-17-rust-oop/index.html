@@ -1,6 +1,6 @@
 <!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>17 rust OOP | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="17 rust OOP | Hackrole's Blog"><meta itemprop=description content="rust can bind data with methods rust can use pub/private to abstract inner implement. rust not support exntends. you should consider use combination more.  extend has two more usage-point.
- reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this. polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \`bounded parametric polymorphism\`.  TODOTrait-object used for instances with different types"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/posts/"},{"@type":"ListItem","position":3,"name":"17 rust OOP","item":"https://hackrole.github.io/posts/learn-rust-17-rust-oop/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/posts/learn-rust-17-rust-oop/"},"headline":"17 rust OOP | Hackrole\u0027s Blog","datePublished":"2020-11-04T00:00:00+00:00","dateModified":"2020-11-05T00:19:48+08:00","wordCount":77,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":" rust can bind data with methods rust can use pub\/private to abstract inner implement. rust not support exntends. you should consider use combination more.  extend has two more usage-point.\n reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this. polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \\`bounded parametric polymorphism\\`.  TODOTrait-object used for instances with different types "}</script><meta property="og:title" content="17 rust OOP | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/posts/learn-rust-17-rust-oop/"><meta property="og:description" content="rust can bind data with methods rust can use pub/private to abstract inner implement. rust not support exntends. you should consider use combination more.  extend has two more usage-point.
- reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this. polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \`bounded parametric polymorphism\`.  TODOTrait-object used for instances with different types"><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2020-11-04T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-05T00:19:48+08:00"><meta property="article:section" content="posts"><meta property="article:tag" content="Rust"><meta property="og:see_also" content="https://hackrole.github.io/posts/learn-rust-note-16-concurrency/"><meta property="og:see_also" content="https://hackrole.github.io/posts/learn-rust-16-concurrency/"><meta property="og:see_also" content="https://hackrole.github.io/posts/learn-rust/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
+ reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this. polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \`bounded parametric polymorphism\`.  TODOTrait-object used for instances with different types Generic and Trait-Bound can only replace one type."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/posts/"},{"@type":"ListItem","position":3,"name":"17 rust OOP","item":"https://hackrole.github.io/posts/learn-rust-17-rust-oop/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/posts/learn-rust-17-rust-oop/"},"headline":"17 rust OOP | Hackrole\u0027s Blog","datePublished":"2020-11-04T00:00:00+00:00","dateModified":"2020-11-06T00:02:24+08:00","wordCount":454,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"rust can bind data with methods rust can use pub\/private to abstract inner implement. rust not support exntends. you should consider use combination more.  extend has two more usage-point.\n reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this. polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \\`bounded parametric polymorphism\\`.  TODOTrait-object used for instances with different types Generic and Trait-Bound can only replace one type."}</script><meta property="og:title" content="17 rust OOP | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/posts/learn-rust-17-rust-oop/"><meta property="og:description" content="rust can bind data with methods rust can use pub/private to abstract inner implement. rust not support exntends. you should consider use combination more.  extend has two more usage-point.
+ reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this. polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \`bounded parametric polymorphism\`.  TODOTrait-object used for instances with different types Generic and Trait-Bound can only replace one type."><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2020-11-04T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-06T00:02:24+08:00"><meta property="article:section" content="posts"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode")
 if(((storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches)||storageColorScheme=="Dark"){document.getElementsByTagName('html')[0].classList.add('dark')}else if(storageColorScheme=="Light"){document.getElementsByTagName('html')[0].classList.remove('dark')}</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
 <i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/posts/learn-rust-17-rust-oop/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
@@ -14,5 +14,162 @@ if(currenturl.length>1){currenturl=currenturl.substr(0,currenturl.length-1)}
 sessionStorage.setItem("mainKey",currenturl)
 let elements=document.getElementsByClassName('main-a');for(let i in elements){if(typeof elements[i]==="object"){let elementurl=elements[i].getAttribute('href')
 if(elementurl.length>1&&elementurl.charAt(elementurl.length-1)=='/'){elementurl=elementurl.substr(0,elementurl.length-1)}
-if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">17 rust OOP</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>Nov 4, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>1 min read</span></div></div><div class=content><ol><li>rust can bind data with methods</li><li>rust can use pub/private to abstract inner implement.</li><li>rust not support exntends. you should consider use combination more.</li></ol><p>extend has two more usage-point.</p><ol><li>reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this.</li><li>polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \`bounded parametric polymorphism\`.</li></ol><h2 id=trait-object-used-for-instances-with-different-types>TODO Trait-object used for instances with different types</h2></div><div class=my-4><a href=https://hackrole.github.io/tags/rust/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Rust</a></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
-<a href=https://hackrole.github.io/posts/learn-rust-16-concurrency/ class=block>无畏并发 fearless concurrency</a></div><div class="md:text-right mt-4 md:mt-0"></div></div></div><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">See Also</h2><div class=content><a href=https://hackrole.github.io/posts/learn-rust-note-16-concurrency/>16 无畏并发 fearless concurrency</a><br><a href=https://hackrole.github.io/posts/learn-rust-16-concurrency/>无畏并发 fearless concurrency</a><br><a href=https://hackrole.github.io/posts/learn-rust/>引用循环和内存泄漏</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+if(elementurl==sessionStorage.getItem("mainKey")){elements[i].classList.add('text-eureka')}else{elements[i].classList.remove('text-eureka')}}}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">17 rust OOP</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i><span>Nov 4, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i><span>3 min read</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i><a href=https://hackrole.github.io/categories/rust/ class=hover:text-eureka>Rust</a></div></div><div class=content><ol><li>rust can bind data with methods</li><li>rust can use pub/private to abstract inner implement.</li><li>rust not support exntends. you should consider use combination more.</li></ol><p>extend has two more usage-point.</p><ol><li>reuse pub method from parent-class or ability to rewrite it on willing. Rust use Trait to do this.</li><li>polymorphism. Parent-Ref can ref any-SubType-instances, and method-call is eval at runtime.in Rust, you may use Generics-Type and Trait-Bounds todo this. \`bounded parametric polymorphism\`.</li></ol><h2 id=trait-object-used-for-instances-with-different-types>TODO Trait-object used for instances with different types</h2><p>Generic and Trait-Bound can only replace one type.会在编译时做单态化，所以无法在Vec中存放多种类型.即静态分发(static dispatch)
+在Vec中存放Tracit配置dyn可以(dynamic dispatch)</p><p><code>~object-safe-trait~</code>:</p><ol><li>返回类型不为self</li><li>方法没有任何泛型类型参数</li></ol><pre><code class=language-rust>pub trait Draw {
+    fn draw(&amp;self);
+}
+
+pub struct Screen {
+    /// dyn keyword
+    pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;,
+}
+
+impl Screen {
+    pub fn run(&amp;self) {
+        for component in self.components.iter() {
+            component.draw();
+        }
+    }
+}
+
+/// Generic with trait-bound can only static-dispatch
+// pub struct Screen&lt;T: Draw&gt; {
+//     pub components: Vec&lt;T&gt;,
+// }
+
+// impl&lt;T&gt; Screen&lt;T&gt;
+// where T: Draw{
+//     pub fn run(&amp;self) {
+//         for component in self.components.iter() {
+//             component.draw();
+//         }
+//     }
+// }
+
+
+/// add Draw-Trait Type
+pub struct Button {
+    pub width: u32,
+    pub height: u32,
+    pub label: String,
+}
+
+impl Draw for Button {
+    fn draw(&amp;self){
+        println!(&quot;draw button&quot;);
+    }
+}
+
+
+struct SelectBox {
+    width: u32,
+    height: u32,
+    options: Vec&lt;String&gt;,
+}
+
+impl Draw for SelectBox {
+    fn draw(&amp;self) {
+        println!(&quot;draw selectbox&quot;);
+    }
+}
+</code></pre><h2 id=面向对象设计模式的实现>面向对象设计模式的实现</h2><p><code>~TODO 状态模式~</code></p><pre><code class=language-rust>use blog::Post;
+
+fn main() {
+    let mut post = Post::new();
+
+    post.add_text(&quot;I ate a salad for lunch today&quot;);
+    assert_eq!(&quot;&quot;, post.content());
+
+    post.request_review();
+    assert_eq!(&quot;&quot;, post.content());
+
+    post.approve();
+    assert_eq!(&quot;I ate a salad for lunch today&quot;, post.content());
+}
+
+
+pub struct Post {
+    state: Option&lt;Box&lt;dyn State&gt;&gt;,
+    content: String,
+}
+
+impl Post {
+    pub fn new() -&gt; Post {
+        Post {
+            state: Some(Box::new(Draft {})),
+            content: String::new(),
+        }
+    }
+
+    pub fn add_text(&amp;mut self, text: &amp;str) {
+        self.content.push_str(text);
+    }
+
+    pub fn content(&amp;self) -&gt; &amp;str {
+        self.state.as_ref().unwrap().content(self)
+    }
+
+    pub fn request_review(&amp;mut self){
+        if let Some(s) == self.state.take() {
+            self.state = Some(s.request_review())
+        }
+    }
+
+    pub fn approve(&amp;mut self) {
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.approve())
+        }
+    }
+}
+
+
+trait State {
+    fn requet_review(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt;;
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt;;
+    fn content&lt;'a&gt;(&amp;self, post: &amp;'a Post) -&gt; &amp;'a str {
+        &quot;&quot;
+    }
+}
+
+struct Draft {}
+
+impl State for Draft {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt; {
+        Box::new(PendingReview {})
+    }
+
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt; {
+        self
+    }
+}
+
+struct PendingReview {}
+
+
+impl State for PendingReview {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt; {
+        self
+    }
+
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt;{
+        Box::new(Published {})
+    }
+}
+
+struct Published {}
+
+impl State for Published {
+    fn request_review(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt; {
+        self
+    }
+
+    fn approve(self: Box&lt;Self&gt;) -&gt; Box&lt;dyn State&gt; {
+        self
+    }
+
+    fn content&lt;'a&gt;(&amp;self, post: &amp;'a Post) -&gt; &amp;'a str {
+        &amp;post.content
+    }
+}
+</code></pre></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
+<a href=https://hackrole.github.io/posts/learn-rust-16-concurrency/ class=block>无畏并发 fearless concurrency</a></div><div class="md:text-right mt-4 md:mt-0"></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad();})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
