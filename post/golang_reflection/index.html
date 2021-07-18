@@ -1,0 +1,398 @@
+<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>ch12: 反射reflection | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="ch12: 反射reflection | Hackrole's Blog"><meta itemprop=description content="introduce 在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.
+反射让我们把类型当作头等值
+动态类型 vs 动态值
+反射定义了两个重要的类型 reflect.Type, reflect.Value
+reflect.Type 类型描述符 接口值的动态类型也是类型描述符
+满足fmt.Stringer接口
+t := reflect.TypeOf(3) fmt.Println(t.String()) fmt.Println(t) // 反射总是返回具体类型 var w io.Writer = os.Stdout fmt.Println(reflect.TypeOf(w)) // return os.File  int int *os.File  reflect.Value v := reflect.ValueOf(3) fmt.Println(v) // this will handle reflect.Value fmt.Println(&#34;%v\n&#34;, v) // implement the fmt.Stringer interface, but only return `Type` if not string fmt.Println(v.String()) // get `Value` Type t := v.Type() fmt.Println(t.String()) // the reverse operator x := v.Interface() // return `interface{}` i := x."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"ch12: 反射reflection","item":"https://hackrole.github.io/post/golang_reflection/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/golang_reflection/"},"headline":"ch12: 反射reflection | Hackrole\u0027s Blog","datePublished":"2021-07-18T00:00:00+00:00","dateModified":"2021-07-18T20:26:51+08:00","wordCount":1076,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"introduce 在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.\n反射让我们把类型当作头等值\n动态类型 vs 动态值\n反射定义了两个重要的类型 reflect.Type, reflect.Value\nreflect.Type 类型描述符 接口值的动态类型也是类型描述符\n满足fmt.Stringer接口\nt := reflect.TypeOf(3) fmt.Println(t.String()) fmt.Println(t) \/\/ 反射总是返回具体类型 var w io.Writer = os.Stdout fmt.Println(reflect.TypeOf(w)) \/\/ return os.File  int int *os.File  reflect.Value v := reflect.ValueOf(3) fmt.Println(v) \/\/ this will handle reflect.Value fmt.Println(\u0026quot;%v\\n\u0026quot;, v) \/\/ implement the fmt.Stringer interface, but only return `Type` if not string fmt.Println(v.String()) \/\/ get `Value` Type t := v.Type() fmt.Println(t.String()) \/\/ the reverse operator x := v.Interface() \/\/ return `interface{}` i := x."}</script><meta property="og:title" content="ch12: 反射reflection | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/post/golang_reflection/"><meta property="og:description" content="introduce 在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.
+反射让我们把类型当作头等值
+动态类型 vs 动态值
+反射定义了两个重要的类型 reflect.Type, reflect.Value
+reflect.Type 类型描述符 接口值的动态类型也是类型描述符
+满足fmt.Stringer接口
+t := reflect.TypeOf(3) fmt.Println(t.String()) fmt.Println(t) // 反射总是返回具体类型 var w io.Writer = os.Stdout fmt.Println(reflect.TypeOf(w)) // return os.File  int int *os.File  reflect.Value v := reflect.ValueOf(3) fmt.Println(v) // this will handle reflect.Value fmt.Println(&#34;%v\n&#34;, v) // implement the fmt.Stringer interface, but only return `Type` if not string fmt.Println(v.String()) // get `Value` Type t := v.Type() fmt.Println(t.String()) // the reverse operator x := v.Interface() // return `interface{}` i := x."><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2021-07-18T00:00:00+00:00"><meta property="article:modified_time" content="2021-07-18T20:26:51+08:00"><meta property="article:section" content="post"><meta property="article:tag" content="golang"><meta property="og:see_also" content="https://hackrole.github.io/post/golang_programming_note/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
+<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/golang_reflection/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
+<a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
+<a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">ch12: 反射reflection</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
+<span>Jul 18, 2021</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
+<span>6 min read</span></div></div><div class=content><h2 id=introduce>introduce</h2><p>在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.</p><p>反射让我们把类型当作头等值</p><p>动态类型 vs 动态值</p><p>反射定义了两个重要的类型 reflect.Type, reflect.Value</p><h3 id=reflect-dot-type-类型描述符>reflect.Type 类型描述符</h3><p>接口值的动态类型也是类型描述符</p><p>满足fmt.Stringer接口</p><pre><code class=language-go>t := reflect.TypeOf(3)
+fmt.Println(t.String())
+fmt.Println(t)
+
+// 反射总是返回具体类型
+var w io.Writer = os.Stdout
+fmt.Println(reflect.TypeOf(w)) // return os.File
+</code></pre><pre><code class=language-text>int
+int
+*os.File
+</code></pre><h3 id=reflect-dot-value>reflect.Value</h3><pre><code class=language-go>v := reflect.ValueOf(3)
+fmt.Println(v)
+// this will handle  reflect.Value
+fmt.Println(&quot;%v\n&quot;, v)
+// implement the fmt.Stringer interface, but only return `Type` if not string
+fmt.Println(v.String())
+
+// get `Value` Type
+t := v.Type()
+fmt.Println(t.String())
+
+// the reverse operator
+x := v.Interface() // return `interface{}`
+i := x.(int) // type cast
+fmt.Printf(&quot;%d\n&quot;, i)
+</code></pre><pre><code class=language-text>3
+%v
+ 3
+&lt;int Value&gt;
+int
+3
+</code></pre><h4 id=vs-interface-dot>vs interface{}.</h4><p>interface{}隐藏布局信息和内置操作，除非知道动态类型，不然无法完成操作.
+Value包含可以用来分析值的信息</p><h4 id=kind>Kind</h4><p>Bool, String, Array, Strut, Chan, Func, Ptr, Slice, Map, Inteface, Invalid</p><pre><code class=language-go>package main
+
+import (
+  &quot;fmt&quot;
+  &quot;reflect&quot;
+  &quot;strconv&quot;
+  &quot;time&quot;
+)
+
+// Any: format Any value to string
+func Any(value interface{}) string {
+  return formatAtom(reflect.ValueOf(value))
+}
+
+// formatATom ...
+func formatAtom(v reflect.Value) string {
+  switch v.Kind() {
+  case reflect.Invalid:
+    return &quot;invalid&quot;
+  case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+    return strconv.FormatInt(v.Int(), 10)
+  case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+    return strconv.FormatUint(v.Uint(), 10)
+  case reflect.Bool:
+    return strconv.FormatBool(v.Bool())
+  case reflect.String:
+    return strconv.Quote(v.String())
+  case reflect.Chan, reflect.Func, reflect.Ptr, reflect.Slice, reflect.Map:
+    return v.Type().String() + &quot; 0x&quot; + strconv.FormatUint(uint64(v.Pointer()), 16)
+  default:
+    return v.Type().String() + &quot; value&quot;
+  }
+}
+
+func main() {
+  var x int64 = 1
+  var d time.Duration = 1 * time.Nanosecond
+  fmt.Println(Any(x))
+  fmt.Println(Any(d))
+  fmt.Println(Any([]int64{x}))
+  fmt.Println(Any([]time.Duration{d}))
+}
+</code></pre><pre><code class=language-text>1
+1
+[]int64 0xc00001c160
+[]time.Duration 0xc00001c168
+</code></pre><h4 id=display>Display</h4><p>TODO eval??</p><pre><code class=language-go>import &quot;eval&quot;
+import &quot;fmt&quot;
+
+// main ...
+func main()  {
+  e, _ := eval.Parse(&quot;sqrt(A / pi)&quot;)
+  fmt.Println(e)
+}
+</code></pre><pre><code class=language-go>package main
+
+import (
+  &quot;fmt&quot;
+  &quot;os&quot;
+  &quot;reflect&quot;
+  &quot;strconv&quot;
+)
+
+// Display
+func Display(name string, x interface{}) {
+  fmt.Printf(&quot;Display %s (%T):\n&quot;, name, x)
+  display(name, reflect.ValueOf(x))
+}
+
+func formatAtom(v reflect.Value) string {
+  switch v.Kind() {
+  case reflect.Invalid:
+    return &quot;invalid&quot;
+  case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+    return strconv.FormatInt(v.Int(), 10)
+  case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+    return strconv.FormatUint(v.Uint(), 10)
+  case reflect.Bool:
+    return strconv.FormatBool(v.Bool())
+  case reflect.String:
+    return strconv.Quote(v.String())
+  case reflect.Chan, reflect.Func, reflect.Ptr, reflect.Slice, reflect.Map:
+    return v.Type().String() + &quot; 0x&quot; + strconv.FormatUint(uint64(v.Pointer()), 16)
+  default:
+    return v.Type().String() + &quot; value&quot;
+  }
+}
+
+// display
+func display(path string, v reflect.Value) {
+  switch v.Kind() {
+  case reflect.Invalid:
+    fmt.Printf(&quot;%s = invalid\n&quot;, path)
+  case reflect.Slice, reflect.Array:
+    for i := 0; i &lt; v.Len(); i++ {
+      display(fmt.Sprintf(&quot;%s[%d]&quot;, path, i), v.Index(i))
+    }
+  case reflect.Struct:
+    for i := 0; i &lt; v.NumField(); i++ {
+      fieldPath := fmt.Sprintf(&quot;%s.%s&quot;, path, v.Type().Field(i).Name)
+      display(fieldPath, v.Field(i))
+    }
+  case reflect.Map:
+    for _, key := range v.MapKeys() {
+      display(fmt.Sprintf(&quot;%s[%s]&quot;, path, formatAtom(key)), v.MapIndex(key))
+    }
+  case reflect.Ptr:
+    if v.IsNil() {
+      fmt.Printf(&quot;%s = nil\n&quot;, path)
+    } else {
+      display(fmt.Sprintf(&quot;(*%s)&quot;, path), v.Elem())
+    }
+  case reflect.Interface:
+    if v.IsNil() {
+      fmt.Printf(&quot;%s = nil\n&quot;, path)
+    } else {
+      fmt.Printf(&quot;%s.type = %s\n&quot;, path, v.Elem().Type())
+      display(path+&quot;.value&quot;, v.Elem())
+    }
+  default:
+    fmt.Printf(&quot;%s = %s\n&quot;, path, formatAtom(v))
+  }
+
+}
+
+type Movie struct {
+  Title, Subtitle string
+  Year            int
+  Color           bool
+  Actor           map[string]string
+  Oscars          []string
+  Sequel          *string
+}
+
+func main() {
+  strangelove := Movie{
+    Title:    &quot;Dr.StrangeLove&quot;,
+    Subtitle: &quot;How I learned to Stop worrying and Love the Bomb&quot;,
+    Year:     1964,
+    Color:    false,
+    Actor: map[string]string{
+      &quot;Dr. Strangelove&quot;:            &quot;peter sellers&quot;,
+      &quot;Grp. Capt. Lionel Mandrake&quot;: &quot;Peter Sellers&quot;,
+      &quot;Pres. Merkin Muffley&quot;:       &quot;Peter Sellers&quot;,
+      &quot;Gen. Buck Turgidson&quot;:        &quot;George C. Scott&quot;,
+    },
+    Oscars: []string{
+      &quot;Best Actor (Nomin.)&quot;,
+      &quot;Best Adapted Screenpaly (Nomin.)&quot;,
+    },
+  }
+  Display(&quot;strangelove&quot;, strangelove)
+
+  // display os.File
+  Display(&quot;os.Stderr&quot;, os.Stderr)
+
+  // display reflect.Vlaue
+  Display(&quot;rv&quot;, reflect.ValueOf(os.Stderr))
+
+  // diff
+  var i interface{} = 3
+  Display(&quot;i&quot;, i)
+  Display(&quot;&amp;i&quot;, &amp;i)
+}
+</code></pre><pre><code class=language-text>Display strangelove (main.Movie):
+strangelove.Title = &quot;Dr.StrangeLove&quot;
+strangelove.Subtitle = &quot;How I learned to Stop worrying and Love the Bomb&quot;
+strangelove.Year = 1964
+strangelove.Color = false
+strangelove.Actor[&quot;Dr. Strangelove&quot;] = &quot;peter sellers&quot;
+strangelove.Actor[&quot;Grp. Capt. Lionel Mandrake&quot;] = &quot;Peter Sellers&quot;
+strangelove.Actor[&quot;Pres. Merkin Muffley&quot;] = &quot;Peter Sellers&quot;
+strangelove.Actor[&quot;Gen. Buck Turgidson&quot;] = &quot;George C. Scott&quot;
+strangelove.Oscars[0] = &quot;Best Actor (Nomin.)&quot;
+strangelove.Oscars[1] = &quot;Best Adapted Screenpaly (Nomin.)&quot;
+strangelove.Sequel = nil
+Display os.Stderr (*os.File):
+(*(*os.Stderr).file).pfd.fdmu.state = 0
+(*(*os.Stderr).file).pfd.fdmu.rsema = 0
+(*(*os.Stderr).file).pfd.fdmu.wsema = 0
+(*(*os.Stderr).file).pfd.Sysfd = 2
+(*(*os.Stderr).file).pfd.pd.runtimeCtx = 0
+(*(*os.Stderr).file).pfd.iovecs = nil
+(*(*os.Stderr).file).pfd.csema = 0
+(*(*os.Stderr).file).pfd.isBlocking = 1
+(*(*os.Stderr).file).pfd.IsStream = true
+(*(*os.Stderr).file).pfd.ZeroReadIsEOF = true
+(*(*os.Stderr).file).pfd.isFile = true
+(*(*os.Stderr).file).name = &quot;/dev/stderr&quot;
+(*(*os.Stderr).file).dirinfo = nil
+(*(*os.Stderr).file).nonblock = false
+(*(*os.Stderr).file).stdoutOrErr = true
+(*(*os.Stderr).file).appendMode = false
+Display rv (reflect.Value):
+(*rv.typ).size = 8
+(*rv.typ).ptrdata = 8
+(*rv.typ).hash = 871609668
+(*rv.typ).tflag = 1
+(*rv.typ).align = 8
+(*rv.typ).fieldAlign = 8
+(*rv.typ).kind = 54
+(*(*rv.typ).alg).hash = func(unsafe.Pointer, uintptr) uintptr 0x453580
+(*(*rv.typ).alg).equal = func(unsafe.Pointer, unsafe.Pointer) bool 0x402d80
+(*(*rv.typ).gcdata) = 1
+(*rv.typ).str = 8406
+(*rv.typ).ptrToThis = 0
+rv.ptr = unsafe.Pointer value
+rv.flag = 22
+Display i (int):
+i = 3
+Display &amp;i (*interface {}):
+(*&amp;i).type = int
+(*&amp;i).value = 3
+</code></pre><h3 id=使用reflect-dot-value设置值>使用reflect.Value设置值</h3><h4 id=可寻址>可寻址</h4><pre><code class=language-go>x := 2
+// ValueOf都是不可寻址
+a := reflect.ValueOf(2) // no
+b := reflect.ValueOf(x) // no
+c := reflect.ValueOf(&amp;x) // no
+d := c.Elem() // yes
+
+fmt.Println(a.CanAddr())
+fmt.Println(b.CanAddr())
+fmt.Println(c.CanAddr())
+fmt.Println(d.CanAddr())
+</code></pre><pre><code class=language-text>false
+false
+false
+true
+</code></pre><h4 id=设置值>设置值</h4><pre><code class=language-go>x := 2
+d := reflect.ValueOf(&amp;x).Elem()
+// method 1
+px := d.Addr().Interface().(*int)
+*px = 3
+fmt.Println(x)
+
+// method 2
+d.Set(reflect.ValueOf(4))
+fmt.Println(x)
+////  below crash
+// d.SEt(reflect.ValueOf(int64(5))) // type error
+// d := reflect.ValueOf(3)
+// d.Set(reflect.ValueOf(3)) // 不可寻址
+
+// useage method
+d = reflect.ValueOf(&amp;x).Elem()
+d.SetInt(3)
+fmt.Println(x)
+
+
+// canset
+
+stdout := reflect.ValueOf(os.Stdout).Elem()
+fmt.Println(stdout.Type())
+fd := stdout.FieldByName(&quot;fd&quot;)
+// fmt.Println(fd.Int())
+// // fd.SetInt(2) // this raise, case not export-variable cannot be set
+fmt.Println(fd.CanAddr(), fd.CanSet())
+</code></pre><pre><code class=language-text>3
+4
+3
+os.File
+false false
+</code></pre><h2 id=encode-s-expression>TODO encode S-expression</h2><h2 id=visit-struct-tag>visit struct tag</h2><pre><code class=language-go>package main
+
+import (
+  &quot;fmt&quot;
+  &quot;http&quot;
+  &quot;reflect&quot;
+)
+
+// search ...
+func search(resp http.ResponseWriter, req *http.Request) {
+  var data struct {
+    Labels     []string `http:&quot;1&quot;`
+    MaxResults int      `http:&quot;max&quot;`
+    Exact      bool     `http:&quot;x&quot;`
+  }
+  data.MaxResults = 10
+  if err := Unpack(req, &amp;data); err != nil {
+    http.Error(resp, err.Error(), http.StatusBadRequest)
+    return
+  }
+
+  fmt.Fprintf(resp, &quot;Search: %+v\n&quot;, data)
+}
+
+// Unpack
+func Unpack(req *http.Request, ptr interface{}) error {
+  if err := req.ParseForm(); err != nil {
+    return err
+  }
+
+  fields := make(map[string]reflect.Value)
+  v := reflect.VaueOf(ptr).Elem()
+  for i := 0; i &lt; v.NumField(); i++ {
+    fieldInfo := v.Type().Field(i)
+    tag := fieldInfo.Tag
+    name := tag.get(&quot;http&quot;)
+    if name == &quot;&quot; {
+      name = strings.ToLower(fieldInfo.Name)
+    }
+    fields[name] = v.Field(i)
+  }
+
+  for name, vaues := range req.Form {
+    f := fields[name]
+    if !f.IsValid() {
+      continue
+    }
+    for _, value := range values {
+      if f.Kind() == reflect.Slice {
+        elem := reflect.New(f.Type().Elem()).Elem()
+        if err := populate(elem, value); err != nil {
+          return fmt.Errorf(&quot;%s: %v&quot;, name, err)
+        }
+        f.Set(reflect.Append(f, elem))
+      } else {
+        if err := populate(f, value); err != nil {
+          return fmt.Errorf(&quot;%s: %v&quot;, name, err)
+        }
+      }
+    }
+  }
+  return nil
+}
+
+// Populate
+func Populate(v reflect.value, value string) error {
+  //swtich...
+}
+</code></pre><h2 id=display-type-and-call-method-dot>TODO display type and call method.</h2><pre><code class=language-go>// Print
+func Print(x interface{})  {
+  v := reflect.ValueOf(x)
+  t := v.Type()
+  fmt.Println(&quot;type %s\n&quot;, t)
+
+  for i := 0; i &lt; v.NumMethod(); i++ {
+    methType := v.Method(i).Type()
+    fmt.Prinf(&quot;func (%s) %s%s\n&quot;, t, t.Method(i).Name, strings.TrimPrefix(methType.String(), &quot;func&quot;)
+  }
+
+}
+</code></pre><h2 id=注意事项>注意事项</h2><p>谨慎使用:</p><ol><li>基于反射的代码很脆弱, 编译时变成运行时</li><li>无法很好的文档化</li><li>性能会慢一到二个数量级</li></ol></div><div class=my-4><a href=https://hackrole.github.io/tags/golang/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#golang</a></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
+<a href=https://hackrole.github.io/post/algorithm_tree_introduce/ class=block>the concept</a></div></div></div><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">See Also</h2><div class=content><a href=https://hackrole.github.io/post/golang_programming_note/>visit struct tag</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>algorithm on Hackrole's Blog</title><link>https://hackrole.github.io/tags/algorithm/</link><description>Recent content in algorithm on Hackrole's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>&amp;copy; 2020 &lt;a href="https://www.wangchucheng.com/">C. Wang&lt;/a> and &lt;a href="https://www.ruiqima.com/">R. Ma&lt;/a></copyright><lastBuildDate>Sun, 18 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://hackrole.github.io/tags/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>the concept</title><link>https://hackrole.github.io/post/algorithm_tree_introduce/</link><pubDate>Sun, 18 Jul 2021 00:00:00 +0000</pubDate><guid>https://hackrole.github.io/post/algorithm_tree_introduce/</guid><description>tree root 树根 node 节点 leaf 叶子节点 parent 父节点 children 子节点 兄弟节点 二叉查找树 性质 parent have two child, left and right key(left) &amp;lt;= key(parent) &amp;lt;= key(right) TODOAVL树 带平衡条件的特殊二叉树.
+TODO 源码实现
+性质 every node has a height property every node: abs(height(left(node)) - height(right(node)) &amp;lt;= 1 支持的操作 查找 同二叉树
+插入 需要通过旋转来保持AVl性质.
+分四种情况:
+左左 右右 左右 右左 两两对称, 同方向使用单旋， 不同方式需要使用双旋转.
+递归向上保持？？？
+TODO伪码 TODO删除 TODOred-black tree concept black-height 黑高度, 从节点到叶子节点的黑节点数</description></item></channel></rss>
