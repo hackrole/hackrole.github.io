@@ -1,28 +1,200 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="Hackrole's Blog"><meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"18 rust pattern","description":"包括的内容:\n 字面量 literal 解构数组，枚举，结构提，元组等 变量 通配符 占位符  rust match rust match is exhaustive, all situation must be consided\n_ match all, and not bind to variable, use to ignore\nif let use can only care abouot one situation\nfn main() { let favorite_color: Option\u0026lt;\u0026amp;str\u0026gt; = None; let is_tuesday = false; let age: Result\u0026lt;u8, _\u0026gt; = \u0026quot;34\u0026quot;.parse(); if let Some(color) = favorite_color { println!(\u0026quot;Using your favorite color, {}, as the backgourd\u0026quot;, favorite_color); }else if is_tuesday { println!","url":"https://hackrole.github.io/post/learn-rust-18-match-pattern/"},{"@type":"ListItem","position":2,"name":"tips while using org-babel","description":"multiple block tangle to single file first format use `:noweb yes` and variable as placeholder. write code block with header `:noweb-ref `\n\u0026lt;\u0026lt;config\u0026gt;\u0026gt; \u0026lt;\u0026lt;next-config\u0026gt;\u0026gt;  (println \u0026quot;hello\u0026quot;)  (println \u0026quot;this following\u0026quot;)  (println \u0026quot;this is another ways\u0026quot;)  use name and collect (setq msg \u0026quot;Never a foot too far, even.\u0026quot;)  (message msg)  (message \u0026quot;good bye\u0026quot;)  good bye  \u0026lt;\u0026lt;init\u0026gt;\u0026gt; \u0026lt;\u0026lt;msg\u0026gt;\u0026gt; \u0026lt;\u0026lt;goodbye\u0026gt;\u0026gt;  good bye  ","url":"https://hackrole.github.io/post/org-babel-tips/"},{"@type":"ListItem","position":3,"name":"sort algorithms note","description":"heap sort   in-place sort algorithms\n  O(nlgn)\n  过程要点   left/right/parent可以通过(2n, 2n+1, n/2)算出.\n  一般数组索引从0开始，left/right/parent为(2n+1, 2n+2, (n-1)/2)\n  建堆算法 O(n)\n  堆有一个cap和一个len(当前长度)\n  步骤 # max-heap 保持堆性质 def max_heap(h, i): l = left(i) r = right(i) if l \u0026lt;= heap_size(A) \u0026amp;\u0026amp; A[l] \u0026gt; A[i]: lg = l if r \u0026lt;= heap_size(A) \u0026amp;\u0026amp; A[r] \u0026gt; A[i]: lg = r if lg != i: A[i], A[lg] = A[lg], A[i] max_heap(h, lg) # build-heap 建堆 def build_heap(h): hs = len(h) for i = hs/2; i \u0026gt;= 0; i--: build_heap(h, i) # heap-sort 排序 def heap_sort(A): build_heap(A) for i = len(A); i\u0026gt;0; i--: A[0], A[i] = A[i], A[0] A.","url":"https://hackrole.github.io/post/sort/"}]}</script><meta property="og:title" content="Hackrole's Blog"><meta property="og:type" content="website"><meta property="og:url" content="https://hackrole.github.io/post/"><meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo."><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="og:updated_time" content="2021-07-18T00:00:00+00:00"><meta property="article:section" content="post"><link rel=alternate type=application/rss+xml href=https://hackrole.github.io/post/index.xml title="Hackrole's Blog"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="Hackrole's Blog">
+<meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"18 rust pattern","description":"包括的内容:\n 字面量 literal 解构数组，枚举，结构提，元组等 变量 通配符 占位符  rust match rust match is exhaustive, all situation must be consided\n_ match all, and not bind to variable, use to ignore\nif let use can only care abouot one situation\nfn main() { let favorite_color: Option\u0026lt;\u0026amp;str\u0026gt; = None; let is_tuesday = false; let age: Result\u0026lt;u8, _\u0026gt; = \u0026quot;34\u0026quot;.parse(); if let Some(color) = favorite_color { println!(\u0026quot;Using your favorite color, {}, as the backgourd\u0026quot;, favorite_color); }else if is_tuesday { println!","url":"https://hackrole.github.io/post/learn-rust-18-match-pattern/"},{"@type":"ListItem","position":2,"name":"css flexbox notes","description":"concept main aixs vs across aixs one-dimension write-flow unknown property ","url":"https://hackrole.github.io/post/css-flexbox/"},{"@type":"ListItem","position":3,"name":"tips while using org-babel","description":"multiple block tangle to single file first format use `:noweb yes` and variable as placeholder. write code block with header `:noweb-ref `\n\u0026lt;\u0026lt;config\u0026gt;\u0026gt; \u0026lt;\u0026lt;next-config\u0026gt;\u0026gt;  (println \u0026quot;hello\u0026quot;)  (println \u0026quot;this following\u0026quot;)  (println \u0026quot;this is another ways\u0026quot;)  use name and collect (setq msg \u0026quot;Never a foot too far, even.\u0026quot;)  (message msg)  (message \u0026quot;good bye\u0026quot;)  good bye  \u0026lt;\u0026lt;init\u0026gt;\u0026gt; \u0026lt;\u0026lt;msg\u0026gt;\u0026gt; \u0026lt;\u0026lt;goodbye\u0026gt;\u0026gt;  good bye  ","url":"https://hackrole.github.io/post/org-babel-tips/"}]}</script>
+<meta property="og:title" content="Hackrole's Blog">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hackrole.github.io/post/">
+<meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo.">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="og:updated_time" content="2021-07-18T00:00:00+00:00">
+<meta property="article:section" content="post">
+<link rel=alternate type=application/rss+xml href=https://hackrole.github.io/post/index.xml title="Hackrole's Blog">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><article class="mx-6 my-8"><h1 class="font-bold text-3xl text-primary-text">Posts</h1></article><div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y"><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/learn-rust-18-match-pattern/ class="font-bold text-xl hover:text-eureka">18 rust pattern</a></div><div class=content>包括的内容:
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<article class="mx-6 my-8">
+<h1 class="font-bold text-3xl text-primary-text">Posts</h1>
+</article>
+<div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/learn-rust-18-match-pattern/ class="font-bold text-xl hover:text-eureka">18 rust pattern</a>
+</div>
+<div class=content>
+包括的内容:
 字面量 literal 解构数组，枚举，结构提，元组等 变量 通配符 占位符 rust match rust match is exhaustive, all situation must be consided
 _ match all, and not bind to variable, use to ignore
 if let use can only care abouot one situation
-fn main() { let favorite_color: Option&amp;lt;&amp;amp;str&amp;gt; = None; let is_tuesday = false; let age: Result&amp;lt;u8, _&amp;gt; = &amp;quot;34&amp;quot;.parse(); if let Some(color) = favorite_color { println!(&amp;quot;Using your favorite color, {}, as the backgourd&amp;quot;, favorite_color); }else if is_tuesday { println!</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Nov 8, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>3 min read</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i>
-<a href=https://hackrole.github.io/categories/rust/ class=hover:text-eureka>Rust</a></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/org-babel-tips/ class="font-bold text-xl hover:text-eureka">tips while using org-babel</a></div><div class=content>multiple block tangle to single file first format use `:noweb yes` and variable as placeholder. write code block with header `:noweb-ref `
-&amp;lt;&amp;lt;config&amp;gt;&amp;gt; &amp;lt;&amp;lt;next-config&amp;gt;&amp;gt; (println &amp;quot;hello&amp;quot;) (println &amp;quot;this following&amp;quot;) (println &amp;quot;this is another ways&amp;quot;) use name and collect (setq msg &amp;quot;Never a foot too far, even.&amp;quot;) (message msg) (message &amp;quot;good bye&amp;quot;) good bye &amp;lt;&amp;lt;init&amp;gt;&amp;gt; &amp;lt;&amp;lt;msg&amp;gt;&amp;gt; &amp;lt;&amp;lt;goodbye&amp;gt;&amp;gt; good bye</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Oct 27, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>1 min read</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i>
-<a href=https://hackrole.github.io/categories/emacs/ class=hover:text-eureka>emacs</a></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/sort/ class="font-bold text-xl hover:text-eureka">sort algorithms note</a></div><div class=content>heap sort in-place sort algorithms
-O(nlgn)
-过程要点 left/right/parent可以通过(2n, 2n+1, n/2)算出.
-一般数组索引从0开始，left/right/parent为(2n+1, 2n+2, (n-1)/2)
-建堆算法 O(n)
-堆有一个cap和一个len(当前长度)
-步骤 # max-heap 保持堆性质 def max_heap(h, i): l = left(i) r = right(i) if l &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[l] &amp;gt; A[i]: lg = l if r &amp;lt;= heap_size(A) &amp;amp;&amp;amp; A[r] &amp;gt; A[i]: lg = r if lg != i: A[i], A[lg] = A[lg], A[i] max_heap(h, lg) # build-heap 建堆 def build_heap(h): hs = len(h) for i = hs/2; i &amp;gt;= 0; i--: build_heap(h, i) # heap-sort 排序 def heap_sort(A): build_heap(A) for i = len(A); i&amp;gt;0; i--: A[0], A[i] = A[i], A[0] A.</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Mar 8, 2019</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>1 min read</span></div></div></div></div></div></div><ul class=pagination><li class=page-item><a href=/post/ class=page-link aria-label=First><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/post/page/5/ class=page-link aria-label=Previous><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a class=page-link href=/post/>1</a></li><li class=page-item><a class=page-link href=/post/page/2/>2</a></li><li class=page-item><a class=page-link href=/post/page/3/>3</a></li><li class="page-item disabled"><span aria-hidden=true>&nbsp;&mldr;&nbsp;</span></li><li class=page-item><a class=page-link href=/post/page/5/>5</a></li><li class="page-item active"><a class=page-link href=/post/page/6/>6</a></li><li class=page-item><a class=page-link href=/post/page/7/>7</a></li><li class="page-item disabled"><span aria-hidden=true>&nbsp;&mldr;&nbsp;</span></li><li class=page-item><a class=page-link href=/post/page/15/>15</a></li><li class=page-item><a href=/post/page/7/ class=page-link aria-label=Next><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/post/page/15/ class=page-link aria-label=Last><span aria-hidden=true>&#187;&#187;</span></a></li></ul></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+fn main() { let favorite_color: Option&amp;lt;&amp;amp;str&amp;gt; = None; let is_tuesday = false; let age: Result&amp;lt;u8, _&amp;gt; = &amp;quot;34&amp;quot;.parse(); if let Some(color) = favorite_color { println!(&amp;quot;Using your favorite color, {}, as the backgourd&amp;quot;, favorite_color); }else if is_tuesday { println!
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Nov 8, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>3 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/rust/ class=hover:text-eureka>Rust</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/css-flexbox/ class="font-bold text-xl hover:text-eureka">css flexbox notes</a>
+</div>
+<div class=content>
+concept main aixs vs across aixs one-dimension write-flow unknown property
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Oct 27, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/css/ class=hover:text-eureka>css</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/org-babel-tips/ class="font-bold text-xl hover:text-eureka">tips while using org-babel</a>
+</div>
+<div class=content>
+multiple block tangle to single file first format use `:noweb yes` and variable as placeholder. write code block with header `:noweb-ref `
+&amp;lt;&amp;lt;config&amp;gt;&amp;gt; &amp;lt;&amp;lt;next-config&amp;gt;&amp;gt; (println &amp;quot;hello&amp;quot;) (println &amp;quot;this following&amp;quot;) (println &amp;quot;this is another ways&amp;quot;) use name and collect (setq msg &amp;quot;Never a foot too far, even.&amp;quot;) (message msg) (message &amp;quot;good bye&amp;quot;) good bye &amp;lt;&amp;lt;init&amp;gt;&amp;gt; &amp;lt;&amp;lt;msg&amp;gt;&amp;gt; &amp;lt;&amp;lt;goodbye&amp;gt;&amp;gt; good bye
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Oct 27, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/emacs/ class=hover:text-eureka>emacs</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/post/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/post/page/5/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/post/page/4/ aria-label="Page 4" class=page-link role=button>4</a>
+</li>
+<li class=page-item>
+<a href=/post/page/5/ aria-label="Page 5" class=page-link role=button>5</a>
+</li>
+<li class="page-item active">
+<a href=# aria-current=page aria-label="Page 6" class=page-link role=button>6</a>
+</li>
+<li class=page-item>
+<a href=/post/page/7/ aria-label="Page 7" class=page-link role=button>7</a>
+</li>
+<li class=page-item>
+<a href=/post/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
+</li>
+<li class=page-item>
+<a href=/post/page/7/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class=page-item>
+<a href=/post/page/15/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>

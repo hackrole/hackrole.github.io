@@ -1,4 +1,16 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>mongodb库设计问题 | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="mongodb库设计问题 | Hackrole's Blog"><meta itemprop=description content="TODO
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>mongodb库设计问题 | Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="mongodb库设计问题 | Hackrole's Blog">
+<meta itemprop=description content="TODO
 项目地址:: TODO ref
 mongodb本身是无模式的，但是使用时都要在application层实现模式约束.
 mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).
@@ -9,7 +21,13 @@ mongoengine问题 索引问题 索引应该跟document分开.并且有自动化�
   有时会失效，没有建立对应的索引
   listField校验问题 listField没法做长度限制 set/sortset/max-len list/ sort-list等结构没有实现
 不支持自定义字段验证/文档级验证 pre_save/after_save hooks 不可存储的EmbdDocumment TODO 待考虑
-可扩展的Document TODO 待考虑"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"mongodb库设计问题","item":"https://hackrole.github.io/post/mongoengine_questions/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/mongoengine_questions/"},"headline":"mongodb库设计问题 | Hackrole\u0027s Blog","datePublished":"2014-07-31T17:49:57+00:00","dateModified":"2014-07-31T17:49:57+00:00","wordCount":31,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"TODO\n项目地址:: TODO ref\nmongodb本身是无模式的，但是使用时都要在application层实现模式约束.\nmongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).\n使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.\nmongoengine问题 索引问题 索引应该跟document分开.并且有自动化建立和删除的command.\n把索引定在Document\/meta\/indexes里很糟糕：\n  写法很乱，不易管理。\n  有时会失效，没有建立对应的索引\n  listField校验问题 listField没法做长度限制 set\/sortset\/max-len list\/ sort-list等结构没有实现\n不支持自定义字段验证\/文档级验证 pre_save\/after_save hooks 不可存储的EmbdDocumment TODO 待考虑\n可扩展的Document TODO 待考虑"}</script><meta property="og:title" content="mongodb库设计问题 | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/post/mongoengine_questions/"><meta property="og:description" content="TODO
+可扩展的Document TODO 待考虑">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"mongodb库设计问题","item":"https://hackrole.github.io/post/mongoengine_questions/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/mongoengine_questions/"},"headline":"mongodb库设计问题 | Hackrole\u0027s Blog","datePublished":"2014-07-31T17:49:57+00:00","dateModified":"2014-07-31T17:49:57+00:00","wordCount":31,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"TODO\n项目地址:: TODO ref\nmongodb本身是无模式的，但是使用时都要在application层实现模式约束.\nmongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).\n使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.\nmongoengine问题 索引问题 索引应该跟document分开.并且有自动化建立和删除的command.\n把索引定在Document\/meta\/indexes里很糟糕：\n  写法很乱，不易管理。\n  有时会失效，没有建立对应的索引\n  listField校验问题 listField没法做长度限制 set\/sortset\/max-len list\/ sort-list等结构没有实现\n不支持自定义字段验证\/文档级验证 pre_save\/after_save hooks 不可存储的EmbdDocumment TODO 待考虑\n可扩展的Document TODO 待考虑"}</script>
+<meta property="og:title" content="mongodb库设计问题 | Hackrole's Blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hackrole.github.io/post/mongoengine_questions/">
+<meta property="og:description" content="TODO
 项目地址:: TODO ref
 mongodb本身是无模式的，但是使用时都要在application层实现模式约束.
 mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).
@@ -20,21 +38,154 @@ mongoengine问题 索引问题 索引应该跟document分开.并且有自动化�
   有时会失效，没有建立对应的索引
   listField校验问题 listField没法做长度限制 set/sortset/max-len list/ sort-list等结构没有实现
 不支持自定义字段验证/文档级验证 pre_save/after_save hooks 不可存储的EmbdDocumment TODO 待考虑
-可扩展的Document TODO 待考虑"><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2014-07-31T17:49:57+00:00"><meta property="article:modified_time" content="2014-07-31T17:49:57+00:00"><meta property="article:section" content="post"><meta property="article:tag" content="mongodb"><meta property="article:tag" content="mongoengine"><meta property="article:tag" content="python"><meta property="og:see_also" content="https://hackrole.github.io/post/mongodb_indexes_pretty/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+可扩展的Document TODO 待考虑">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="article:published_time" content="2014-07-31T17:49:57+00:00">
+<meta property="article:modified_time" content="2014-07-31T17:49:57+00:00">
+<meta property="article:section" content="post">
+<meta property="article:tag" content="mongodb">
+<meta property="article:tag" content="mongoengine">
+<meta property="article:tag" content="python">
+<meta property="og:see_also" content="https://hackrole.github.io/post/mongodb_indexes_pretty/">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/mongoengine_questions/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/mongoengine_questions/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">mongodb库设计问题</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Jul 31, 2014</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>1 min read</span></div><div class="mr-6 my-2"><i class="fas fa-th-list mr-1"></i>
-<a href=https://hackrole.github.io/series/mongodb/ class=hover:text-eureka>mongodb</a></div></div><div class=content><p><strong>TODO</strong></p><p>项目地址:: <strong>TODO</strong> ref</p><p>mongodb本身是无模式的，但是使用时都要在application层实现模式约束.</p><p>mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃.
-性能相对也不错(可以参见项目下的bench).</p><p>使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.</p><h1 id=mongoengine问题>mongoengine问题</h1><h2 id=索引问题>索引问题</h2><p>索引应该跟document分开.并且有自动化建立和删除的command.</p><p>把索引定在Document/meta/indexes里很糟糕：</p><ol><li><p>写法很乱，不易管理。</p></li><li><p>有时会失效，没有建立对应的索引</p></li></ol><h2 id=listfield校验问题>listField校验问题</h2><p>listField没法做长度限制
-set/sortset/max-len list/ sort-list等结构没有实现</p><h2 id=不支持自定义字段验证文档级验证>不支持自定义字段验证/文档级验证</h2><h2 id=pre_saveafter_save-hooks>pre_save/after_save hooks</h2><h2 id=不可存储的embddocumment>不可存储的EmbdDocumment</h2><p><strong>TODO</strong> 待考虑</p><h2 id=可扩展的document>可扩展的Document</h2><p><strong>TODO</strong> 待考虑</p></div><div class=my-4><a href=https://hackrole.github.io/tags/mongodb/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#mongodb</a>
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+<div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+<h1 class="font-bold text-3xl text-primary-text">mongodb库设计问题</h1>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jul 31, 2014</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-th-list mr-1"></i>
+<a href=https://hackrole.github.io/series/mongodb/ class=hover:text-eureka>mongodb</a>
+</div>
+</div>
+<div class=content>
+<p><strong>TODO</strong></p>
+<p>项目地址:: <strong>TODO</strong> ref</p>
+<p>mongodb本身是无模式的，但是使用时都要在application层实现模式约束.</p>
+<p>mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃.
+性能相对也不错(可以参见项目下的bench).</p>
+<p>使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.</p>
+<h1 id=mongoengine问题>mongoengine问题</h1>
+<h2 id=索引问题>索引问题</h2>
+<p>索引应该跟document分开.并且有自动化建立和删除的command.</p>
+<p>把索引定在Document/meta/indexes里很糟糕：</p>
+<ol>
+<li>
+<p>写法很乱，不易管理。</p>
+</li>
+<li>
+<p>有时会失效，没有建立对应的索引</p>
+</li>
+</ol>
+<h2 id=listfield校验问题>listField校验问题</h2>
+<p>listField没法做长度限制
+set/sortset/max-len list/ sort-list等结构没有实现</p>
+<h2 id=不支持自定义字段验证文档级验证>不支持自定义字段验证/文档级验证</h2>
+<h2 id=pre_saveafter_save-hooks>pre_save/after_save hooks</h2>
+<h2 id=不可存储的embddocumment>不可存储的EmbdDocumment</h2>
+<p><strong>TODO</strong> 待考虑</p>
+<h2 id=可扩展的document>可扩展的Document</h2>
+<p><strong>TODO</strong> 待考虑</p>
+</div>
+<div class=my-4>
+<a href=https://hackrole.github.io/tags/mongodb/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#mongodb</a>
 <a href=https://hackrole.github.io/tags/mongoengine/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#mongoengine</a>
-<a href=https://hackrole.github.io/tags/python/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#python</a></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
-<a href=https://hackrole.github.io/post/python_module_struct/ class=block>python标准模块struct笔记</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
-<a href=https://hackrole.github.io/post/mongodb_indexes_pretty/ class=block>mongodb索引建立和优化</a></div></div></div><div class=col-span-2><div class="bg-secondary-bg rounded p-6"><h3 class="text-lg font-semibold mb-4">Series of Posts</h3><div class=content><a href=https://hackrole.github.io/post/mongoengine_questions/>mongodb库设计问题</a><br><a href=https://hackrole.github.io/post/mongodb_indexes_pretty/>mongodb索引建立和优化</a><br></div></div></div><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded p-6"><h2 class="text-lg font-semibold mb-4">See Also</h2><div class=content><a href=https://hackrole.github.io/post/mongodb_indexes_pretty/>mongodb索引建立和优化</a><br><a href=https://hackrole.github.io/post/ipython_usage_tips/>ipython使用技巧</a><br></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+<a href=https://hackrole.github.io/tags/python/ class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#python</a>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+<div>
+<span class="block font-bold">Previous</span>
+<a href=https://hackrole.github.io/post/python_module_struct/ class=block>
+python标准模块struct笔记
+</a>
+</div>
+<div class="md:text-right mt-4 md:mt-0">
+<span class="block font-bold">Next</span>
+<a href=https://hackrole.github.io/post/mongodb_indexes_pretty/ class=block>
+mongodb索引建立和优化
+</a>
+</div>
+</div>
+</div>
+<div class=col-span-2>
+<div class="bg-secondary-bg rounded p-6">
+<h3 class="text-lg font-semibold mb-4">Series of Posts</h3>
+<div class=content>
+<a href=https://hackrole.github.io/post/mongoengine_questions/>mongodb库设计问题</a>
+<br>
+<a href=https://hackrole.github.io/post/mongodb_indexes_pretty/>mongodb索引建立和优化</a>
+<br>
+</div>
+</div>
+</div>
+<div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+<h2 class="text-lg font-semibold mb-4">See Also</h2>
+<div class=content>
+<a href=https://hackrole.github.io/post/mongodb_indexes_pretty/>mongodb索引建立和优化</a>
+<br>
+<a href=https://hackrole.github.io/post/ipython_usage_tips/>ipython使用技巧</a>
+<br>
+</div>
+</div>
+</div>
+<script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>

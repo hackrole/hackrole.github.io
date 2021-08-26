@@ -1,23 +1,107 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>18 rust pattern | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="18 rust pattern | Hackrole's Blog"><meta itemprop=description content="包括的内容:
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>18 rust pattern | Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="18 rust pattern | Hackrole's Blog">
+<meta itemprop=description content="包括的内容:
  字面量 literal 解构数组，枚举，结构提，元组等 变量 通配符 占位符  rust match rust match is exhaustive, all situation must be consided
 _ match all, and not bind to variable, use to ignore
 if let use can only care abouot one situation
-fn main() { let favorite_color: Option<&str> = None; let is_tuesday = false; let age: Result<u8, _> = &#34;34&#34;.parse(); if let Some(color) = favorite_color { println!(&#34;Using your favorite color, {}, as the backgourd&#34;, favorite_color); }else if is_tuesday { println!"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"18 rust pattern","item":"https://hackrole.github.io/post/learn-rust-18-match-pattern/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/learn-rust-18-match-pattern/"},"headline":"18 rust pattern | Hackrole\u0027s Blog","datePublished":"2020-11-08T00:00:00+00:00","dateModified":"2020-11-10T15:55:41+08:00","wordCount":447,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"包括的内容:\n 字面量 literal 解构数组，枚举，结构提，元组等 变量 通配符 占位符  rust match rust match is exhaustive, all situation must be consided\n_ match all, and not bind to variable, use to ignore\nif let use can only care abouot one situation\nfn main() { let favorite_color: Option\u0026lt;\u0026amp;str\u0026gt; = None; let is_tuesday = false; let age: Result\u0026lt;u8, _\u0026gt; = \u0026quot;34\u0026quot;.parse(); if let Some(color) = favorite_color { println!(\u0026quot;Using your favorite color, {}, as the backgourd\u0026quot;, favorite_color); }else if is_tuesday { println!"}</script><meta property="og:title" content="18 rust pattern | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/post/learn-rust-18-match-pattern/"><meta property="og:description" content="包括的内容:
+fn main() { let favorite_color: Option<&str> = None; let is_tuesday = false; let age: Result<u8, _> = &#34;34&#34;.parse(); if let Some(color) = favorite_color { println!(&#34;Using your favorite color, {}, as the backgourd&#34;, favorite_color); }else if is_tuesday { println!">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"18 rust pattern","item":"https://hackrole.github.io/post/learn-rust-18-match-pattern/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/learn-rust-18-match-pattern/"},"headline":"18 rust pattern | Hackrole\u0027s Blog","datePublished":"2020-11-08T00:00:00+00:00","dateModified":"2020-11-10T15:55:41+08:00","wordCount":447,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"包括的内容:\n 字面量 literal 解构数组，枚举，结构提，元组等 变量 通配符 占位符  rust match rust match is exhaustive, all situation must be consided\n_ match all, and not bind to variable, use to ignore\nif let use can only care abouot one situation\nfn main() { let favorite_color: Option\u0026lt;\u0026amp;str\u0026gt; = None; let is_tuesday = false; let age: Result\u0026lt;u8, _\u0026gt; = \u0026quot;34\u0026quot;.parse(); if let Some(color) = favorite_color { println!(\u0026quot;Using your favorite color, {}, as the backgourd\u0026quot;, favorite_color); }else if is_tuesday { println!"}</script>
+<meta property="og:title" content="18 rust pattern | Hackrole's Blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hackrole.github.io/post/learn-rust-18-match-pattern/">
+<meta property="og:description" content="包括的内容:
  字面量 literal 解构数组，枚举，结构提，元组等 变量 通配符 占位符  rust match rust match is exhaustive, all situation must be consided
 _ match all, and not bind to variable, use to ignore
 if let use can only care abouot one situation
-fn main() { let favorite_color: Option<&str> = None; let is_tuesday = false; let age: Result<u8, _> = &#34;34&#34;.parse(); if let Some(color) = favorite_color { println!(&#34;Using your favorite color, {}, as the backgourd&#34;, favorite_color); }else if is_tuesday { println!"><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2020-11-08T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-10T15:55:41+08:00"><meta property="article:section" content="post"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+fn main() { let favorite_color: Option<&str> = None; let is_tuesday = false; let age: Result<u8, _> = &#34;34&#34;.parse(); if let Some(color) = favorite_color { println!(&#34;Using your favorite color, {}, as the backgourd&#34;, favorite_color); }else if is_tuesday { println!">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="article:published_time" content="2020-11-08T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-11-10T15:55:41+08:00">
+<meta property="article:section" content="post">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/learn-rust-18-match-pattern/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/learn-rust-18-match-pattern/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">18 rust pattern</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Nov 8, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>3 min read</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i>
-<a href=https://hackrole.github.io/categories/rust/ class=hover:text-eureka>Rust</a></div></div><div class=content><p>包括的内容:</p><ol><li>字面量 literal</li><li>解构数组，枚举，结构提，元组等</li><li>变量</li><li>通配符</li><li>占位符</li></ol><h2 id=rust-match>rust match</h2><p>rust <code>match</code> is exhaustive, all situation must be consided</p><p>_ match all, and not bind to variable, use to ignore</p><p><code>if let</code> use can only care abouot one situation</p><pre><code class=language-rust>fn main() {
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+<div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+<h1 class="font-bold text-3xl text-primary-text">18 rust pattern</h1>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Nov 8, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>3 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/rust/ class=hover:text-eureka>Rust</a>
+</div>
+</div>
+<div class=content>
+<p>包括的内容:</p>
+<ol>
+<li>字面量 literal</li>
+<li>解构数组，枚举，结构提，元组等</li>
+<li>变量</li>
+<li>通配符</li>
+<li>占位符</li>
+</ol>
+<h2 id=rust-match>rust match</h2>
+<p>rust <code>match</code> is exhaustive, all situation must be consided</p>
+<p>_ match all, and not bind to variable, use to ignore</p>
+<p><code>if let</code> use can only care abouot one situation</p>
+<pre><code class=language-rust>fn main() {
     let favorite_color: Option&lt;&amp;str&gt; = None;
     let is_tuesday = false;
     let age: Result&lt;u8, _&gt; = &quot;34&quot;.parse();
@@ -36,7 +120,9 @@ fn main() { let favorite_color: Option<&str> = None; let is_tuesday = false; let
         println!(&quot;Using blue as the background color&quot;);
     }
 }
-</code></pre><p><code>while let</code></p><pre><code class=language-rust>fn main() {
+</code></pre>
+<p><code>while let</code></p>
+<pre><code class=language-rust>fn main() {
     let mut stack = Vec::new();
     stack.push(1);
     stack.push(2);
@@ -46,15 +132,21 @@ fn main() { let favorite_color: Option<&str> = None; let is_tuesday = false; let
         println!(&quot;{}&quot;, top);
     }
 }
-</code></pre><p><code>for</code></p><pre><code class=language-rust>let v = vec!['a', 'b', 'c'];
+</code></pre>
+<p><code>for</code></p>
+<pre><code class=language-rust>let v = vec!['a', 'b', 'c'];
 
 for (index, value) in v.iter().enumerate() {
     println!(&quot;{} is at index&quot;, value, index);
 }
-</code></pre><p><code>let</code></p><pre><code class=language-rust>let (x, y, z) = (1, 2, 3);
+</code></pre>
+<p><code>let</code></p>
+<pre><code class=language-rust>let (x, y, z) = (1, 2, 3);
 /// below will raises
 let (x, y) = (1, 2, 3);
-</code></pre><p><strong>function pattern</strong></p><pre><code class=language-rust>fn print_coordinates(&amp;(x, y): &amp;(i32, i32)) {
+</code></pre>
+<p><strong>function pattern</strong></p>
+<pre><code class=language-rust>fn print_coordinates(&amp;(x, y): &amp;(i32, i32)) {
     println!(&quot;Current location: ({}, {})&quot;, x, y);
 }
 
@@ -62,7 +154,14 @@ fn main() {
     let point = (3, 5);
     print_coordinates(&amp;point);
 }
-</code></pre><h2 id=irrefutable-vs-refutable>irrefutable vs refutable</h2><ol><li>function, let, for only accept <strong>irrefutable-pattern</strong></li><li>if let, while let only accept <strong>refutable-pattern</strong></li></ol><h2 id=match-example>match example</h2><pre><code class=language-rust>/// match literal
+</code></pre>
+<h2 id=irrefutable-vs-refutable>irrefutable vs refutable</h2>
+<ol>
+<li>function, let, for only accept <strong>irrefutable-pattern</strong></li>
+<li>if let, while let only accept <strong>refutable-pattern</strong></li>
+</ol>
+<h2 id=match-example>match example</h2>
+<pre><code class=language-rust>/// match literal
 let x = 1;
 
 match x {
@@ -98,14 +197,23 @@ match x {
     'a'..='j' =&gt; println!(&quot;a-&gt;j&quot;);
     _ =&gt; println!(&quot;something else&quot;);
 }
-</code></pre><p>_ vs _name vs ..</p><ol><li>_ not bind, _name bind (may transfer variable owner)</li><li>.. use to match many</li></ol><p><strong>match guard</strong></p><pre><code class=language-rust>let num = Some(4);
+</code></pre>
+<p>_ vs _name vs ..</p>
+<ol>
+<li>_ not bind, _name bind (may transfer variable owner)</li>
+<li>.. use to match many</li>
+</ol>
+<p><strong>match guard</strong></p>
+<pre><code class=language-rust>let num = Some(4);
 
 match num {
     Some(x) if x &lt; 5 =&gt; println!(&quot;less than five: {}&quot;, x),
     Some(x) =&gt; println!(&quot;{}&quot;, x),
     Noe =&gt; (),
 }
-</code></pre><p><strong>@ bind</strong></p><pre><code class=language-rust>enum Message {
+</code></pre>
+<p><strong>@ bind</strong></p>
+<pre><code class=language-rust>enum Message {
     Hello {id: i32},
 }
 
@@ -122,6 +230,34 @@ match msg {
         println!(&quot;Found some other id: [}&quot;, id);
     }
 }
-</code></pre></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
-<a href=https://hackrole.github.io/post/ob-ipython-note/ class=block>using ob-ipython as alternative of jupyter</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
-<a href=https://hackrole.github.io/post/org-babel-tips/ class=block>tips while using org-babel</a></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+</code></pre>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+<div>
+<span class="block font-bold">Previous</span>
+<a href=https://hackrole.github.io/post/ob-ipython-note/ class=block>
+using ob-ipython as alternative of jupyter
+</a>
+</div>
+<div class="md:text-right mt-4 md:mt-0">
+<span class="block font-bold">Next</span>
+<a href=https://hackrole.github.io/post/css-flexbox/ class=block>
+css flexbox notes
+</a>
+</div>
+</div>
+</div>
+</div>
+<script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>

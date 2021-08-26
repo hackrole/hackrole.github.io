@@ -1,20 +1,155 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="Hackrole's Blog"><meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"ipython使用技巧","description":"内容参考: 来自 TODO\n调用timeit做性能测试 %timeit range(10000)  ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO\nipython里load代码 %load根据路径加载文件\ndebug调试代码   在出异常后,调用 %debug进入pdb开始调试程序\n  调用%pdb,在出异常时.会自动进入pdb调试\n  TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚本文件 调用ipython -i \u0026lt;pyfile\u0026gt; 在加载脚本文件后在启动ipython\n在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载","url":"https://hackrole.github.io/post/ipython_usage_tips/"},{"@type":"ListItem","position":2,"name":"编译安装ruby问题总结","description":"多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.\nrvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.\n.. note::\n多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同.  卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.\n解决方法. .. code-block:: ruby\nsudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome  卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了\nldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url\n.. code-block:: shell\nldd `which vim`  可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题\n编译ruby 编译前记得安装readline库, 不然无法使用补全。","url":"https://hackrole.github.io/post/ruby_install_from_source/"},{"@type":"ListItem","position":3,"name":"elisp keymap相关","description":"elisp按键序列概念 elisp按键在elisp中有两种表达方式:\n1\u0026gt; 字符串 \u0026ldquo;\\C-x1\u0026rdquo;\n2\u0026gt; 列表vector [?\\C-x ?1]\n函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)\n功能键用 \u0026lt;\u0026gt;表示, 等\nkeymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上\n按键序列可以分为两种\n1\u0026gt; prefix key 前缀键,如 C-x\n2\u0026gt; complete key 完整的按键,如 x, C-k, C-x C-q\n定义一个complete key前，需要定义所有需要的prefix key.\n一般都会有多个keymap处于激活状态，分类如下 1\u0026gt; global keymap (shared by all buffers)\n2\u0026gt; local keymap (通常由major mode设置)\n3\u0026gt; zero or many minor keymap(通常有minor mode提供)\nlocal keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap\ncreate keymap and keymap format keymap format\n **TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap     function desc others     (make-sparse-keymap \u0026amp;optional prompt create and return a new keymap with no entries the usually keymap you need   (make-keymap \u0026amp;optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys   (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap    新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置","url":"https://hackrole.github.io/post/elisp_keymap/"}]}</script><meta property="og:title" content="Hackrole's Blog"><meta property="og:type" content="website"><meta property="og:url" content="https://hackrole.github.io/post/"><meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo."><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="og:updated_time" content="2021-07-18T00:00:00+00:00"><meta property="article:section" content="post"><link rel=alternate type=application/rss+xml href=https://hackrole.github.io/post/index.xml title="Hackrole's Blog"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="Hackrole's Blog">
+<meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"mongodb索引建立和优化","description":"TODO: 来源\n  索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引\n  可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响\n  对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读\n  nosqlfan是个学习和找问题的好地方\n  mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用\ndb.things.ensureIndex({j:1})  默认单列/文档/组合索引   每个集合都会有个默认索引 _id ,该字段不能删除\n  单列索引可以是独立字段，也可以是嵌套文档字段\n  建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO\n  稀疏索引的概念与sql中的稀疏索引概念不同\n  mongodb不会为字段值不存在的文档加入索引,null值不能被查出\n  唯一索引\n  db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})  特殊索引 mongodb支持2d索引，用于地理位置服务。\nmongodb支持text全文索引，但是功能较弱.\n须注意：\n  mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html\n  mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理","url":"https://hackrole.github.io/post/mongodb_indexes_pretty/"},{"@type":"ListItem","position":2,"name":"ipython使用技巧","description":"内容参考: 来自 TODO\n调用timeit做性能测试 %timeit range(10000)  ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO\nipython里load代码 %load根据路径加载文件\ndebug调试代码   在出异常后,调用 %debug进入pdb开始调试程序\n  调用%pdb,在出异常时.会自动进入pdb调试\n  TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚本文件 调用ipython -i \u0026lt;pyfile\u0026gt; 在加载脚本文件后在启动ipython\n在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载","url":"https://hackrole.github.io/post/ipython_usage_tips/"},{"@type":"ListItem","position":3,"name":"编译安装ruby问题总结","description":"多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.\nrvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.\n.. note::\n多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同.  卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.\n解决方法. .. code-block:: ruby\nsudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome  卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了\nldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url\n.. code-block:: shell\nldd `which vim`  可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题\n编译ruby 编译前记得安装readline库, 不然无法使用补全。","url":"https://hackrole.github.io/post/ruby_install_from_source/"}]}</script>
+<meta property="og:title" content="Hackrole's Blog">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hackrole.github.io/post/">
+<meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo.">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="og:updated_time" content="2021-07-18T00:00:00+00:00">
+<meta property="article:section" content="post">
+<link rel=alternate type=application/rss+xml href=https://hackrole.github.io/post/index.xml title="Hackrole's Blog">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><article class="mx-6 my-8"><h1 class="font-bold text-3xl text-primary-text">Posts</h1></article><div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y"><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/ipython_usage_tips/ class="font-bold text-xl hover:text-eureka">ipython使用技巧</a></div><div class=content>内容参考: 来自 TODO
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<article class="mx-6 my-8">
+<h1 class="font-bold text-3xl text-primary-text">Posts</h1>
+</article>
+<div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/mongodb_indexes_pretty/ class="font-bold text-xl hover:text-eureka">mongodb索引建立和优化</a>
+</div>
+<div class=content>
+TODO: 来源
+索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引
+可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响
+对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读
+nosqlfan是个学习和找问题的好地方
+mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用
+db.things.ensureIndex({j:1}) 默认单列/文档/组合索引 每个集合都会有个默认索引 _id ,该字段不能删除
+单列索引可以是独立字段，也可以是嵌套文档字段
+建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO
+稀疏索引的概念与sql中的稀疏索引概念不同
+mongodb不会为字段值不存在的文档加入索引,null值不能被查出
+唯一索引
+db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true}) 特殊索引 mongodb支持2d索引，用于地理位置服务。
+mongodb支持text全文索引，但是功能较弱.
+须注意：
+mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html
+mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jun 27, 2014</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-th-list mr-1"></i>
+<a href=https://hackrole.github.io/series/mongodb/ class=hover:text-eureka>mongodb</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/ipython_usage_tips/ class="font-bold text-xl hover:text-eureka">ipython使用技巧</a>
+</div>
+<div class=content>
+内容参考: 来自 TODO
 调用timeit做性能测试 %timeit range(10000) ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO
 ipython里load代码 %load根据路径加载文件
 debug调试代码 在出异常后,调用 %debug进入pdb开始调试程序
 调用%pdb,在出异常时.会自动进入pdb调试
 TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚本文件 调用ipython -i &amp;lt;pyfile&amp;gt; 在加载脚本文件后在启动ipython
-在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Mar 21, 2014</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>1 min read</span></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/ruby_install_from_source/ class="font-bold text-xl hover:text-eureka">编译安装ruby问题总结</a></div><div class=content>多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.
+在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Mar 21, 2014</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/ruby_install_from_source/ class="font-bold text-xl hover:text-eureka">编译安装ruby问题总结</a>
+</div>
+<div class=content>
+多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.
 rvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.
 .. note::
 多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同. 卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.
@@ -23,23 +158,61 @@ sudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim
 ldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url
 .. code-block:: shell
 ldd `which vim` 可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题
-编译ruby 编译前记得安装readline库, 不然无法使用补全。</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Jan 14, 2014</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>1 min read</span></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/elisp_keymap/ class="font-bold text-xl hover:text-eureka">elisp keymap相关</a></div><div class=content>elisp按键序列概念 elisp按键在elisp中有两种表达方式:
-1&amp;gt; 字符串 &amp;ldquo;\C-x1&amp;rdquo;
-2&amp;gt; 列表vector [?\C-x ?1]
-函数(kbd keseq-string)返回字符串对应的按键序列(字符串或列表形式)
-功能键用 &amp;lt;&amp;gt;表示, 等
-keymap基本概念 keymap是一个中lisp内的数据结构，用于绑定多个按键序列到对应的command上
-按键序列可以分为两种
-1&amp;gt; prefix key 前缀键,如 C-x
-2&amp;gt; complete key 完整的按键,如 x, C-k, C-x C-q
-定义一个complete key前，需要定义所有需要的prefix key.
-一般都会有多个keymap处于激活状态，分类如下 1&amp;gt; global keymap (shared by all buffers)
-2&amp;gt; local keymap (通常由major mode设置)
-3&amp;gt; zero or many minor keymap(通常有minor mode提供)
-local keymap会覆盖global keymap, minor keymap会覆盖local keymap和global-keymap
-create keymap and keymap format keymap format
-**TODO** 函数(keymapp symbal)用于判断指定symbal是否为keymap create keymap function desc others (make-sparse-keymap &amp;amp;optional prompt create and return a new keymap with no entries the usually keymap you need (make-keymap &amp;amp;optional prompt) create and return a new keymap with char-tables use this if you want bind a lots of keys (copy-keymap keymap) return a copy of keymap, recursive copy sub keymap recursive copy fails on function keymap 新建keymap的两个函数都可选的有一个prompt参数，用于设置menu使用，一般不设置</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Jan 3, 2014</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>2 min read</span></div></div></div></div></div></div><ul class=pagination><li class=page-item><a href=/post/ class=page-link aria-label=First><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/post/page/13/ class=page-link aria-label=Previous><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a class=page-link href=/post/>1</a></li><li class=page-item><a class=page-link href=/post/page/2/>2</a></li><li class=page-item><a class=page-link href=/post/page/3/>3</a></li><li class="page-item disabled"><span aria-hidden=true>&nbsp;&mldr;&nbsp;</span></li><li class=page-item><a class=page-link href=/post/page/13/>13</a></li><li class="page-item active"><a class=page-link href=/post/page/14/>14</a></li><li class=page-item><a class=page-link href=/post/page/15/>15</a></li><li class=page-item><a href=/post/page/15/ class=page-link aria-label=Next><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/post/page/15/ class=page-link aria-label=Last><span aria-hidden=true>&#187;&#187;</span></a></li></ul></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+编译ruby 编译前记得安装readline库, 不然无法使用补全。
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jan 14, 2014</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul class="pagination pagination-default">
+<li class=page-item>
+<a href=/post/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/post/page/13/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+</li>
+<li class=page-item>
+<a href=/post/page/11/ aria-label="Page 11" class=page-link role=button>11</a>
+</li>
+<li class=page-item>
+<a href=/post/page/12/ aria-label="Page 12" class=page-link role=button>12</a>
+</li>
+<li class=page-item>
+<a href=/post/page/13/ aria-label="Page 13" class=page-link role=button>13</a>
+</li>
+<li class="page-item active">
+<a href=# aria-current=page aria-label="Page 14" class=page-link role=button>14</a>
+</li>
+<li class=page-item>
+<a href=/post/page/15/ aria-label="Page 15" class=page-link role=button>15</a>
+</li>
+<li class=page-item>
+<a href=/post/page/15/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
+</li>
+<li class=page-item>
+<a href=/post/page/15/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+</li>
+</ul>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,26 +1,168 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Rust | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="Rust | Hackrole's Blog"><meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Tags","item":"https://hackrole.github.io/tags/"},{"@type":"ListItem","position":3,"name":"Rust","item":"https://hackrole.github.io/tags/rust/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"引用循环和内存泄漏","description":"/// make a ref-circle, it's possible in rust. /// but rust make sure it safe. use std::rc::Rc; use std::cell::RefCell; use crate::List::{Cons, Nil}; #[derive(Debug)] enum List{ Cons(i32, RefCell\u0026lt;Rc\u0026lt;List\u0026gt;\u0026gt;), Nil } impl List { fn tail(\u0026amp;self) -\u0026gt; Option\u0026lt;\u0026amp;RefCell\u0026lt;Rc\u0026lt;List\u0026gt;\u0026gt;\u0026gt; { match self { Cons(_, item) =\u0026gt; Some(item), Nil =\u0026gt; None, } } } fn main() { let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil)))); println!(\u0026quot;a initial rc count = {}\u0026quot;, Rc::strong_count(\u0026amp;a)); println!(\u0026quot;a next item = {:?}\u0026quot;, a.tail()); let b = Rc::new(Cons(10, RefCell::new(Rc::clone(\u0026amp;a)))); println!","url":"https://hackrole.github.io/posts/learn-rust/"},{"@type":"ListItem","position":2,"name":"16 无畏并发 fearless concurrency","description":"concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.\nas a low-level language, rust need less abstraction and more control.\nuse thread process vs thread\nprograms:\n Race conditions: data-race. resource-race. DeakLock difficult concurrent bug.  os-thread vs green-thread: 1:1 vs M:N\n/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.","url":"https://hackrole.github.io/posts/learn-rust-note-16-concurrency/"},{"@type":"ListItem","position":3,"name":"无畏并发 fearless concurrency","description":"concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.\nas a low-level language, rust need less abstraction and more control.\nuse thread process vs thread\nprograms:\n Race conditions: data-race. resource-race. DeakLock difficult concurrent bug.  os-thread vs green-thread: 1:1 vs M:N\n/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.","url":"https://hackrole.github.io/posts/learn-rust-16-concurrency/"}]}</script><meta property="og:title" content="Rust | Hackrole's Blog"><meta property="og:type" content="website"><meta property="og:url" content="https://hackrole.github.io/tags/rust/"><meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo."><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="og:updated_time" content="2020-11-04T00:00:00+00:00"><meta property="article:section" content="tags"><link rel=alternate type=application/rss+xml href=https://hackrole.github.io/tags/rust/index.xml title="Hackrole's Blog"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Rust | Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="Rust | Hackrole's Blog">
+<meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Tags","item":"https://hackrole.github.io/tags/"},{"@type":"ListItem","position":3,"name":"Rust","item":"https://hackrole.github.io/tags/rust/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"引用循环和内存泄漏","description":"/// make a ref-circle, it's possible in rust. /// but rust make sure it safe. use std::rc::Rc; use std::cell::RefCell; use crate::List::{Cons, Nil}; #[derive(Debug)] enum List{ Cons(i32, RefCell\u0026lt;Rc\u0026lt;List\u0026gt;\u0026gt;), Nil } impl List { fn tail(\u0026amp;self) -\u0026gt; Option\u0026lt;\u0026amp;RefCell\u0026lt;Rc\u0026lt;List\u0026gt;\u0026gt;\u0026gt; { match self { Cons(_, item) =\u0026gt; Some(item), Nil =\u0026gt; None, } } } fn main() { let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil)))); println!(\u0026quot;a initial rc count = {}\u0026quot;, Rc::strong_count(\u0026amp;a)); println!(\u0026quot;a next item = {:?}\u0026quot;, a.tail()); let b = Rc::new(Cons(10, RefCell::new(Rc::clone(\u0026amp;a)))); println!","url":"https://hackrole.github.io/posts/learn-rust/"},{"@type":"ListItem","position":2,"name":"16 无畏并发 fearless concurrency","description":"concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.\nas a low-level language, rust need less abstraction and more control.\nuse thread process vs thread\nprograms:\n Race conditions: data-race. resource-race. DeakLock difficult concurrent bug.  os-thread vs green-thread: 1:1 vs M:N\n/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.","url":"https://hackrole.github.io/posts/learn-rust-note-16-concurrency/"},{"@type":"ListItem","position":3,"name":"无畏并发 fearless concurrency","description":"concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.\nas a low-level language, rust need less abstraction and more control.\nuse thread process vs thread\nprograms:\n Race conditions: data-race. resource-race. DeakLock difficult concurrent bug.  os-thread vs green-thread: 1:1 vs M:N\n/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.","url":"https://hackrole.github.io/posts/learn-rust-16-concurrency/"}]}</script>
+<meta property="og:title" content="Rust | Hackrole's Blog">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hackrole.github.io/tags/rust/">
+<meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo.">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="og:updated_time" content="2020-11-04T00:00:00+00:00">
+<meta property="article:section" content="tags">
+<link rel=alternate type=application/rss+xml href=https://hackrole.github.io/tags/rust/index.xml title="Hackrole's Blog">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/tags/rust/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/tags/rust/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><article class="mx-6 my-8"><h1 class="font-bold text-3xl text-primary-text">Rust</h1></article><div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y"><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/posts/learn-rust/ class="font-bold text-xl hover:text-eureka">引用循环和内存泄漏</a></div><div class=content>/// make a ref-circle, it's possible in rust. /// but rust make sure it safe. use std::rc::Rc; use std::cell::RefCell; use crate::List::{Cons, Nil}; #[derive(Debug)] enum List{ Cons(i32, RefCell&amp;lt;Rc&amp;lt;List&amp;gt;&amp;gt;), Nil } impl List { fn tail(&amp;amp;self) -&amp;gt; Option&amp;lt;&amp;amp;RefCell&amp;lt;Rc&amp;lt;List&amp;gt;&amp;gt;&amp;gt; { match self { Cons(_, item) =&amp;gt; Some(item), Nil =&amp;gt; None, } } } fn main() { let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil)))); println!(&amp;quot;a initial rc count = {}&amp;quot;, Rc::strong_count(&amp;amp;a)); println!(&amp;quot;a next item = {:?}&amp;quot;, a.tail()); let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&amp;amp;a)))); println!</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Nov 1, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>2 min read</span></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/posts/learn-rust-note-16-concurrency/ class="font-bold text-xl hover:text-eureka">16 无畏并发 fearless concurrency</a></div><div class=content>concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<article class="mx-6 my-8">
+<h1 class="font-bold text-3xl text-primary-text">Rust</h1>
+</article>
+<div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/posts/learn-rust/ class="font-bold text-xl hover:text-eureka">引用循环和内存泄漏</a>
+</div>
+<div class=content>
+/// make a ref-circle, it's possible in rust. /// but rust make sure it safe. use std::rc::Rc; use std::cell::RefCell; use crate::List::{Cons, Nil}; #[derive(Debug)] enum List{ Cons(i32, RefCell&amp;lt;Rc&amp;lt;List&amp;gt;&amp;gt;), Nil } impl List { fn tail(&amp;amp;self) -&amp;gt; Option&amp;lt;&amp;amp;RefCell&amp;lt;Rc&amp;lt;List&amp;gt;&amp;gt;&amp;gt; { match self { Cons(_, item) =&amp;gt; Some(item), Nil =&amp;gt; None, } } } fn main() { let a = Rc::new(Cons(5, RefCell::new(Rc::new(Nil)))); println!(&amp;quot;a initial rc count = {}&amp;quot;, Rc::strong_count(&amp;amp;a)); println!(&amp;quot;a next item = {:?}&amp;quot;, a.tail()); let b = Rc::new(Cons(10, RefCell::new(Rc::clone(&amp;amp;a)))); println!
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Nov 1, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>2 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/posts/learn-rust-note-16-concurrency/ class="font-bold text-xl hover:text-eureka">16 无畏并发 fearless concurrency</a>
+</div>
+<div class=content>
+concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.
 as a low-level language, rust need less abstraction and more control.
 use thread process vs thread
 programs:
 Race conditions: data-race. resource-race. DeakLock difficult concurrent bug. os-thread vs green-thread: 1:1 vs M:N
-/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Nov 4, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>4 min read</span></div><div class="mr-6 my-2"><i class="fas fa-th-list mr-1"></i>
-<a href=https://hackrole.github.io/series/rust/ class=hover:text-eureka>rust</a></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/posts/learn-rust-16-concurrency/ class="font-bold text-xl hover:text-eureka">无畏并发 fearless concurrency</a></div><div class=content>concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.
+/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Nov 4, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>4 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-th-list mr-1"></i>
+<a href=https://hackrole.github.io/series/rust/ class=hover:text-eureka>rust</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/posts/learn-rust-16-concurrency/ class="font-bold text-xl hover:text-eureka">无畏并发 fearless concurrency</a>
+</div>
+<div class=content>
+concurrent-programming: programs can run in independent with each other. parallel programming: program can run at same time.
 as a low-level language, rust need less abstraction and more control.
 use thread process vs thread
 programs:
 Race conditions: data-race. resource-race. DeakLock difficult concurrent bug. os-thread vs green-thread: 1:1 vs M:N
-/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Nov 4, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>4 min read</span></div></div></div></div></div></div></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+/// thread examples /// when the main-thread exit, the fork-thread will exit too. /// just like python thread.deamon flag. use std::thread; use std::time::Duration; fn main() { thread::spawn(|| { for i in 1.
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Nov 4, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>4 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,24 +1,163 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>golang | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="golang | Hackrole's Blog"><meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Tags","item":"https://hackrole.github.io/tags/"},{"@type":"ListItem","position":3,"name":"golang","item":"https://hackrole.github.io/tags/golang/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"ch11: go测试","description":"go test 工具 file with name endwith `_test.go` was build by `go test` instead of `go build`\nthere are three kind of Function need to be remember:\n Function which Name starts with `Test` was used as UnitTest or FunctionalTest Function which Name starts with `Benchmark` was used as Benmark. Function which Name starts with \u0026lsquo;Example` was used as Example.  Test Function test function must:\n import `testing` package has `t *testing.T` as only argument use tool-function in `testing.","url":"https://hackrole.github.io/post/go-test/"},{"@type":"ListItem","position":2,"name":"ch12: 反射reflection","description":"introduce 在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.\n反射让我们把类型当作头等值\n动态类型 vs 动态值\n反射定义了两个重要的类型 reflect.Type, reflect.Value\nreflect.Type 类型描述符 接口值的动态类型也是类型描述符\n满足fmt.Stringer接口\nt := reflect.TypeOf(3) fmt.Println(t.String()) fmt.Println(t) // 反射总是返回具体类型 var w io.Writer = os.Stdout fmt.Println(reflect.TypeOf(w)) // return os.File  int int *os.File  reflect.Value v := reflect.ValueOf(3) fmt.Println(v) // this will handle reflect.Value fmt.Println(\u0026quot;%v\\n\u0026quot;, v) // implement the fmt.Stringer interface, but only return `Type` if not string fmt.Println(v.String()) // get `Value` Type t := v.Type() fmt.Println(t.String()) // the reverse operator x := v.Interface() // return `interface{}` i := x.","url":"https://hackrole.github.io/post/golang_reflection/"},{"@type":"ListItem","position":3,"name":"visit struct tag","description":"package main import ( \u0026quot;fmt\u0026quot; \u0026quot;http\u0026quot; \u0026quot;reflect\u0026quot; ) // search ... func search(resp http.ResponseWriter, req *http.Request) { var data struct { Labels []string `http:\u0026quot;1\u0026quot;` MaxResults int `http:\u0026quot;max\u0026quot;` Exact bool `http:\u0026quot;x\u0026quot;` } data.MaxResults = 10 if err := Unpack(req, \u0026amp;data); err != nil { http.Error(resp, err.Error(), http.StatusBadRequest) return } fmt.Fprintf(resp, \u0026quot;Search: %+v\\n\u0026quot;, data) } // Unpack func Unpack(req *http.Request, ptr interface{}) error { if err := req.ParseForm(); err != nil { return err } fields := make(map[string]reflect.","url":"https://hackrole.github.io/post/golang_programming_note/"}]}</script><meta property="og:title" content="golang | Hackrole's Blog"><meta property="og:type" content="website"><meta property="og:url" content="https://hackrole.github.io/tags/golang/"><meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo."><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="og:updated_time" content="2021-07-18T00:00:00+00:00"><meta property="article:section" content="tags"><link rel=alternate type=application/rss+xml href=https://hackrole.github.io/tags/golang/index.xml title="Hackrole's Blog"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>golang | Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="golang | Hackrole's Blog">
+<meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Tags","item":"https://hackrole.github.io/tags/"},{"@type":"ListItem","position":3,"name":"golang","item":"https://hackrole.github.io/tags/golang/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"ch11: go测试","description":"go test 工具 file with name endwith `_test.go` was build by `go test` instead of `go build`\nthere are three kind of Function need to be remember:\n Function which Name starts with `Test` was used as UnitTest or FunctionalTest Function which Name starts with `Benchmark` was used as Benmark. Function which Name starts with \u0026lsquo;Example` was used as Example.  Test Function test function must:\n import `testing` package has `t *testing.T` as only argument use tool-function in `testing.","url":"https://hackrole.github.io/post/go-test/"},{"@type":"ListItem","position":2,"name":"ch12: 反射reflection","description":"introduce 在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.\n反射让我们把类型当作头等值\n动态类型 vs 动态值\n反射定义了两个重要的类型 reflect.Type, reflect.Value\nreflect.Type 类型描述符 接口值的动态类型也是类型描述符\n满足fmt.Stringer接口\nt := reflect.TypeOf(3) fmt.Println(t.String()) fmt.Println(t) // 反射总是返回具体类型 var w io.Writer = os.Stdout fmt.Println(reflect.TypeOf(w)) // return os.File  int int *os.File  reflect.Value v := reflect.ValueOf(3) fmt.Println(v) // this will handle reflect.Value fmt.Println(\u0026quot;%v\\n\u0026quot;, v) // implement the fmt.Stringer interface, but only return `Type` if not string fmt.Println(v.String()) // get `Value` Type t := v.Type() fmt.Println(t.String()) // the reverse operator x := v.Interface() // return `interface{}` i := x.","url":"https://hackrole.github.io/post/golang_reflection/"},{"@type":"ListItem","position":3,"name":"visit struct tag","description":"package main import ( \u0026quot;fmt\u0026quot; \u0026quot;http\u0026quot; \u0026quot;reflect\u0026quot; ) // search ... func search(resp http.ResponseWriter, req *http.Request) { var data struct { Labels []string `http:\u0026quot;1\u0026quot;` MaxResults int `http:\u0026quot;max\u0026quot;` Exact bool `http:\u0026quot;x\u0026quot;` } data.MaxResults = 10 if err := Unpack(req, \u0026amp;data); err != nil { http.Error(resp, err.Error(), http.StatusBadRequest) return } fmt.Fprintf(resp, \u0026quot;Search: %+v\\n\u0026quot;, data) } // Unpack func Unpack(req *http.Request, ptr interface{}) error { if err := req.ParseForm(); err != nil { return err } fields := make(map[string]reflect.","url":"https://hackrole.github.io/post/golang_programming_note/"}]}</script>
+<meta property="og:title" content="golang | Hackrole's Blog">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://hackrole.github.io/tags/golang/">
+<meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo.">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="og:updated_time" content="2021-07-18T00:00:00+00:00">
+<meta property="article:section" content="tags">
+<link rel=alternate type=application/rss+xml href=https://hackrole.github.io/tags/golang/index.xml title="Hackrole's Blog">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/tags/golang/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/tags/golang/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><article class="mx-6 my-8"><h1 class="font-bold text-3xl text-primary-text">golang</h1></article><div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y"><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/go-test/ class="font-bold text-xl hover:text-eureka">ch11: go测试</a></div><div class=content>go test 工具 file with name endwith `_test.go` was build by `go test` instead of `go build`
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<article class="mx-6 my-8">
+<h1 class="font-bold text-3xl text-primary-text">golang</h1>
+</article>
+<div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/go-test/ class="font-bold text-xl hover:text-eureka">ch11: go测试</a>
+</div>
+<div class=content>
+go test 工具 file with name endwith `_test.go` was build by `go test` instead of `go build`
 there are three kind of Function need to be remember:
 Function which Name starts with `Test` was used as UnitTest or FunctionalTest Function which Name starts with `Benchmark` was used as Benmark. Function which Name starts with &amp;lsquo;Example` was used as Example. Test Function test function must:
-import `testing` package has `t *testing.T` as only argument use tool-function in `testing.</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Jul 18, 2021</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>3 min read</span></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/golang_reflection/ class="font-bold text-xl hover:text-eureka">ch12: 反射reflection</a></div><div class=content>introduce 在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.
+import `testing` package has `t *testing.T` as only argument use tool-function in `testing.
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jul 18, 2021</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>3 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/golang_reflection/ class="font-bold text-xl hover:text-eureka">ch12: 反射reflection</a>
+</div>
+<div class=content>
+introduce 在编译是不知道类型的情况下，可在运行时查看值，调用方法，更新变量，以及对布局进行操作的机制.
 反射让我们把类型当作头等值
 动态类型 vs 动态值
 反射定义了两个重要的类型 reflect.Type, reflect.Value
 reflect.Type 类型描述符 接口值的动态类型也是类型描述符
 满足fmt.Stringer接口
-t := reflect.TypeOf(3) fmt.Println(t.String()) fmt.Println(t) // 反射总是返回具体类型 var w io.Writer = os.Stdout fmt.Println(reflect.TypeOf(w)) // return os.File int int *os.File reflect.Value v := reflect.ValueOf(3) fmt.Println(v) // this will handle reflect.Value fmt.Println(&amp;quot;%v\n&amp;quot;, v) // implement the fmt.Stringer interface, but only return `Type` if not string fmt.Println(v.String()) // get `Value` Type t := v.Type() fmt.Println(t.String()) // the reverse operator x := v.Interface() // return `interface{}` i := x.</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Jul 18, 2021</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>6 min read</span></div></div></div></div></div><div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between"><div class=w-full><div class=my-2><div class=mb-4><a href=https://hackrole.github.io/post/golang_programming_note/ class="font-bold text-xl hover:text-eureka">visit struct tag</a></div><div class=content>package main import ( &amp;quot;fmt&amp;quot; &amp;quot;http&amp;quot; &amp;quot;reflect&amp;quot; ) // search ... func search(resp http.ResponseWriter, req *http.Request) { var data struct { Labels []string `http:&amp;quot;1&amp;quot;` MaxResults int `http:&amp;quot;max&amp;quot;` Exact bool `http:&amp;quot;x&amp;quot;` } data.MaxResults = 10 if err := Unpack(req, &amp;amp;data); err != nil { http.Error(resp, err.Error(), http.StatusBadRequest) return } fmt.Fprintf(resp, &amp;quot;Search: %+v\n&amp;quot;, data) } // Unpack func Unpack(req *http.Request, ptr interface{}) error { if err := req.ParseForm(); err != nil { return err } fields := make(map[string]reflect.</div></div><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Jul 18, 2021</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>1 min read</span></div></div></div></div></div></div></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+t := reflect.TypeOf(3) fmt.Println(t.String()) fmt.Println(t) // 反射总是返回具体类型 var w io.Writer = os.Stdout fmt.Println(reflect.TypeOf(w)) // return os.File int int *os.File reflect.Value v := reflect.ValueOf(3) fmt.Println(v) // this will handle reflect.Value fmt.Println(&amp;quot;%v\n&amp;quot;, v) // implement the fmt.Stringer interface, but only return `Type` if not string fmt.Println(v.String()) // get `Value` Type t := v.Type() fmt.Println(t.String()) // the reverse operator x := v.Interface() // return `interface{}` i := x.
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jul 18, 2021</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>6 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/golang_programming_note/ class="font-bold text-xl hover:text-eureka">visit struct tag</a>
+</div>
+<div class=content>
+package main import ( &amp;quot;fmt&amp;quot; &amp;quot;http&amp;quot; &amp;quot;reflect&amp;quot; ) // search ... func search(resp http.ResponseWriter, req *http.Request) { var data struct { Labels []string `http:&amp;quot;1&amp;quot;` MaxResults int `http:&amp;quot;max&amp;quot;` Exact bool `http:&amp;quot;x&amp;quot;` } data.MaxResults = 10 if err := Unpack(req, &amp;amp;data); err != nil { http.Error(resp, err.Error(), http.StatusBadRequest) return } fmt.Fprintf(resp, &amp;quot;Search: %+v\n&amp;quot;, data) } // Unpack func Unpack(req *http.Request, ptr interface{}) error { if err := req.ParseForm(); err != nil { return err } fields := make(map[string]reflect.
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jul 18, 2021</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>

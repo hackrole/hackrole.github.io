@@ -1,15 +1,141 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>python-graphql-server note | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="python-graphql-server note | Hackrole's Blog"><meta itemprop=description content="schema-driven development  define your types and the appropriate queries and mutations for them. implemetns functions called resolvers to handle these types and their fields. as new requirements arrive, go back to step 1 update the schema.  about relay  a mechanism for refetching an object a description of how to page through connections structure around mutation to make them prediatable  "><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"python-graphql-server note","item":"https://hackrole.github.io/post/python-howto-graphql-note/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/python-howto-graphql-note/"},"headline":"python-graphql-server note | Hackrole\u0027s Blog","datePublished":"2020-12-05T00:00:00+00:00","dateModified":"2020-12-05T00:00:00+00:00","wordCount":59,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"schema-driven development  define your types and the appropriate queries and mutations for them. implemetns functions called resolvers to handle these types and their fields. as new requirements arrive, go back to step 1 update the schema.  about relay  a mechanism for refetching an object a description of how to page through connections structure around mutation to make them prediatable  "}</script><meta property="og:title" content="python-graphql-server note | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/post/python-howto-graphql-note/"><meta property="og:description" content="schema-driven development  define your types and the appropriate queries and mutations for them. implemetns functions called resolvers to handle these types and their fields. as new requirements arrive, go back to step 1 update the schema.  about relay  a mechanism for refetching an object a description of how to page through connections structure around mutation to make them prediatable  "><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2020-12-05T00:00:00+00:00"><meta property="article:modified_time" content="2020-12-05T00:00:00+00:00"><meta property="article:section" content="post"><meta property="og:see_also" content="https://hackrole.github.io/post/howto-graphql-core-concept/"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>python-graphql-server note | Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="python-graphql-server note | Hackrole's Blog">
+<meta itemprop=description content="schema-driven development  define your types and the appropriate queries and mutations for them. implemetns functions called resolvers to handle these types and their fields. as new requirements arrive, go back to step 1 update the schema.  about relay  a mechanism for refetching an object a description of how to page through connections structure around mutation to make them prediatable  ">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"python-graphql-server note","item":"https://hackrole.github.io/post/python-howto-graphql-note/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/python-howto-graphql-note/"},"headline":"python-graphql-server note | Hackrole\u0027s Blog","datePublished":"2020-12-05T00:00:00+00:00","dateModified":"2020-12-05T00:00:00+00:00","wordCount":59,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"schema-driven development  define your types and the appropriate queries and mutations for them. implemetns functions called resolvers to handle these types and their fields. as new requirements arrive, go back to step 1 update the schema.  about relay  a mechanism for refetching an object a description of how to page through connections structure around mutation to make them prediatable  "}</script>
+<meta property="og:title" content="python-graphql-server note | Hackrole's Blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hackrole.github.io/post/python-howto-graphql-note/">
+<meta property="og:description" content="schema-driven development  define your types and the appropriate queries and mutations for them. implemetns functions called resolvers to handle these types and their fields. as new requirements arrive, go back to step 1 update the schema.  about relay  a mechanism for refetching an object a description of how to page through connections structure around mutation to make them prediatable  ">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="article:published_time" content="2020-12-05T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-12-05T00:00:00+00:00">
+<meta property="article:section" content="post">
+<meta property="og:see_also" content="https://hackrole.github.io/post/howto-graphql-core-concept/">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/python-howto-graphql-note/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/python-howto-graphql-note/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">python-graphql-server note</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Dec 5, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>1 min read</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i>
-<a href=https://hackrole.github.io/categories/howtographql/ class=hover:text-eureka>howtographql</a></div><div class="mr-6 my-2"><i class="fas fa-th-list mr-1"></i>
-<a href=https://hackrole.github.io/series/howtographql/ class=hover:text-eureka>howtographql</a></div></div><div class=content><h2 id=schema-driven-development>schema-driven development</h2><ol><li>define your types and the appropriate queries and mutations for them.</li><li>implemetns functions called resolvers to handle these types and their fields.</li><li>as new requirements arrive, go back to step 1 update the schema.</li></ol><h2 id=about-relay>about relay</h2><ol><li>a mechanism for refetching an object</li><li>a description of how to page through connections</li><li>structure around mutation to make them prediatable</li></ol></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
-<a href=https://hackrole.github.io/post/golang_programming_note/ class=block>visit struct tag</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
-<a href=https://hackrole.github.io/post/learn-rust-note-16-concurrency/ class=block>16 无畏并发 fearless concurrency</a></div></div></div><div class=col-span-2><div class="bg-secondary-bg rounded p-6"><h3 class="text-lg font-semibold mb-4">Series of Posts</h3><div class=content><a href=https://hackrole.github.io/post/howto-graphql-core-concept/>core-concept</a><br><a href=https://hackrole.github.io/post/python-howto-graphql-note/>python-graphql-server note</a><br></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+<div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+<h1 class="font-bold text-3xl text-primary-text">python-graphql-server note</h1>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Dec 5, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/howtographql/ class=hover:text-eureka>howtographql</a>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-th-list mr-1"></i>
+<a href=https://hackrole.github.io/series/howtographql/ class=hover:text-eureka>howtographql</a>
+</div>
+</div>
+<div class=content>
+<h2 id=schema-driven-development>schema-driven development</h2>
+<ol>
+<li>define your types and the appropriate queries and mutations for them.</li>
+<li>implemetns functions called resolvers to handle these types and their fields.</li>
+<li>as new requirements arrive, go back to step 1 update the schema.</li>
+</ol>
+<h2 id=about-relay>about relay</h2>
+<ol>
+<li>a mechanism for refetching an object</li>
+<li>a description of how to page through connections</li>
+<li>structure around mutation to make them prediatable</li>
+</ol>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+<div>
+<span class="block font-bold">Previous</span>
+<a href=https://hackrole.github.io/post/golang_programming_note/ class=block>
+visit struct tag
+</a>
+</div>
+<div class="md:text-right mt-4 md:mt-0">
+<span class="block font-bold">Next</span>
+<a href=https://hackrole.github.io/post/learn-rust-note-16-concurrency/ class=block>
+16 无畏并发 fearless concurrency
+</a>
+</div>
+</div>
+</div>
+<div class=col-span-2>
+<div class="bg-secondary-bg rounded p-6">
+<h3 class="text-lg font-semibold mb-4">Series of Posts</h3>
+<div class=content>
+<a href=https://hackrole.github.io/post/howto-graphql-core-concept/>core-concept</a>
+<br>
+<a href=https://hackrole.github.io/post/python-howto-graphql-note/>python-graphql-server note</a>
+<br>
+</div>
+</div>
+</div>
+</div>
+<script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>

@@ -1,19 +1,135 @@
-<!doctype html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>rust advance feature | Hackrole's Blog</title><link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_2.png><link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_2.png><link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css><script defer src=https://hackrole.github.io/js/eureka.min.js></script><link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css><script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script><script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script><meta itemprop=name content="rust advance feature | Hackrole's Blog"><meta itemprop=description content="unsafe-rust advance-trait  trait-ref-type 与trait相关的关联类型 default type param 默认参数类型 fully qualified syntax 完全限定语法 supertraits 超父类 newtype模式   advance-type  more about new-type pattern type alias 类型别名 never type dymatic-size type 动态大小类型   advance function and closure  function point 函数指针 return closure 返回闭包   macro 宏  unsafe-rust the-addional-super power of unsafe
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>rust advance feature | Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="rust advance feature | Hackrole's Blog">
+<meta itemprop=description content="unsafe-rust advance-trait  trait-ref-type 与trait相关的关联类型 default type param 默认参数类型 fully qualified syntax 完全限定语法 supertraits 超父类 newtype模式   advance-type  more about new-type pattern type alias 类型别名 never type dymatic-size type 动态大小类型   advance function and closure  function point 函数指针 return closure 返回闭包   macro 宏  unsafe-rust the-addional-super power of unsafe
  解引用裸指针 调用不安全的函数或方法 访问或修改可变静态变量 实现不安全的trait 访问union字段  the owner-check is still on
-unref-raw-point  ignore owner-rule, allow mut and immute ref."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"rust advance feature","item":"https://hackrole.github.io/post/learn-rust-19-unsafe-rust/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/learn-rust-19-unsafe-rust/"},"headline":"rust advance feature | Hackrole\u0027s Blog","datePublished":"2020-11-08T00:00:00+00:00","dateModified":"2020-11-09T23:51:21+08:00","wordCount":868,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"unsafe-rust advance-trait  trait-ref-type 与trait相关的关联类型 default type param 默认参数类型 fully qualified syntax 完全限定语法 supertraits 超父类 newtype模式   advance-type  more about new-type pattern type alias 类型别名 never type dymatic-size type 动态大小类型   advance function and closure  function point 函数指针 return closure 返回闭包   macro 宏  unsafe-rust the-addional-super power of unsafe\n 解引用裸指针 调用不安全的函数或方法 访问或修改可变静态变量 实现不安全的trait 访问union字段  the owner-check is still on\nunref-raw-point  ignore owner-rule, allow mut and immute ref."}</script><meta property="og:title" content="rust advance feature | Hackrole's Blog"><meta property="og:type" content="article"><meta property="og:url" content="https://hackrole.github.io/post/learn-rust-19-unsafe-rust/"><meta property="og:description" content="unsafe-rust advance-trait  trait-ref-type 与trait相关的关联类型 default type param 默认参数类型 fully qualified syntax 完全限定语法 supertraits 超父类 newtype模式   advance-type  more about new-type pattern type alias 类型别名 never type dymatic-size type 动态大小类型   advance function and closure  function point 函数指针 return closure 返回闭包   macro 宏  unsafe-rust the-addional-super power of unsafe
+unref-raw-point  ignore owner-rule, allow mut and immute ref.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"rust advance feature","item":"https://hackrole.github.io/post/learn-rust-19-unsafe-rust/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/learn-rust-19-unsafe-rust/"},"headline":"rust advance feature | Hackrole\u0027s Blog","datePublished":"2020-11-08T00:00:00+00:00","dateModified":"2020-11-09T23:51:21+08:00","wordCount":868,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"unsafe-rust advance-trait  trait-ref-type 与trait相关的关联类型 default type param 默认参数类型 fully qualified syntax 完全限定语法 supertraits 超父类 newtype模式   advance-type  more about new-type pattern type alias 类型别名 never type dymatic-size type 动态大小类型   advance function and closure  function point 函数指针 return closure 返回闭包   macro 宏  unsafe-rust the-addional-super power of unsafe\n 解引用裸指针 调用不安全的函数或方法 访问或修改可变静态变量 实现不安全的trait 访问union字段  the owner-check is still on\nunref-raw-point  ignore owner-rule, allow mut and immute ref."}</script>
+<meta property="og:title" content="rust advance feature | Hackrole's Blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hackrole.github.io/post/learn-rust-19-unsafe-rust/">
+<meta property="og:description" content="unsafe-rust advance-trait  trait-ref-type 与trait相关的关联类型 default type param 默认参数类型 fully qualified syntax 完全限定语法 supertraits 超父类 newtype模式   advance-type  more about new-type pattern type alias 类型别名 never type dymatic-size type 动态大小类型   advance function and closure  function point 函数指针 return closure 返回闭包   macro 宏  unsafe-rust the-addional-super power of unsafe
  解引用裸指针 调用不安全的函数或方法 访问或修改可变静态变量 实现不安全的trait 访问union字段  the owner-check is still on
-unref-raw-point  ignore owner-rule, allow mut and immute ref."><meta property="og:locale" content="en"><meta property="og:site_name" content="Hackrole's Blog"><meta property="article:published_time" content="2020-11-08T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-09T23:51:21+08:00"><meta property="article:section" content="post"><body class="flex flex-col min-h-screen"><header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm"><div class="container mx-auto"><div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script><nav class="flex items-center justify-between flex-wrap p-4"><a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+unref-raw-point  ignore owner-rule, allow mut and immute ref.">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="article:published_time" content="2020-11-08T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-11-09T23:51:21+08:00">
+<meta property="article:section" content="post">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
 <button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
-<i class="fas fa-bars"></i></button><div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20"><div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/learn-rust-19-unsafe-rust/><a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/learn-rust-19-unsafe-rust/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
 <a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
-<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a></div><div class=flex><div class="relative pt-4 md:pt-0"><div class="cursor-pointer hover:text-eureka" id=lightDarkMode><i class="fas fa-adjust"></i></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open></div><div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions><span class="px-4 py-1 hover:text-eureka">Light</span>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
 <span class="px-4 py-1 hover:text-eureka">Dark</span>
-<span class="px-4 py-1 hover:text-eureka">Auto</span></div></div></div></div><div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile></div></nav><script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div></div></header><main class="flex-grow pt-16"><div class="container mx-auto"><div class="max-w-screen-xl lg:px-4 xl:px-8"><div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12"><div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8"><h1 class="font-bold text-3xl text-primary-text">rust advance feature</h1><div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text"><div class="mr-6 my-2"><i class="fas fa-calendar mr-1"></i>
-<span>Nov 8, 2020</span></div><div class="mr-6 my-2"><i class="fas fa-clock mr-1"></i>
-<span>5 min read</span></div><div class="mr-6 my-2"><i class="fas fa-folder mr-1"></i>
-<a href=https://hackrole.github.io/categories/rust/ class=hover:text-eureka>Rust</a></div></div><div class=content><ol><li>unsafe-rust</li><li>advance-trait<ul><li>trait-ref-type 与trait相关的关联类型</li><li>default type param 默认参数类型</li><li>fully qualified syntax 完全限定语法</li><li>supertraits 超父类</li><li>newtype模式</li></ul></li><li>advance-type<ul><li>more about new-type pattern</li><li>type alias 类型别名</li><li>never type</li><li>dymatic-size type 动态大小类型</li></ul></li><li>advance function and closure<ul><li>function point 函数指针</li><li>return closure 返回闭包</li></ul></li><li>macro 宏</li></ol><h2 id=unsafe-rust>unsafe-rust</h2><p>the-addional-super power of unsafe</p><ol><li>解引用裸指针</li><li>调用不安全的函数或方法</li><li>访问或修改可变静态变量</li><li>实现不安全的trait</li><li>访问union字段</li></ol><p><strong>the <em>owner-check</em> is still on</strong></p><h3 id=unref-raw-point>unref-raw-point</h3><ol><li>ignore owner-rule, allow mut and immute ref.</li><li>not ensure the point valid</li><li>allow empty</li><li>not implement auto-clean.</li></ol><pre><code class=language-rust>/// create immute and mut raw-point
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+<div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+<h1 class="font-bold text-3xl text-primary-text">rust advance feature</h1>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Nov 8, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>5 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/rust/ class=hover:text-eureka>Rust</a>
+</div>
+</div>
+<div class=content>
+<ol>
+<li>unsafe-rust</li>
+<li>advance-trait
+<ul>
+<li>trait-ref-type 与trait相关的关联类型</li>
+<li>default type param 默认参数类型</li>
+<li>fully qualified syntax 完全限定语法</li>
+<li>supertraits 超父类</li>
+<li>newtype模式</li>
+</ul>
+</li>
+<li>advance-type
+<ul>
+<li>more about new-type pattern</li>
+<li>type alias 类型别名</li>
+<li>never type</li>
+<li>dymatic-size type 动态大小类型</li>
+</ul>
+</li>
+<li>advance function and closure
+<ul>
+<li>function point 函数指针</li>
+<li>return closure 返回闭包</li>
+</ul>
+</li>
+<li>macro 宏</li>
+</ol>
+<h2 id=unsafe-rust>unsafe-rust</h2>
+<p>the-addional-super power of unsafe</p>
+<ol>
+<li>解引用裸指针</li>
+<li>调用不安全的函数或方法</li>
+<li>访问或修改可变静态变量</li>
+<li>实现不安全的trait</li>
+<li>访问union字段</li>
+</ol>
+<p><strong>the <em>owner-check</em> is still on</strong></p>
+<h3 id=unref-raw-point>unref-raw-point</h3>
+<ol>
+<li>ignore owner-rule, allow mut and immute ref.</li>
+<li>not ensure the point valid</li>
+<li>allow empty</li>
+<li>not implement auto-clean.</li>
+</ol>
+<pre><code class=language-rust>/// create immute and mut raw-point
 /// you can create raw-point in safe-code, but can only deref it in unsafe code.
 let mut num = 5;
 
@@ -28,7 +144,9 @@ unsafe {
 /// unsure validate raw-point
 let address = 0x123456usize;
 let r = address as &amp;const i32;
-</code></pre><h3 id=call-unsafe-function-or-method>call unsafe function or method</h3><pre><code class=language-rust>unsafe fn dangerous() {}
+</code></pre>
+<h3 id=call-unsafe-function-or-method>call unsafe function or method</h3>
+<pre><code class=language-rust>unsafe fn dangerous() {}
 
 unsafe {
     dangerous();
@@ -49,8 +167,11 @@ fn split_at_mut(slice: &amp;mut [i32], mid: usize) -&gt; (&amp;mut [i32], &amp;m
          slice::from_raw_parts_mut(ptr.add(mid), len - mid))
     }
 }
-</code></pre><h3 id=use-extern-to-call-extern-code>use <code>extern</code> to call extern-code</h3><p><strong>foreign function interface, FFI</strong>
-<strong>applicaton binary interface, ABI</strong></p><pre><code class=language-rust>extern &quot;C&quot; {
+</code></pre>
+<h3 id=use-extern-to-call-extern-code>use <code>extern</code> to call extern-code</h3>
+<p><strong>foreign function interface, FFI</strong>
+<strong>applicaton binary interface, ABI</strong></p>
+<pre><code class=language-rust>extern &quot;C&quot; {
     fn abs(input: i32) -&gt; i32;
 }
 
@@ -65,7 +186,9 @@ fn main() {
         println!(&quot;Absolute value of -3 according to C: {}&quot;, abs(-3));
     }
 }
-</code></pre><h3 id=visit-or-modify-mutable-static-variable>visit or modify mutable-static variable</h3><pre><code class=language-rust>static mut COUNTER: u32 = 0;
+</code></pre>
+<h3 id=visit-or-modify-mutable-static-variable>visit or modify mutable-static variable</h3>
+<pre><code class=language-rust>static mut COUNTER: u32 = 0;
 
 fn add_to_count(inc: u32) {
     unsafe {
@@ -80,7 +203,9 @@ fn main() {
         println!(&quot;COUNTER: {}&quot;, COUNTER);
     }
 }
-</code></pre><h3 id=implement-unsaf-trait>implement unsaf-trait</h3><pre><code class=language-rust>unsafe trait Foo {
+</code></pre>
+<h3 id=implement-unsaf-trait>implement unsaf-trait</h3>
+<pre><code class=language-rust>unsafe trait Foo {
 
 }
 
@@ -88,7 +213,10 @@ fn main() {
 unsafe impl Foo for i32 {
 
 }
-</code></pre><h2 id=advance-trait>advance-trait</h2><p><code>associated types</code></p><pre><code class=language-rust>pub trait Iterator {
+</code></pre>
+<h2 id=advance-trait>advance-trait</h2>
+<p><code>associated types</code></p>
+<pre><code class=language-rust>pub trait Iterator {
     /// 占位类型
     type Item;
 
@@ -122,8 +250,10 @@ impl Iterator&lt;u32&gt; for Counter {
         // -snip-
     }
 }
-</code></pre><p>add default-type for Generic, A good example is Operator-overloading(运算符重载)
-rust not allow create-op or overload-op, but can implement op list in <code>std::ops</code>.</p><pre><code class=language-rust>use std::ops::Add;
+</code></pre>
+<p>add default-type for Generic, A good example is Operator-overloading(运算符重载)
+rust not allow create-op or overload-op, but can implement op list in <code>std::ops</code>.</p>
+<pre><code class=language-rust>use std::ops::Add;
 
 #[derive(Debug, PartialEq)]
 struct Point {
@@ -164,8 +294,10 @@ impl Add(Meters&gt; for Millimeters {
         Millimeters(self.0 + (other.0 * 1000))
     }
 }
-</code></pre><p>完全限定语法与消除歧义: 调用相同名称的方法
-rust neither can avoid traits has same method-name, nor can avoid implement the two traits for same type.</p><pre><code class=language-rust>trait Pilot {
+</code></pre>
+<p>完全限定语法与消除歧义: 调用相同名称的方法
+rust neither can avoid traits has same method-name, nor can avoid implement the two traits for same type.</p>
+<pre><code class=language-rust>trait Pilot {
     fn fly(&amp;self);
 }
 
@@ -202,7 +334,8 @@ fn main() {
     Pilot::fly(&amp;person);
     Wizard::fly(&amp;person);
 }
-</code></pre><pre><code class=language-rust>/// static-method or assoicate-method have no self-paramters.
+</code></pre>
+<pre><code class=language-rust>/// static-method or assoicate-method have no self-paramters.
 /// so cannot use above method to call Trait-method.
 /// you need to use *完全限定语法*
 trait Animal {
@@ -229,8 +362,10 @@ fn main() {
     // *完全限定语法* syntax &lt;Type as Trait&gt;::function(receiver_if_method, next_arg, ...);
     println!(&quot;A baby dog is called a {}&quot;, &lt;Dog as Animal&gt;::baby_name());
 }
-</code></pre><p>use other-trait functions in current trait. the depends-on trait also need tobe implemented.
-the depends-on trait is supertrait of current-trait.</p><pre><code class=language-rust>use std::fmt;
+</code></pre>
+<p>use other-trait functions in current trait. the depends-on trait also need tobe implemented.
+the depends-on trait is supertrait of current-trait.</p>
+<pre><code class=language-rust>use std::fmt;
 
 trait OutlinePrint: fmt::Display {
     fn outline_print(&amp;self) {
@@ -258,8 +393,10 @@ impl fnt::Display for Point {
 
 /// this world raise if not implement Debug-Trait
 impl OutlinePrint for Point {}
-</code></pre><p>newtype 模式用以在外部类型上实现外部trait, newtype was concept come from haskell. no speed punish in runtime.
-you may need implement every-method in inner-type or implement-Deref trait.</p><pre><code class=language-rust>use std::fmt;
+</code></pre>
+<p>newtype 模式用以在外部类型上实现外部trait, newtype was concept come from haskell. no speed punish in runtime.
+you may need implement every-method in inner-type or implement-Deref trait.</p>
+<pre><code class=language-rust>use std::fmt;
 
 struct Wrapper(Vec&lt;String&gt;);
 
@@ -273,6 +410,34 @@ fn main() {
     let w = Wrapper(vec![String::from(&quot;hello&quot;), String::from(&quot;world&quot;)]);
     println!(&quot;w = {}&quot;, w);
 }
-</code></pre></div><div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t"><div><span class="block font-bold">Previous</span>
-<a href=https://hackrole.github.io/post/learn-rust-note-16-concurrency/ class=block>16 无畏并发 fearless concurrency</a></div><div class="md:text-right mt-4 md:mt-0"><span class="block font-bold">Next</span>
-<a href=https://hackrole.github.io/post/learn-rust-20-threading-webserver/ class=block>20 build multiple-threading webserver</a></div></div></div></div><script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script></div></div></main><footer><div class="container mx-auto"><div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text"><p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p></footer></div></div></footer></body></html>
+</code></pre>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+<div>
+<span class="block font-bold">Previous</span>
+<a href=https://hackrole.github.io/post/learn-rust-note-16-concurrency/ class=block>
+16 无畏并发 fearless concurrency
+</a>
+</div>
+<div class="md:text-right mt-4 md:mt-0">
+<span class="block font-bold">Next</span>
+<a href=https://hackrole.github.io/post/learn-rust-20-threading-webserver/ class=block>
+20 build multiple-threading webserver
+</a>
+</div>
+</div>
+</div>
+</div>
+<script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>
