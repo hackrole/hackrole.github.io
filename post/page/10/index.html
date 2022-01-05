@@ -12,7 +12,7 @@
 <meta itemprop=name content="Hackrole's Blog">
 <meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"redis服务管理需知","description":"介绍一些redis部署时的注意事项\n注意事项   建议使用linux部署。\n  sysctl vm.overcommit_memory=1 或者 vm.overcommit_memory = 1 (/etc/sysctl.conf)\n  echo never \u0026gt; /sys/kernel/mm/transparent_hugepage/enabled\n  设置一个和内存一样大或更大的swap分区，不然redis有可能在内存不足时被系统杀死。\n  设置一个明确的maxmemory. 这样redis会在内存到限后抛出错误，而不会falling.\n  在写比较重的场景下需要有大约2倍于normal的内存。这些是来在内存中保留那些需要被写回磁盘的数据.\n  配置supervisor类工具时，设置 daemonize no\n  开启slave特性时，即便不使用持久化特性,redis也会perform RDB save. 除非使用实验性的diskless-sync.\n  开启slave特性时，要确保要么打开master节点的保存特性，要么关闭master节点的自动重启。\n  注意开发redis安全相关配置. require-pass/rewrite-command/bind-ip\n  aws注意事项   使用HWS实例，不要使用pv实例\n  不要使用太老的实例。 m3 good than m1\n  redis在EBS的持久话需要注意，EBS可能会太慢。\n  你可能想尝试diskless-sync. 如果replication-sync有问题的话。\n  redis升级或重启建议 TODO","url":"https://hackrole.github.io/post/redis_admin_hint/"},{"@type":"ListItem","position":2,"name":"linux(ubuntu)下安装mongodb服务器","description":"概述 安装过程可以参考官网，文档很详细.\nubuntu官网源有提供mongodb安装，但是一般版本都比较落后，更新不及时。 所以可以采用mongodb提供的安装源，安装最新的mongodb.\nmongodb只为64-bit的长期支持版本提供安装源，即ubuntu12.04/ubuntu14.04. 其他版本也许可以使用，但是不推荐。\nmongodb官网有5个主要的包:\n mongodb-dev. meta-pacage. 自动安装其他四个包. mongodb-org-server. mongod-daemon以及配置文件/init脚本 mongodb-org-mongos. mongos-daemon. mongodb-org-shell. mongo-shell mongodb-org-tools. mongoimport/mongodump/bsondump/mongoexport/retore/stat/perf/oplog等工具.  安装过程 具体过程如下\n# import mongodb GPK key sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 # add source # 12.04 echo \u0026quot;deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse\u0026quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list # 14.04 echo \u0026quot;deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse\u0026quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list sudo apt-get update sudo apt-get install -y mongodb-org  如果想安装特定版本mongodb\n# 如果只mongodb-org=3.2.0，会安装最新版本mongodb. 后面的必须也制定。 sudo apt-get install -y mongodb-org=3.","url":"https://hackrole.github.io/post/mongodb_install_on_linux/"},{"@type":"ListItem","position":3,"name":"redis数据结构介绍","description":"概述 redis并不是单纯的缓存服务器，而是被设计为一个数据结构服务器。为服务提供有用高效的数据类型.\nredis中主要包含如下数据类型:\n 字符串,二进制安全。 列表list， 链表实现。不是array. 集合set, 值不可重复. 排序集合ordered-set. 同时存储一个value和一个score. score用于排序. 字典hash, 类似python的字典和ruby的hash,但是field-key/field-value只能是字符串. bit-array或bitmaps. HyperLogLogs, 概率行数据结构. TODO  不同数据结构可以根据需要解决不同的任务集。\n类型具体说明 redis-key redis-key只能是字符串，并且是2进制安全。\n 空字符串也能做为key. 太长的key不被推荐，compare性能不好. 太短的key不好，可读性不好 u1000flw =\u0026gt; user:1000:followers 对键做良好的管理，引入命名空间和键前缀等概念. user:1000, comment:1234.replys 最大长度512MB, 不会成为限制。 exists判断key是否存在, del用于删除key, keys用于列出keys.type获取key类型. ttl/expire用于获取和设置过期时间. persist移除key的过期设置。pttl/pexpire返回/设置millsecond级别的过期时间.  redis-string 最简单的数据结构，应该也是最常用的数据结构(缓存).\n  通过get/set设置和换取\n  set在没有key时会创建key,在key存在时做update.同时可以制定second/millsecond级别的过期时间.\n  可以支持incr/incrby/decr/decrby，把字符串作为数字执行原子性的+/-.底层使用的是同一个命令。\n  getset获取key的old-value, 同时设置为最新的value.\n  mset/mget一次对多个key做操作.\n  redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度为O(1), 查找元素的复杂度为O(N).\n  大多数操作都支持左右两个方向， lpush/rpush. l-\u0026gt;list前缀/r-\u0026gt;reverse-order\n  两个方向的push/pop可以作为队列/栈使用. lrange用于获取列表内容.常用的场景:","url":"https://hackrole.github.io/post/redis_data_type_intro/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"redis持久化配置","description":"持久化级别 redis提供如下四中持久化方案:\n  完全不持久化，纯内存操作。比如做缓存服务器时。\n  RDB持久化，配置时间间隔，异步持久化。默认的持久化方案。\n  AOF持久化，所有操作都是记录到日志文件，保证所有数据都被记录。 在redis重启时，会使用AOF重建数据集。\n  结合使用RDB和AOF的持久化方案.重启时会使用AOF重建。\n  RDB优缺点 优点:\n  结构紧凑的文件，相当与系统的实时快照，很适合做数据库备份和灾难恢复。\n  性能优秀，服务线程不需要处理i/o.\n  大数据集上重启很快。不需要重建\n  缺点:\n  间隔性同步到磁盘，导致有可能会丢失部分数据。\n  fork有可能堵塞导致暂不可用.\n  AOF优缺点 优点:\n  更加稳定，可以设置为 不同步/每秒同步/完全同步.\n  redis可以rewrite过大的AOF log.\n  保存了所有操作，可以从误操作中回复数据库。\n  缺点:\n  所需的文件通常比RDB更大\n  查询性能相对比RDB更差。\n  有很稀有的bug存在，RDB没有此类bug.\n  如何使用   如果想要更强的数据一致性，则应该组合使用AOF和RDB\n  如果可以容忍少量的数据丢失,可以只使用RDB.\n  不推荐只是AOF.","url":"https://hackrole.github.io/post/redis_persistence/"},{"@type":"ListItem","position":2,"name":"redis服务管理需知","description":"介绍一些redis部署时的注意事项\n注意事项   建议使用linux部署。\n  sysctl vm.overcommit_memory=1 或者 vm.overcommit_memory = 1 (/etc/sysctl.conf)\n  echo never \u0026gt; /sys/kernel/mm/transparent_hugepage/enabled\n  设置一个和内存一样大或更大的swap分区，不然redis有可能在内存不足时被系统杀死。\n  设置一个明确的maxmemory. 这样redis会在内存到限后抛出错误，而不会falling.\n  在写比较重的场景下需要有大约2倍于normal的内存。这些是来在内存中保留那些需要被写回磁盘的数据.\n  配置supervisor类工具时，设置 daemonize no\n  开启slave特性时，即便不使用持久化特性,redis也会perform RDB save. 除非使用实验性的diskless-sync.\n  开启slave特性时，要确保要么打开master节点的保存特性，要么关闭master节点的自动重启。\n  注意开发redis安全相关配置. require-pass/rewrite-command/bind-ip\n  aws注意事项   使用HWS实例，不要使用pv实例\n  不要使用太老的实例。 m3 good than m1\n  redis在EBS的持久话需要注意，EBS可能会太慢。\n  你可能想尝试diskless-sync. 如果replication-sync有问题的话。\n  redis升级或重启建议 TODO","url":"https://hackrole.github.io/post/redis_admin_hint/"},{"@type":"ListItem","position":3,"name":"linux(ubuntu)下安装mongodb服务器","description":"概述 安装过程可以参考官网，文档很详细.\nubuntu官网源有提供mongodb安装，但是一般版本都比较落后，更新不及时。 所以可以采用mongodb提供的安装源，安装最新的mongodb.\nmongodb只为64-bit的长期支持版本提供安装源，即ubuntu12.04/ubuntu14.04. 其他版本也许可以使用，但是不推荐。\nmongodb官网有5个主要的包:\n mongodb-dev. meta-pacage. 自动安装其他四个包. mongodb-org-server. mongod-daemon以及配置文件/init脚本 mongodb-org-mongos. mongos-daemon. mongodb-org-shell. mongo-shell mongodb-org-tools. mongoimport/mongodump/bsondump/mongoexport/retore/stat/perf/oplog等工具.  安装过程 具体过程如下\n# import mongodb GPK key sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927 # add source # 12.04 echo \u0026quot;deb http://repo.mongodb.org/apt/ubuntu precise/mongodb-org/3.2 multiverse\u0026quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list # 14.04 echo \u0026quot;deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse\u0026quot; | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list sudo apt-get update sudo apt-get install -y mongodb-org  如果想安装特定版本mongodb\n# 如果只mongodb-org=3.2.0，会安装最新版本mongodb. 后面的必须也制定。 sudo apt-get install -y mongodb-org=3.","url":"https://hackrole.github.io/post/mongodb_install_on_linux/"}]}</script>
 <meta property="og:title" content="Hackrole's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hackrole.github.io/post/">
@@ -67,6 +67,56 @@
 <h1 class="font-bold text-3xl text-primary-text">Posts</h1>
 </article>
 <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/redis_persistence/ class="font-bold text-xl hover:text-eureka">redis持久化配置</a>
+</div>
+<div class=content>
+持久化级别 redis提供如下四中持久化方案:
+完全不持久化，纯内存操作。比如做缓存服务器时。
+RDB持久化，配置时间间隔，异步持久化。默认的持久化方案。
+AOF持久化，所有操作都是记录到日志文件，保证所有数据都被记录。 在redis重启时，会使用AOF重建数据集。
+结合使用RDB和AOF的持久化方案.重启时会使用AOF重建。
+RDB优缺点 优点:
+结构紧凑的文件，相当与系统的实时快照，很适合做数据库备份和灾难恢复。
+性能优秀，服务线程不需要处理i/o.
+大数据集上重启很快。不需要重建
+缺点:
+间隔性同步到磁盘，导致有可能会丢失部分数据。
+fork有可能堵塞导致暂不可用.
+AOF优缺点 优点:
+更加稳定，可以设置为 不同步/每秒同步/完全同步.
+redis可以rewrite过大的AOF log.
+保存了所有操作，可以从误操作中回复数据库。
+缺点:
+所需的文件通常比RDB更大
+查询性能相对比RDB更差。
+有很稀有的bug存在，RDB没有此类bug.
+如何使用 如果想要更强的数据一致性，则应该组合使用AOF和RDB
+如果可以容忍少量的数据丢失,可以只使用RDB.
+不推荐只是AOF.
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jan 8, 2016</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-th-list mr-1"></i>
+<a href=https://hackrole.github.io/series/redis/ class=hover:text-eureka>redis</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="px-2 py-6">
 <div class="flex flex-col-reverse lg:flex-row justify-between">
 <div class=w-full>
@@ -140,42 +190,6 @@ mongodb-dev. meta-pacage. 自动安装其他四个包. mongodb-org-server. mongo
 </div>
 </div>
 </div>
-<div class="px-2 py-6">
-<div class="flex flex-col-reverse lg:flex-row justify-between">
-<div class=w-full>
-<div class=my-2>
-<div class=mb-4>
-<a href=https://hackrole.github.io/post/redis_data_type_intro/ class="font-bold text-xl hover:text-eureka">redis数据结构介绍</a>
-</div>
-<div class=content>
-概述 redis并不是单纯的缓存服务器，而是被设计为一个数据结构服务器。为服务提供有用高效的数据类型.
-redis中主要包含如下数据类型:
-字符串,二进制安全。 列表list， 链表实现。不是array. 集合set, 值不可重复. 排序集合ordered-set. 同时存储一个value和一个score. score用于排序. 字典hash, 类似python的字典和ruby的hash,但是field-key/field-value只能是字符串. bit-array或bitmaps. HyperLogLogs, 概率行数据结构. TODO 不同数据结构可以根据需要解决不同的任务集。
-类型具体说明 redis-key redis-key只能是字符串，并且是2进制安全。
-空字符串也能做为key. 太长的key不被推荐，compare性能不好. 太短的key不好，可读性不好 u1000flw =&amp;gt; user:1000:followers 对键做良好的管理，引入命名空间和键前缀等概念. user:1000, comment:1234.replys 最大长度512MB, 不会成为限制。 exists判断key是否存在, del用于删除key, keys用于列出keys.type获取key类型. ttl/expire用于获取和设置过期时间. persist移除key的过期设置。pttl/pexpire返回/设置millsecond级别的过期时间. redis-string 最简单的数据结构，应该也是最常用的数据结构(缓存).
-通过get/set设置和换取
-set在没有key时会创建key,在key存在时做update.同时可以制定second/millsecond级别的过期时间.
-可以支持incr/incrby/decr/decrby，把字符串作为数字执行原子性的+/-.底层使用的是同一个命令。
-getset获取key的old-value, 同时设置为最新的value.
-mset/mget一次对多个key做操作.
-redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度为O(1), 查找元素的复杂度为O(N).
-大多数操作都支持左右两个方向， lpush/rpush. l-&amp;gt;list前缀/r-&amp;gt;reverse-order
-两个方向的push/pop可以作为队列/栈使用. lrange用于获取列表内容.常用的场景:
-</div>
-</div>
-<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
-<div class="mr-6 my-2">
-<i class="fas fa-calendar mr-1"></i>
-<span>Jan 8, 2016</span>
-</div>
-<div class="mr-6 my-2">
-<i class="fas fa-clock mr-1"></i>
-<span>1 min read</span>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <ul class="pagination pagination-default">
 <li class=page-item>
@@ -191,7 +205,7 @@ redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度�
 <a href=/post/page/9/ aria-label="Page 9" class=page-link role=button>9</a>
 </li>
 <li class="page-item active">
-<a href=# aria-current=page aria-label="Page 10" class=page-link role=button>10</a>
+<a aria-current=page aria-label="Page 10" class=page-link role=button>10</a>
 </li>
 <li class=page-item>
 <a href=/post/page/11/ aria-label="Page 11" class=page-link role=button>11</a>
@@ -203,7 +217,7 @@ redis-list 列表, 链表实现, 在列表中间插入/移除元素的复杂度�
 <a href=/post/page/11/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
 </li>
 <li class=page-item>
-<a href=/post/page/15/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+<a href=/post/page/16/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
 </li>
 </ul>
 </div>

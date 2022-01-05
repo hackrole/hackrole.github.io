@@ -1,6 +1,6 @@
 <!doctype html><html lang=en><meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>tips | Hackrole's Blog</title>
+<title>Hackrole's Blog</title>
 <link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
 <link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
 <link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
@@ -9,19 +9,19 @@
 <link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
 <script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
 <script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
-<meta itemprop=name content="tips | Hackrole's Blog">
+<meta itemprop=name content="Hackrole's Blog">
 <meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Tags","item":"https://hackrole.github.io/tags/"},{"@type":"ListItem","position":3,"name":"tips","item":"https://hackrole.github.io/tags/tips/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"编译安装ruby问题总结","description":"多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.\nrvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.\n.. note::\n多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同.  卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.\n解决方法. .. code-block:: ruby\nsudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome  卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了\nldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url\n.. code-block:: shell\nldd `which vim`  可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题\n编译ruby 编译前记得安装readline库, 不然无法使用补全。","url":"https://hackrole.github.io/post/ruby_install_from_source/"}]}</script>
-<meta property="og:title" content="tips | Hackrole's Blog">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"elisp buffer处理相关","description":"buffer基本概念 buffer是一个elisp对象，包含一些必要的属性, 部分属性可以直接通过变量访问,部分属性要通过函数才能访问\nbuffer一般会关联一个打开的文件，也可不关联\nbuffer都有一个唯一name属性\nbuffer-local变量使得可以对不同buffer保存不同的状态等\nbufferp函数测试symbal是否为buffer\nbuffer基本属性 the current buffer buffer name buffer file name buffer modify read-only buffer buffer list buffer操作函数 ","url":"https://hackrole.github.io/post/elisp_buffer/"}]}</script>
+<meta property="og:title" content="Hackrole's Blog">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://hackrole.github.io/tags/tips/">
+<meta property="og:url" content="https://hackrole.github.io/post/">
 <meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo.">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="Hackrole's Blog">
-<meta property="og:updated_time" content="2018-08-03T10:23:01+00:00">
-<meta property="article:section" content="tags">
-<link rel=alternate type=application/rss+xml href=https://hackrole.github.io/tags/tips/index.xml title="Hackrole's Blog">
+<meta property="og:updated_time" content="2021-07-18T00:00:00+00:00">
+<meta property="article:section" content="post">
+<link rel=alternate type=application/rss+xml href=https://hackrole.github.io/post/index.xml title="Hackrole's Blog">
 <body class="flex flex-col min-h-screen">
 <header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
 <div class="container mx-auto">
@@ -32,7 +32,7 @@
 <i class="fas fa-bars"></i>
 </button>
 <div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/tags/tips/>
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/>
 <a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
 <a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
 <a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
@@ -64,7 +64,7 @@
 <div class="container mx-auto">
 <div class="max-w-screen-xl lg:px-4 xl:px-8">
 <article class="mx-6 my-8">
-<h1 class="font-bold text-3xl text-primary-text">tips</h1>
+<h1 class="font-bold text-3xl text-primary-text">Posts</h1>
 </article>
 <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
 <div class="px-2 py-6">
@@ -72,25 +72,21 @@
 <div class=w-full>
 <div class=my-2>
 <div class=mb-4>
-<a href=https://hackrole.github.io/post/ruby_install_from_source/ class="font-bold text-xl hover:text-eureka">编译安装ruby问题总结</a>
+<a href=https://hackrole.github.io/post/elisp_buffer/ class="font-bold text-xl hover:text-eureka">elisp buffer处理相关</a>
 </div>
 <div class=content>
-多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.
-rvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.
-.. note::
-多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同. 卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.
-解决方法. .. code-block:: ruby
-sudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome 卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了
-ldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url
-.. code-block:: shell
-ldd `which vim` 可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题
-编译ruby 编译前记得安装readline库, 不然无法使用补全。
+buffer基本概念 buffer是一个elisp对象，包含一些必要的属性, 部分属性可以直接通过变量访问,部分属性要通过函数才能访问
+buffer一般会关联一个打开的文件，也可不关联
+buffer都有一个唯一name属性
+buffer-local变量使得可以对不同buffer保存不同的状态等
+bufferp函数测试symbal是否为buffer
+buffer基本属性 the current buffer buffer name buffer file name buffer modify read-only buffer buffer list buffer操作函数
 </div>
 </div>
 <div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
 <div class="mr-6 my-2">
 <i class="fas fa-calendar mr-1"></i>
-<span>Jan 14, 2014</span>
+<span>Jan 2, 2014</span>
 </div>
 <div class="mr-6 my-2">
 <i class="fas fa-clock mr-1"></i>
@@ -103,16 +99,25 @@ ldd `which vim` 可以查看对应软件依赖的共享库(.so) 配合grep可以
 </div>
 <ul class="pagination pagination-default">
 <li class=page-item>
-<a href=/tags/tips/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
+<a href=/post/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
 </li>
 <li class=page-item>
-<a href=/tags/tips/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
+<a href=/post/page/15/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
 </li>
 <li class=page-item>
-<a href=/tags/tips/ aria-label="Page 1" class=page-link role=button>1</a>
+<a href=/post/page/12/ aria-label="Page 12" class=page-link role=button>12</a>
+</li>
+<li class=page-item>
+<a href=/post/page/13/ aria-label="Page 13" class=page-link role=button>13</a>
+</li>
+<li class=page-item>
+<a href=/post/page/14/ aria-label="Page 14" class=page-link role=button>14</a>
+</li>
+<li class=page-item>
+<a href=/post/page/15/ aria-label="Page 15" class=page-link role=button>15</a>
 </li>
 <li class="page-item active">
-<a aria-current=page aria-label="Page 2" class=page-link role=button>2</a>
+<a aria-current=page aria-label="Page 16" class=page-link role=button>16</a>
 </li>
 <li class="page-item disabled">
 <a aria-disabled=true aria-label=Next class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;</span></a>

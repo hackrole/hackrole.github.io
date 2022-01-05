@@ -12,7 +12,7 @@
 <meta itemprop=name content="Hackrole's Blog">
 <meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"mongodb索引建立和优化","description":"TODO: 来源\n  索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引\n  可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响\n  对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读\n  nosqlfan是个学习和找问题的好地方\n  mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用\ndb.things.ensureIndex({j:1})  默认单列/文档/组合索引   每个集合都会有个默认索引 _id ,该字段不能删除\n  单列索引可以是独立字段，也可以是嵌套文档字段\n  建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO\n  稀疏索引的概念与sql中的稀疏索引概念不同\n  mongodb不会为字段值不存在的文档加入索引,null值不能被查出\n  唯一索引\n  db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})  特殊索引 mongodb支持2d索引，用于地理位置服务。\nmongodb支持text全文索引，但是功能较弱.\n须注意：\n  mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html\n  mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理","url":"https://hackrole.github.io/post/mongodb_indexes_pretty/"},{"@type":"ListItem","position":2,"name":"ipython使用技巧","description":"内容参考: 来自 TODO\n调用timeit做性能测试 %timeit range(10000)  ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO\nipython里load代码 %load根据路径加载文件\ndebug调试代码   在出异常后,调用 %debug进入pdb开始调试程序\n  调用%pdb,在出异常时.会自动进入pdb调试\n  TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚本文件 调用ipython -i \u0026lt;pyfile\u0026gt; 在加载脚本文件后在启动ipython\n在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载","url":"https://hackrole.github.io/post/ipython_usage_tips/"},{"@type":"ListItem","position":3,"name":"编译安装ruby问题总结","description":"多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.\nrvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.\n.. note::\n多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同.  卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.\n解决方法. .. code-block:: ruby\nsudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome  卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了\nldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url\n.. code-block:: shell\nldd `which vim`  可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题\n编译ruby 编译前记得安装readline库, 不然无法使用补全。","url":"https://hackrole.github.io/post/ruby_install_from_source/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"mongodb库设计问题","description":"TODO\n项目地址:: TODO ref\nmongodb本身是无模式的，但是使用时都要在application层实现模式约束.\nmongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).\n使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.\nmongoengine问题 索引问题 索引应该跟document分开.并且有自动化建立和删除的command.\n把索引定在Document/meta/indexes里很糟糕：\n  写法很乱，不易管理。\n  有时会失效，没有建立对应的索引\n  listField校验问题 listField没法做长度限制 set/sortset/max-len list/ sort-list等结构没有实现\n不支持自定义字段验证/文档级验证 pre_save/after_save hooks 不可存储的EmbdDocumment TODO 待考虑\n可扩展的Document TODO 待考虑","url":"https://hackrole.github.io/post/mongoengine_questions/"},{"@type":"ListItem","position":2,"name":"mongodb索引建立和优化","description":"TODO: 来源\n  索引可以加快读取操作，但是会降低写入和更新操作， 一般要根据文档的读写比决定是否使用索引\n  可以使用hint和explain来比较和测试索引的实际效果， 但要注意mongodb热数据缓存带来的影响\n  对于较小的集合，使用索引查询反而会让查询更慢, 因为一次大的顺序读变成了多次随机读\n  nosqlfan是个学习和找问题的好地方\n  mongodb索引简介 基本操作 索引一般使用B+树结构，来优化查询操作， 建立的索引应该符合查询要求，才能发挥作用\ndb.things.ensureIndex({j:1})  默认单列/文档/组合索引   每个集合都会有个默认索引 _id ,该字段不能删除\n  单列索引可以是独立字段，也可以是嵌套文档字段\n  建立文档索引会导致 必须使用严格匹配的查询才能返回结果，一般用组合索引替代 TODO\n  稀疏索引的概念与sql中的稀疏索引概念不同\n  mongodb不会为字段值不存在的文档加入索引,null值不能被查出\n  唯一索引\n  db.ensureIndex({j:1}, {unique: true}) db.ensureIndex({j:1}. {unique: true, dropDups: true})  特殊索引 mongodb支持2d索引，用于地理位置服务。\nmongodb支持text全文索引，但是功能较弱.\n须注意：\n  mongodb 2d索引使用B+树结构，不会造成性能上的问题。勿轻信性能问题 http://blog.nosqlfan.com/html/1811.html\n  mongodb 2d索引返回的距离不会实际距离，而是坐标点距离. 根据实际情况做 /111, 或是/65535处理","url":"https://hackrole.github.io/post/mongodb_indexes_pretty/"},{"@type":"ListItem","position":3,"name":"ipython使用技巧","description":"内容参考: 来自 TODO\n调用timeit做性能测试 %timeit range(10000)  ipython里run代码 在ipython里调用 %run program 跑程序,程序每次都会执行, 参数如下: TODO\nipython里load代码 %load根据路径加载文件\ndebug调试代码   在出异常后,调用 %debug进入pdb开始调试程序\n  调用%pdb,在出异常时.会自动进入pdb调试\n  TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚本文件 调用ipython -i \u0026lt;pyfile\u0026gt; 在加载脚本文件后在启动ipython\n在profile_default/startup目录下放置的脚本文件会依次在ipython启动前加载","url":"https://hackrole.github.io/post/ipython_usage_tips/"}]}</script>
 <meta property="og:title" content="Hackrole's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hackrole.github.io/post/">
@@ -67,6 +67,45 @@
 <h1 class="font-bold text-3xl text-primary-text">Posts</h1>
 </article>
 <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/mongoengine_questions/ class="font-bold text-xl hover:text-eureka">mongodb库设计问题</a>
+</div>
+<div class=content>
+TODO
+项目地址:: TODO ref
+mongodb本身是无模式的，但是使用时都要在application层实现模式约束.
+mongoengine是个mongodb ORM库。已相当成熟稳定, 使用广泛, 开发活跃. 性能相对也不错(可以参见项目下的bench).
+使用下来发现mongoengine还是很不错的库，但是有部分特性使用起来并不方便.
+mongoengine问题 索引问题 索引应该跟document分开.并且有自动化建立和删除的command.
+把索引定在Document/meta/indexes里很糟糕：
+写法很乱，不易管理。
+有时会失效，没有建立对应的索引
+listField校验问题 listField没法做长度限制 set/sortset/max-len list/ sort-list等结构没有实现
+不支持自定义字段验证/文档级验证 pre_save/after_save hooks 不可存储的EmbdDocumment TODO 待考虑
+可扩展的Document TODO 待考虑
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jul 31, 2014</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-th-list mr-1"></i>
+<a href=https://hackrole.github.io/series/mongodb/ class=hover:text-eureka>mongodb</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="px-2 py-6">
 <div class="flex flex-col-reverse lg:flex-row justify-between">
 <div class=w-full>
@@ -141,39 +180,6 @@ TODO ipython历史 TODO ipython代码宏 TODO ipython配置文件 TODO 启动脚
 </div>
 </div>
 </div>
-<div class="px-2 py-6">
-<div class="flex flex-col-reverse lg:flex-row justify-between">
-<div class=w-full>
-<div class=my-2>
-<div class=mb-4>
-<a href=https://hackrole.github.io/post/ruby_install_from_source/ class="font-bold text-xl hover:text-eureka">编译安装ruby问题总结</a>
-</div>
-<div class=content>
-多版本ruby与rvm问题 rvm是用来管理ruby多版本的gem包, 可以用来在多个ruby版本间切换或安装ruby.
-rvm是通过修改环境变量的方式, 所以配合gvim等时会有些不方便。 建议还是在系统里编译个最新版的ruby好些.
-.. note::
-多版本管理不能和virtualenv相互替代，用途不同. rvm和python virtualenv作用不同. 卸载ruby导致vim/gvim无法启动 vim/gvim如果有+ruby特性，在找不到 libruby-.so. 时，是无法启动.
-解决方法. .. code-block:: ruby
-sudo aptitude purge ruby vim-common vim vim-gnome sudo aptitude install ruby vim vim-gnome 卸载ruby导致emacs启动报错问题 原因应该是因为我装了evernote-mode这个插件，这个插件依赖ruby 重新安装下ruby就解决了
-ldd实用命令 解决ruby问题时，偶尔发现的一个帖子. TODO 帖子url
-.. code-block:: shell
-ldd `which vim` 可以查看对应软件依赖的共享库(.so) 配合grep可以很好的定位依赖库找不到导致的问题
-编译ruby 编译前记得安装readline库, 不然无法使用补全。
-</div>
-</div>
-<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
-<div class="mr-6 my-2">
-<i class="fas fa-calendar mr-1"></i>
-<span>Jan 14, 2014</span>
-</div>
-<div class="mr-6 my-2">
-<i class="fas fa-clock mr-1"></i>
-<span>1 min read</span>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <ul class="pagination pagination-default">
 <li class=page-item>
@@ -183,25 +189,25 @@ ldd `which vim` 可以查看对应软件依赖的共享库(.so) 配合grep可以
 <a href=/post/page/13/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
 </li>
 <li class=page-item>
-<a href=/post/page/11/ aria-label="Page 11" class=page-link role=button>11</a>
-</li>
-<li class=page-item>
 <a href=/post/page/12/ aria-label="Page 12" class=page-link role=button>12</a>
 </li>
 <li class=page-item>
 <a href=/post/page/13/ aria-label="Page 13" class=page-link role=button>13</a>
 </li>
 <li class="page-item active">
-<a href=# aria-current=page aria-label="Page 14" class=page-link role=button>14</a>
+<a aria-current=page aria-label="Page 14" class=page-link role=button>14</a>
 </li>
 <li class=page-item>
 <a href=/post/page/15/ aria-label="Page 15" class=page-link role=button>15</a>
 </li>
 <li class=page-item>
+<a href=/post/page/16/ aria-label="Page 16" class=page-link role=button>16</a>
+</li>
+<li class=page-item>
 <a href=/post/page/15/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
 </li>
 <li class=page-item>
-<a href=/post/page/15/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+<a href=/post/page/16/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
 </li>
 </ul>
 </div>

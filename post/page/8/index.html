@@ -12,7 +12,7 @@
 <meta itemprop=name content="Hackrole's Blog">
 <meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"django tools","description":"django guardian provide object-level permissions on top of django\u0026rsquo;s authorization backend\ndjango-guardian github\ndjango-guadian doc\ncelery distributed system to process vast amounts of messages.\nalso look at airflow.\ncelery doc\ndjango-rest-framework rest-api framework on top of django\ndjango cors-headers provide cross-origin resource Sharing\ndjango-debug-toolbar provider debug tools for django app\ndjango-storages collect static file to backend, for example s3.\ndjango-pipeline process static content like comprass\ndjango-compressor package static file\ndjango-reversion provide version control for model instances.","url":"https://hackrole.github.io/post/django_tools/"},{"@type":"ListItem","position":2,"name":"vim中使用nerdcomment来注释python代码tips","description":"intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。\n项目地址: https://github.com/scrooloose/nerdcommenter.git\n常用的按键有:\n.. csv-table:: nerdcommnet按键 :header: keymap, 描述, key-mode :class: table :name: csv-table\n\u0026lt;leader\u0026gt;c\u0026lt;space\u0026gt;, 切换代码注释状态, v \u0026lt;leader\u0026gt;cc, 注释代码, v \u0026lt;leader\u0026gt;cl, 注释代码.但是保持左边对齐, v \u0026lt;leader\u0026gt;cb, 同上both-side.暂时没看出区别, v \u0026lt;leader\u0026gt;ca, 切换alt注释符号, n \u0026lt;leader\u0026gt;cA, 在行尾添加注释, n \u0026lt;leader\u0026gt;c$, 从当前cursor注释到行尾, n  配合python使用tips 添加空格\n 设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐  使用 \u0026lt;leader\u0026gt;cl 取代 \u0026lt;leader\u0026gt;c\u0026lt;space\u0026gt;.\n我一般也是用 \u0026lt;leader\u0026gt;c\u0026lt;space\u0026gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.效果如下.\nc.. image:: /static/vim-nerdcomment/bad-align.jpg :alt: bad-pep8","url":"https://hackrole.github.io/post/vim_use_nerdcomment_with_python/"},{"@type":"ListItem","position":3,"name":"vim中使用riv插件输出表格","description":"使用 严格来说, 是使用rst里支持的directives来写表格.\n想对于默认的表格写起来方便很多，而且不用烦心对齐的问题.\n第一种方式: csv-table\n.. code-block:: rst\n.. csv-table:: options整理 :header: \u0026ldquo;键名\u0026rdquo;, \u0026ldquo;描述\u0026rdquo;, \u0026ldquo;默认值\u0026rdquo;, \u0026ldquo;建议值\u0026rdquo; :class: table :name: csv-table\n quiet, \u0026quot;是否安静模式\u0026quot;, 0, 1 quiet, \u0026quot;是否安静模式\u0026quot;, 0, 1 quiet, \u0026quot;是否安静模式\u0026quot;, 0, 1 quiet, \u0026quot;是否安静模式\u0026quot;, 0, 1 quiet, \u0026quot;是否安静模式\u0026quot;, 0, 1  第二种方式: list-table\n.. code-block:: rst\n.. list-table:: Frozen Delights! :widths: 15 10 30 :class: table :name: list-table :header-rows: 1 * - Treat - Quantity - Description * - Albatross - 2.99 - On a stick!","url":"https://hackrole.github.io/post/write_rst_table_in_vim_with_riv/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"minikube tips","description":"minikube搭建issuses  启动失败  最新的28.2版本有bug,使用25.2版本\n同时25.2版本应该使用kvm,kvm2启动会失败\n注意要rm -rf ~/.minikube删除旧文件\n国内须开启代理,代理不能使用127.0.0.1, 不然docker pull会失败. 须设置no_proxy=192.168.99.0/24\n.. code-block:: bash\nhttps_proxy=192.168.88.242:8118 minikube start --docker-env \\ https_proxy=192.168.88.242:8118 --docker-env \\ http_proxy=192.168.88.242:8118 --docker-env \\ no_proxy=192.168.99.0/24 --vm-driver kvm  启动后验证是否成功:\n.. code-block:: bash\nminikube status kubectl cluster-info kubectl get pod --all-namespaces=true minikube dashboard  ","url":"https://hackrole.github.io/post/k8s_minikube_tips/"},{"@type":"ListItem","position":2,"name":"django tools","description":"django guardian provide object-level permissions on top of django\u0026rsquo;s authorization backend\ndjango-guardian github\ndjango-guadian doc\ncelery distributed system to process vast amounts of messages.\nalso look at airflow.\ncelery doc\ndjango-rest-framework rest-api framework on top of django\ndjango cors-headers provide cross-origin resource Sharing\ndjango-debug-toolbar provider debug tools for django app\ndjango-storages collect static file to backend, for example s3.\ndjango-pipeline process static content like comprass\ndjango-compressor package static file\ndjango-reversion provide version control for model instances.","url":"https://hackrole.github.io/post/django_tools/"},{"@type":"ListItem","position":3,"name":"vim中使用nerdcomment来注释python代码tips","description":"intro nerdcomment是一个vim插件，提供多种文件类型的代码注释功能. 同时设置了写常用的快捷按键。\n项目地址: https://github.com/scrooloose/nerdcommenter.git\n常用的按键有:\n.. csv-table:: nerdcommnet按键 :header: keymap, 描述, key-mode :class: table :name: csv-table\n\u0026lt;leader\u0026gt;c\u0026lt;space\u0026gt;, 切换代码注释状态, v \u0026lt;leader\u0026gt;cc, 注释代码, v \u0026lt;leader\u0026gt;cl, 注释代码.但是保持左边对齐, v \u0026lt;leader\u0026gt;cb, 同上both-side.暂时没看出区别, v \u0026lt;leader\u0026gt;ca, 切换alt注释符号, n \u0026lt;leader\u0026gt;cA, 在行尾添加注释, n \u0026lt;leader\u0026gt;c$, 从当前cursor注释到行尾, n  配合python使用tips 添加空格\n 设置 `let g:NERDSpaceDelims = 1`. 之后注释的时候会在#后加入一个空格，这样代码做pep8的时候就不会报警告了. 如图. 设置前: .. image:: /static/vim-nerdcomment/bad-delims.jpg :alt: bad-pep8 设置后: .. image:: /static/vim-nerdcomment/good-delims.jpg :alt: good-pep8 注释对齐  使用 \u0026lt;leader\u0026gt;cl 取代 \u0026lt;leader\u0026gt;c\u0026lt;space\u0026gt;.\n我一般也是用 \u0026lt;leader\u0026gt;c\u0026lt;space\u0026gt; 。但是注释出来的效果不是很好 看了好久文档总算是找个了解决办法.效果如下.\nc.. image:: /static/vim-nerdcomment/bad-align.jpg :alt: bad-pep8","url":"https://hackrole.github.io/post/vim_use_nerdcomment_with_python/"}]}</script>
 <meta property="og:title" content="Hackrole's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hackrole.github.io/post/">
@@ -67,6 +67,37 @@
 <h1 class="font-bold text-3xl text-primary-text">Posts</h1>
 </article>
 <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/k8s_minikube_tips/ class="font-bold text-xl hover:text-eureka">minikube tips</a>
+</div>
+<div class=content>
+minikube搭建issuses 启动失败 最新的28.2版本有bug,使用25.2版本
+同时25.2版本应该使用kvm,kvm2启动会失败
+注意要rm -rf ~/.minikube删除旧文件
+国内须开启代理,代理不能使用127.0.0.1, 不然docker pull会失败. 须设置no_proxy=192.168.99.0/24
+.. code-block:: bash
+https_proxy=192.168.88.242:8118 minikube start --docker-env \ https_proxy=192.168.88.242:8118 --docker-env \ http_proxy=192.168.88.242:8118 --docker-env \ no_proxy=192.168.99.0/24 --vm-driver kvm 启动后验证是否成功:
+.. code-block:: bash
+minikube status kubectl cluster-info kubectl get pod --all-namespaces=true minikube dashboard
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Aug 3, 2018</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="px-2 py-6">
 <div class="flex flex-col-reverse lg:flex-row justify-between">
 <div class=w-full>
@@ -134,37 +165,6 @@ c.. image:: /static/vim-nerdcomment/bad-align.jpg :alt: bad-pep8
 </div>
 </div>
 </div>
-<div class="px-2 py-6">
-<div class="flex flex-col-reverse lg:flex-row justify-between">
-<div class=w-full>
-<div class=my-2>
-<div class=mb-4>
-<a href=https://hackrole.github.io/post/write_rst_table_in_vim_with_riv/ class="font-bold text-xl hover:text-eureka">vim中使用riv插件输出表格</a>
-</div>
-<div class=content>
-使用 严格来说, 是使用rst里支持的directives来写表格.
-想对于默认的表格写起来方便很多，而且不用烦心对齐的问题.
-第一种方式: csv-table
-.. code-block:: rst
-.. csv-table:: options整理 :header: &amp;ldquo;键名&amp;rdquo;, &amp;ldquo;描述&amp;rdquo;, &amp;ldquo;默认值&amp;rdquo;, &amp;ldquo;建议值&amp;rdquo; :class: table :name: csv-table
-quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 第二种方式: list-table
-.. code-block:: rst
-.. list-table:: Frozen Delights! :widths: 15 10 30 :class: table :name: list-table :header-rows: 1 * - Treat - Quantity - Description * - Albatross - 2.99 - On a stick!
-</div>
-</div>
-<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
-<div class="mr-6 my-2">
-<i class="fas fa-calendar mr-1"></i>
-<span>Feb 2, 2016</span>
-</div>
-<div class="mr-6 my-2">
-<i class="fas fa-clock mr-1"></i>
-<span>1 min read</span>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <ul class="pagination pagination-default">
 <li class=page-item>
@@ -180,7 +180,7 @@ quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安�
 <a href=/post/page/7/ aria-label="Page 7" class=page-link role=button>7</a>
 </li>
 <li class="page-item active">
-<a href=# aria-current=page aria-label="Page 8" class=page-link role=button>8</a>
+<a aria-current=page aria-label="Page 8" class=page-link role=button>8</a>
 </li>
 <li class=page-item>
 <a href=/post/page/9/ aria-label="Page 9" class=page-link role=button>9</a>
@@ -192,7 +192,7 @@ quiet, &amp;quot;是否安静模式&amp;quot;, 0, 1 quiet, &amp;quot;是否安�
 <a href=/post/page/9/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
 </li>
 <li class=page-item>
-<a href=/post/page/15/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+<a href=/post/page/16/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
 </li>
 </ul>
 </div>

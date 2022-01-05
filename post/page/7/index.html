@@ -12,7 +12,7 @@
 <meta itemprop=name content="Hackrole's Blog">
 <meta itemprop=description content="Eureka is a elegant and powerful theme for Hugo.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"sort algorithms note","description":"heap sort   in-place sort algorithms\n  O(nlgn)\n  过程要点   left/right/parent可以通过(2n, 2n+1, n/2)算出.\n  一般数组索引从0开始，left/right/parent为(2n+1, 2n+2, (n-1)/2)\n  建堆算法 O(n)\n  堆有一个cap和一个len(当前长度)\n  步骤 # max-heap 保持堆性质 def max_heap(h, i): l = left(i) r = right(i) if l \u0026lt;= heap_size(A) \u0026amp;\u0026amp; A[l] \u0026gt; A[i]: lg = l if r \u0026lt;= heap_size(A) \u0026amp;\u0026amp; A[r] \u0026gt; A[i]: lg = r if lg != i: A[i], A[lg] = A[lg], A[i] max_heap(h, lg) # build-heap 建堆 def build_heap(h): hs = len(h) for i = hs/2; i \u0026gt;= 0; i--: build_heap(h, i) # heap-sort 排序 def heap_sort(A): build_heap(A) for i = len(A); i\u0026gt;0; i--: A[0], A[i] = A[i], A[0] A.","url":"https://hackrole.github.io/post/sort/"},{"@type":"ListItem","position":2,"name":"anisble note","description":"playbook组织 应该按项目组织playbook, 而不是按组件.\n比如一个畅通的web应用, api-server, db, 负载均衡, redis-cache, 日志收集 应该在一个playbook里写,而不是分成四个play,每个装一块.\nplaybook的粒度控制在项目级别.\n在hosts中列出host,之后按项目分好组.设置好组变量和全局变量.一般如果需要设置太多host变量,多半都是ansible组织出现问题. 简单变量可是使用hosts来完成,配合部分group vars_files, 少使用host vars_files\n需要加密的信息使用ansible-vault\nplaybook编写注意 尽量保证每个playbook考虑周全,不然出现第一次跑ok,第二次跑就挂的情况.\n还有可以考虑实现判断某一步是否已完成,避免每次都重复在一遍,也要考虑通过命令传参来强制跳过判断重复执行.\n个人更喜欢用supervisor取代systemctl/init.d, supervisor加载新配制的方式是, 使用service supervisor restart的方式有不少问题.\n- name: reload supervisor cmd: supervisorctl reread \u0026amp;\u0026amp; supervisorctl update - name: ensure programming running supervisorctl: name: program state: started  supervisor记得设置minfds, 避免因为ulimits的问题无法启动进程,如elasticsearch\nansible系统加固 ansible有个用来加固系统的roles, 建议加上. 包亏一些sysctl配置都是运行linux server需要的.\n常用module debug/ping copy/file/template/content_in_file user/group services/supervisorctl roles 多使用roles, 使用ansible-galaxy查找roles, 每个roles记得查看支持的系统版本, 看看role的源码, 也可适当作出修改.\n测试 molecule官方推出的测试roles, playbook的工具, 文档比较少. 基于docker自动跑roles,完成测试.\n本地也可以使用vagrant来测试.\nbest practice TODO link","url":"https://hackrole.github.io/post/ansible_note/"},{"@type":"ListItem","position":3,"name":"minikube tips","description":"minikube搭建issuses  启动失败  最新的28.2版本有bug,使用25.2版本\n同时25.2版本应该使用kvm,kvm2启动会失败\n注意要rm -rf ~/.minikube删除旧文件\n国内须开启代理,代理不能使用127.0.0.1, 不然docker pull会失败. 须设置no_proxy=192.168.99.0/24\n.. code-block:: bash\nhttps_proxy=192.168.88.242:8118 minikube start --docker-env \\ https_proxy=192.168.88.242:8118 --docker-env \\ http_proxy=192.168.88.242:8118 --docker-env \\ no_proxy=192.168.99.0/24 --vm-driver kvm  启动后验证是否成功:\n.. code-block:: bash\nminikube status kubectl cluster-info kubectl get pod --all-namespaces=true minikube dashboard  ","url":"https://hackrole.github.io/post/k8s_minikube_tips/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"tips while using org-babel","description":"multiple block tangle to single file first format use `:noweb yes` and variable as placeholder. write code block with header `:noweb-ref `\n\u0026lt;\u0026lt;config\u0026gt;\u0026gt; \u0026lt;\u0026lt;next-config\u0026gt;\u0026gt;  (println \u0026quot;hello\u0026quot;)  (println \u0026quot;this following\u0026quot;)  (println \u0026quot;this is another ways\u0026quot;)  use name and collect (setq msg \u0026quot;Never a foot too far, even.\u0026quot;)  (message msg)  (message \u0026quot;good bye\u0026quot;)  good bye  \u0026lt;\u0026lt;init\u0026gt;\u0026gt; \u0026lt;\u0026lt;msg\u0026gt;\u0026gt; \u0026lt;\u0026lt;goodbye\u0026gt;\u0026gt;  good bye  ","url":"https://hackrole.github.io/post/org-babel-tips/"},{"@type":"ListItem","position":2,"name":"sort algorithms note","description":"heap sort   in-place sort algorithms\n  O(nlgn)\n  过程要点   left/right/parent可以通过(2n, 2n+1, n/2)算出.\n  一般数组索引从0开始，left/right/parent为(2n+1, 2n+2, (n-1)/2)\n  建堆算法 O(n)\n  堆有一个cap和一个len(当前长度)\n  步骤 # max-heap 保持堆性质 def max_heap(h, i): l = left(i) r = right(i) if l \u0026lt;= heap_size(A) \u0026amp;\u0026amp; A[l] \u0026gt; A[i]: lg = l if r \u0026lt;= heap_size(A) \u0026amp;\u0026amp; A[r] \u0026gt; A[i]: lg = r if lg != i: A[i], A[lg] = A[lg], A[i] max_heap(h, lg) # build-heap 建堆 def build_heap(h): hs = len(h) for i = hs/2; i \u0026gt;= 0; i--: build_heap(h, i) # heap-sort 排序 def heap_sort(A): build_heap(A) for i = len(A); i\u0026gt;0; i--: A[0], A[i] = A[i], A[0] A.","url":"https://hackrole.github.io/post/sort/"},{"@type":"ListItem","position":3,"name":"anisble note","description":"playbook组织 应该按项目组织playbook, 而不是按组件.\n比如一个畅通的web应用, api-server, db, 负载均衡, redis-cache, 日志收集 应该在一个playbook里写,而不是分成四个play,每个装一块.\nplaybook的粒度控制在项目级别.\n在hosts中列出host,之后按项目分好组.设置好组变量和全局变量.一般如果需要设置太多host变量,多半都是ansible组织出现问题. 简单变量可是使用hosts来完成,配合部分group vars_files, 少使用host vars_files\n需要加密的信息使用ansible-vault\nplaybook编写注意 尽量保证每个playbook考虑周全,不然出现第一次跑ok,第二次跑就挂的情况.\n还有可以考虑实现判断某一步是否已完成,避免每次都重复在一遍,也要考虑通过命令传参来强制跳过判断重复执行.\n个人更喜欢用supervisor取代systemctl/init.d, supervisor加载新配制的方式是, 使用service supervisor restart的方式有不少问题.\n- name: reload supervisor cmd: supervisorctl reread \u0026amp;\u0026amp; supervisorctl update - name: ensure programming running supervisorctl: name: program state: started  supervisor记得设置minfds, 避免因为ulimits的问题无法启动进程,如elasticsearch\nansible系统加固 ansible有个用来加固系统的roles, 建议加上. 包亏一些sysctl配置都是运行linux server需要的.\n常用module debug/ping copy/file/template/content_in_file user/group services/supervisorctl roles 多使用roles, 使用ansible-galaxy查找roles, 每个roles记得查看支持的系统版本, 看看role的源码, 也可适当作出修改.\n测试 molecule官方推出的测试roles, playbook的工具, 文档比较少. 基于docker自动跑roles,完成测试.\n本地也可以使用vagrant来测试.\nbest practice TODO link","url":"https://hackrole.github.io/post/ansible_note/"}]}</script>
 <meta property="og:title" content="Hackrole's Blog">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://hackrole.github.io/post/">
@@ -67,6 +67,35 @@
 <h1 class="font-bold text-3xl text-primary-text">Posts</h1>
 </article>
 <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+<div class="px-2 py-6">
+<div class="flex flex-col-reverse lg:flex-row justify-between">
+<div class=w-full>
+<div class=my-2>
+<div class=mb-4>
+<a href=https://hackrole.github.io/post/org-babel-tips/ class="font-bold text-xl hover:text-eureka">tips while using org-babel</a>
+</div>
+<div class=content>
+multiple block tangle to single file first format use `:noweb yes` and variable as placeholder. write code block with header `:noweb-ref `
+&amp;lt;&amp;lt;config&amp;gt;&amp;gt; &amp;lt;&amp;lt;next-config&amp;gt;&amp;gt; (println &amp;quot;hello&amp;quot;) (println &amp;quot;this following&amp;quot;) (println &amp;quot;this is another ways&amp;quot;) use name and collect (setq msg &amp;quot;Never a foot too far, even.&amp;quot;) (message msg) (message &amp;quot;good bye&amp;quot;) good bye &amp;lt;&amp;lt;init&amp;gt;&amp;gt; &amp;lt;&amp;lt;msg&amp;gt;&amp;gt; &amp;lt;&amp;lt;goodbye&amp;gt;&amp;gt; good bye
+</div>
+</div>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Oct 27, 2020</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>1 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/emacs/ class=hover:text-eureka>emacs</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="px-2 py-6">
 <div class="flex flex-col-reverse lg:flex-row justify-between">
 <div class=w-full>
@@ -134,37 +163,6 @@ best practice TODO link
 </div>
 </div>
 </div>
-<div class="px-2 py-6">
-<div class="flex flex-col-reverse lg:flex-row justify-between">
-<div class=w-full>
-<div class=my-2>
-<div class=mb-4>
-<a href=https://hackrole.github.io/post/k8s_minikube_tips/ class="font-bold text-xl hover:text-eureka">minikube tips</a>
-</div>
-<div class=content>
-minikube搭建issuses 启动失败 最新的28.2版本有bug,使用25.2版本
-同时25.2版本应该使用kvm,kvm2启动会失败
-注意要rm -rf ~/.minikube删除旧文件
-国内须开启代理,代理不能使用127.0.0.1, 不然docker pull会失败. 须设置no_proxy=192.168.99.0/24
-.. code-block:: bash
-https_proxy=192.168.88.242:8118 minikube start --docker-env \ https_proxy=192.168.88.242:8118 --docker-env \ http_proxy=192.168.88.242:8118 --docker-env \ no_proxy=192.168.99.0/24 --vm-driver kvm 启动后验证是否成功:
-.. code-block:: bash
-minikube status kubectl cluster-info kubectl get pod --all-namespaces=true minikube dashboard
-</div>
-</div>
-<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
-<div class="mr-6 my-2">
-<i class="fas fa-calendar mr-1"></i>
-<span>Aug 3, 2018</span>
-</div>
-<div class="mr-6 my-2">
-<i class="fas fa-clock mr-1"></i>
-<span>1 min read</span>
-</div>
-</div>
-</div>
-</div>
-</div>
 </div>
 <ul class="pagination pagination-default">
 <li class=page-item>
@@ -180,7 +178,7 @@ minikube status kubectl cluster-info kubectl get pod --all-namespaces=true minik
 <a href=/post/page/6/ aria-label="Page 6" class=page-link role=button>6</a>
 </li>
 <li class="page-item active">
-<a href=# aria-current=page aria-label="Page 7" class=page-link role=button>7</a>
+<a aria-current=page aria-label="Page 7" class=page-link role=button>7</a>
 </li>
 <li class=page-item>
 <a href=/post/page/8/ aria-label="Page 8" class=page-link role=button>8</a>
@@ -192,7 +190,7 @@ minikube status kubectl cluster-info kubectl get pod --all-namespaces=true minik
 <a href=/post/page/8/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a>
 </li>
 <li class=page-item>
-<a href=/post/page/15/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
+<a href=/post/page/16/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a>
 </li>
 </ul>
 </div>

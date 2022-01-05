@@ -1,0 +1,411 @@
+<!doctype html><html lang=en><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>source read | Hackrole's Blog</title>
+<link rel=icon type=image/png sizes=32x32 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_32x32_fill_box_center_3.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://hackrole.github.io/images/icon_hu64421c6c7700f606f0ad45d807017b09_5843_180x180_fill_box_center_3.png>
+<link rel=stylesheet href=https://hackrole.github.io/css/eureka.min.css>
+<script defer src=https://hackrole.github.io/js/eureka.min.js></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel=stylesheet>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css>
+<script defer src=https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js></script>
+<script async src=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js integrity="sha256-uNYoXefWRqv+PsIF/OflNmwtKM4lStn9yrz2gVl6ymo=" crossorigin=anonymous></script>
+<meta itemprop=name content="source read | Hackrole's Blog">
+<meta itemprop=description content="TODOadd lib to auto-read python lib, make plantuml file plantuml graph class graph @startuml class RequestMethods { __init__(headers) urlopen(method: str, url: str, body, headers, encode_multipart, **kw) -> BaseHTTPResposne request(method: str, url: str, body, fields, headers, json, **urlopen_kw) -> BaseHTTPResposne request_encode_url(method, url, fields, headers, **urlopen_kw) -> BaseHTTPResposne request_encode_body(method, url, fields, headers, encode_multipart: bool, **urlopen_kw) -> BaseHTTPResposne } class ContentDecoder { decompress(self, data: btyes) -> bytes flush(self) -> bytes } class DeflateDecoder { decompress(self, data: bytes) -> bytes flush(self) -> bytes } enum GzipDecoderState { FIRST_MEMBER OTHER_MEMBERS SWALLOW_DATA } class GzipDecoder { decompress(self, data: bytes) -> bytes flush(self) -> bytes } class BrotliDecoder { flush(self) -> bytes } class MultiDecoder { list[ContentDecoder] _decoders decompress(self, data: bytes) -> bytes flush(self) -> bytes } ContentDecoder <|-- DeflateDecoder ContentDecoder <|-- GzipDecoder ContentDecoder <|-- BrotliDecoder ContentDecoder <|-- MultiDecoder class BaseHTTPResposne { abstract data : property abstract url : property abstract closed : property abstract HTTPConnection connection : property get_redirect_location(self) -> Union[None, str, False] json() -> Any abstract stream(amt: Optional[int] decode_content: Optional[bool]) -> Iterator[bytes] abstract read(amt: Optional[int], decode_content: Optional[bool], cache_content: bool) -> bytes abstract read_chunked(self, amt: Optional[int], decode_content: Optional[bool]) -> Iterator[bytes] abstract release_conn(self) -> None abstract draion_conn(self) -> None abstract close(self) -> None _init_decoder(self) -> None _decode(self, data: bytes, decode_content: Optional[bool], flush_decoder: bool) -> bytes _flush_decoder(self) -> bytes readable(self) -> bool readinto(self, b: bytearray) -> int getheaders(self) -> List[Tuple[str, str]] getheader(self, name: str, default: Optional[str] = None) -> Optional[str] info(self) -> HTTPHeaderDict geturl(self) -> Optional[Union[str, Literal[False]]] } class HTTPResponse { data : property url: property connection : property release_conn(self) -> None draion_conn(self) -> None is_closed(self) -> bool tell(self) -> int _init_length(self, request_method: Optional[str]) -> Optional[int] _error_catcher(self) -> Generator(None, None, None) : contextmanager read(self, amt: Optional[int], decode_content: Optional[bool] = None, cache_content: bool = False) -> bytes stream(amt: Optional[int] decode_content: Optional[bool]) -> Iterator[bytes] classmethod from_httplib(ResponseCls, r: HttpLibHTTPResponse, **response_kw: Any) -> HTTPResponse close(self) -> None closed(self) -> bool :property fileno(self) -> int flush(self) -> None supports_chunked_read(self) -> bool _update_chunk_length(self) -> None _handle_chunk(self, amt: Optional[int]) -> bytes read_chunked(self, amt: Optional[int], decode_content: Optional[bool] = None) -> Generator[bytes, None, None] __iter__(self) -> Iterator[bytes] } BaseHTTPResposne <|-- HTTPResponse @enduml   @startuml enum _Sentinel { not_passed } class RecentUsedContainer { } class HTTPHeaderDictItemView { HTTPHeaderDict _headers } class HTTPHeaderDict { } @enduml   pool_manager @startuml class PookKey { key_scheme key_host key_port key_timeout key_retries key_block key_source_address key_key_file key_key_password key_cert_file key_cert_reqs key_ca_certs key_ssl_version key_ssl_minimum_version key_ssl_maximum_version key_ca_cert_dir key_ssl_context key_maxsize key_headers key__proxy key__proxy_headers key__proxy_config key_socket_options key__socks_options key_assert_hostname key_assert_fingerprint key_server_hostname key_blocksize } class PoolManager { __enter__(self) -> _SelfT __exit__(self, exc_type, exc_val, exc_tb) --> Literal[False] _new_pool(self, scheme: str, host: str, port: str, request_context: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool clear(self) -> None connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = &#34;http&#34;, pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool connection_from_context(self, request_context: Dict[str, Any]) -> HTTPConnectionPool connection_from_pool_key(self, pool_key: PoolKey, request_context: Dict[str, Any]) -> HTTPConnectionPool connection_from_url(self, url: str, pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool _merge_pool_kwargs(self, overrider: Optional[Dict[str, Any]]) -> Dict[str, Any] _proxy_requires_url_absolute_form(self, parsed_url: Url) -> bool urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -> BaseHTTPResponse } class ProxyManager { connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = &#34;http&#34;, pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool _set_proxy_headers(self, url: str, headers: Optional[Mapping[str, str]] = None) -> Mapping[str, str] urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -> BaseHTTPResponse } RequestMethods <|-- PoolManager PoolManager <|-- ProxyManager @enduml   fields class RequestField { _name _filename headers classmethod from_tuples(cls, fieldname: str, value ) -> RequestField _render_part(self, name: str, value) -> str _render_parts(self, header_parts: Union[Dict[str, str], Sequence[Tuple[str, str]]) -> str render_headers(self) -> str make_multipart(self, content_disposition: Optional[str] = None, content_type: Optional[str] = None, content_loation: Optional[str] = None) -> None }  exceptions @startuml Excepption <|-- HTTPError Warning <|-- HTTPWarning PoolError <|-- HTTPError PoolError <|-- RequestError HTTPError <|-- SSLERROR HTTPError <|-- ProxyError HTTPError <|-- DecodeError HTTPError <|-- ProtocolError HTTPError <|-- ConnectionError RequestError <|-- MaxRetryError RequestError <|-- HostChangeError HTTPError <|-- TimeoutStateError HTTPError <|-- TimeoutError TimeoutError <|-- ReadTimeoutError TimeoutError <|-- ConnectTimeoutError ConnectTimeoutError <|-- NewConnectionError NewConnectionError <|-- NameResolutionError PoolError <|-- EmptyPoolError PoolError <|-- FullPoolError @enduml   connection pool @startuml class ConnectionPool { __str__(self) -> str __enter__(self) -> SelfT __exit__(self, exec_type, exc_value, exc_tb) -> &#34;Literal[False]&#34; close(self) -> None } class HTTPConnectionPool { _new_conn(self) -> HTTPConnection _get_conn(self, timeout: Optional[float] = None) -> HTTPConnection _put_conn(self, conn: Optional[HTTPConnection]) -> None _validate_conn(self, conn: HTTPConnection) -> None _prepare_proxy(self, conn: HTTPConnection) -> None _get_timeout(self, timeout) -> Timeout _raise_timeout(self, err, url: str, timeout_value) -> None _make_request(self, conn: HTTPConnection, method: str, url: str, timeout: float, chunked: bool = False, **httplib_request_kw: Any) -> _HttplibHTTPResponse _absolute_url(self, path: str) -> str close(self) -> None is_same_host(self, url: str) -> bool urlopen(self, method: str, url: str, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw: Any) -> BaseHTTPResponse } class HTTPSConnectionPool { _prepare_conn(self, conn: HTTPSConnection) -> HTTPConnection _prepase_proxy(self, conn: HTTPSConnection) -> None _new_conn(self) -> HTTPConnection _validate_conn(self, conn: HTTPConnection) -> None } ConnectionPool <|-- HTTPConnectionPool RequestMethods <|-- HTTPConnectionPool HTTPConnectionPool <|-- HTTPSConnectionPool @enduml   connection @startuml NamedTuple <|-- ProxyConfig class ProxyConfig { ssl_context use_forwarding_for_https } _HTTPConnection <|-- HTTPConnection class HTTPConnection { host : property _new_conn(self) -> socket.">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Hackrole's Blog","item":"https://hackrole.github.io/"},{"@type":"ListItem","position":2,"name":"Posts","item":"https://hackrole.github.io/post/"},{"@type":"ListItem","position":3,"name":"source read","item":"https://hackrole.github.io/post/urllib3_source_read/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://hackrole.github.io/post/urllib3_source_read/"},"headline":"source read | Hackrole\u0027s Blog","datePublished":"2021-01-05T00:00:00+00:00","dateModified":"2022-01-05T14:31:14+08:00","wordCount":915,"publisher":{"@type":"Person","name":"Example publisher","logo":{"@type":"ImageObject","url":"https://hackrole.github.io/images/icon.png"}},"description":"TODOadd lib to auto-read python lib, make plantuml file plantuml graph class graph @startuml class RequestMethods { __init__(headers) urlopen(method: str, url: str, body, headers, encode_multipart, **kw) -\u0026gt; BaseHTTPResposne request(method: str, url: str, body, fields, headers, json, **urlopen_kw) -\u0026gt; BaseHTTPResposne request_encode_url(method, url, fields, headers, **urlopen_kw) -\u0026gt; BaseHTTPResposne request_encode_body(method, url, fields, headers, encode_multipart: bool, **urlopen_kw) -\u0026gt; BaseHTTPResposne } class ContentDecoder { decompress(self, data: btyes) -\u0026gt; bytes flush(self) -\u0026gt; bytes } class DeflateDecoder { decompress(self, data: bytes) -\u0026gt; bytes flush(self) -\u0026gt; bytes } enum GzipDecoderState { FIRST_MEMBER OTHER_MEMBERS SWALLOW_DATA } class GzipDecoder { decompress(self, data: bytes) -\u0026gt; bytes flush(self) -\u0026gt; bytes } class BrotliDecoder { flush(self) -\u0026gt; bytes } class MultiDecoder { list[ContentDecoder] _decoders decompress(self, data: bytes) -\u0026gt; bytes flush(self) -\u0026gt; bytes } ContentDecoder \u0026lt;|-- DeflateDecoder ContentDecoder \u0026lt;|-- GzipDecoder ContentDecoder \u0026lt;|-- BrotliDecoder ContentDecoder \u0026lt;|-- MultiDecoder class BaseHTTPResposne { abstract data : property abstract url : property abstract closed : property abstract HTTPConnection connection : property get_redirect_location(self) -\u0026gt; Union[None, str, False] json() -\u0026gt; Any abstract stream(amt: Optional[int] decode_content: Optional[bool]) -\u0026gt; Iterator[bytes] abstract read(amt: Optional[int], decode_content: Optional[bool], cache_content: bool) -\u0026gt; bytes abstract read_chunked(self, amt: Optional[int], decode_content: Optional[bool]) -\u0026gt; Iterator[bytes] abstract release_conn(self) -\u0026gt; None abstract draion_conn(self) -\u0026gt; None abstract close(self) -\u0026gt; None _init_decoder(self) -\u0026gt; None _decode(self, data: bytes, decode_content: Optional[bool], flush_decoder: bool) -\u0026gt; bytes _flush_decoder(self) -\u0026gt; bytes readable(self) -\u0026gt; bool readinto(self, b: bytearray) -\u0026gt; int getheaders(self) -\u0026gt; List[Tuple[str, str]] getheader(self, name: str, default: Optional[str] = None) -\u0026gt; Optional[str] info(self) -\u0026gt; HTTPHeaderDict geturl(self) -\u0026gt; Optional[Union[str, Literal[False]]] } class HTTPResponse { data : property url: property connection : property release_conn(self) -\u0026gt; None draion_conn(self) -\u0026gt; None is_closed(self) -\u0026gt; bool tell(self) -\u0026gt; int _init_length(self, request_method: Optional[str]) -\u0026gt; Optional[int] _error_catcher(self) -\u0026gt; Generator(None, None, None) : contextmanager read(self, amt: Optional[int], decode_content: Optional[bool] = None, cache_content: bool = False) -\u0026gt; bytes stream(amt: Optional[int] decode_content: Optional[bool]) -\u0026gt; Iterator[bytes] classmethod from_httplib(ResponseCls, r: HttpLibHTTPResponse, **response_kw: Any) -\u0026gt; HTTPResponse close(self) -\u0026gt; None closed(self) -\u0026gt; bool :property fileno(self) -\u0026gt; int flush(self) -\u0026gt; None supports_chunked_read(self) -\u0026gt; bool _update_chunk_length(self) -\u0026gt; None _handle_chunk(self, amt: Optional[int]) -\u0026gt; bytes read_chunked(self, amt: Optional[int], decode_content: Optional[bool] = None) -\u0026gt; Generator[bytes, None, None] __iter__(self) -\u0026gt; Iterator[bytes] } BaseHTTPResposne \u0026lt;|-- HTTPResponse @enduml   @startuml enum _Sentinel { not_passed } class RecentUsedContainer { } class HTTPHeaderDictItemView { HTTPHeaderDict _headers } class HTTPHeaderDict { } @enduml   pool_manager @startuml class PookKey { key_scheme key_host key_port key_timeout key_retries key_block key_source_address key_key_file key_key_password key_cert_file key_cert_reqs key_ca_certs key_ssl_version key_ssl_minimum_version key_ssl_maximum_version key_ca_cert_dir key_ssl_context key_maxsize key_headers key__proxy key__proxy_headers key__proxy_config key_socket_options key__socks_options key_assert_hostname key_assert_fingerprint key_server_hostname key_blocksize } class PoolManager { __enter__(self) -\u0026gt; _SelfT __exit__(self, exc_type, exc_val, exc_tb) --\u0026gt; Literal[False] _new_pool(self, scheme: str, host: str, port: str, request_context: Optional[Dict[str, Any]] = None) -\u0026gt; HTTPConnectionPool clear(self) -\u0026gt; None connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = \u0026quot;http\u0026quot;, pool_kwargs: Optional[Dict[str, Any]] = None) -\u0026gt; HTTPConnectionPool connection_from_context(self, request_context: Dict[str, Any]) -\u0026gt; HTTPConnectionPool connection_from_pool_key(self, pool_key: PoolKey, request_context: Dict[str, Any]) -\u0026gt; HTTPConnectionPool connection_from_url(self, url: str, pool_kwargs: Optional[Dict[str, Any]] = None) -\u0026gt; HTTPConnectionPool _merge_pool_kwargs(self, overrider: Optional[Dict[str, Any]]) -\u0026gt; Dict[str, Any] _proxy_requires_url_absolute_form(self, parsed_url: Url) -\u0026gt; bool urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -\u0026gt; BaseHTTPResponse } class ProxyManager { connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = \u0026quot;http\u0026quot;, pool_kwargs: Optional[Dict[str, Any]] = None) -\u0026gt; HTTPConnectionPool _set_proxy_headers(self, url: str, headers: Optional[Mapping[str, str]] = None) -\u0026gt; Mapping[str, str] urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -\u0026gt; BaseHTTPResponse } RequestMethods \u0026lt;|-- PoolManager PoolManager \u0026lt;|-- ProxyManager @enduml   fields class RequestField { _name _filename headers classmethod from_tuples(cls, fieldname: str, value ) -\u0026gt; RequestField _render_part(self, name: str, value) -\u0026gt; str _render_parts(self, header_parts: Union[Dict[str, str], Sequence[Tuple[str, str]]) -\u0026gt; str render_headers(self) -\u0026gt; str make_multipart(self, content_disposition: Optional[str] = None, content_type: Optional[str] = None, content_loation: Optional[str] = None) -\u0026gt; None }  exceptions @startuml Excepption \u0026lt;|-- HTTPError Warning \u0026lt;|-- HTTPWarning PoolError \u0026lt;|-- HTTPError PoolError \u0026lt;|-- RequestError HTTPError \u0026lt;|-- SSLERROR HTTPError \u0026lt;|-- ProxyError HTTPError \u0026lt;|-- DecodeError HTTPError \u0026lt;|-- ProtocolError HTTPError \u0026lt;|-- ConnectionError RequestError \u0026lt;|-- MaxRetryError RequestError \u0026lt;|-- HostChangeError HTTPError \u0026lt;|-- TimeoutStateError HTTPError \u0026lt;|-- TimeoutError TimeoutError \u0026lt;|-- ReadTimeoutError TimeoutError \u0026lt;|-- ConnectTimeoutError ConnectTimeoutError \u0026lt;|-- NewConnectionError NewConnectionError \u0026lt;|-- NameResolutionError PoolError \u0026lt;|-- EmptyPoolError PoolError \u0026lt;|-- FullPoolError @enduml   connection pool @startuml class ConnectionPool { __str__(self) -\u0026gt; str __enter__(self) -\u0026gt; SelfT __exit__(self, exec_type, exc_value, exc_tb) -\u0026gt; \u0026quot;Literal[False]\u0026quot; close(self) -\u0026gt; None } class HTTPConnectionPool { _new_conn(self) -\u0026gt; HTTPConnection _get_conn(self, timeout: Optional[float] = None) -\u0026gt; HTTPConnection _put_conn(self, conn: Optional[HTTPConnection]) -\u0026gt; None _validate_conn(self, conn: HTTPConnection) -\u0026gt; None _prepare_proxy(self, conn: HTTPConnection) -\u0026gt; None _get_timeout(self, timeout) -\u0026gt; Timeout _raise_timeout(self, err, url: str, timeout_value) -\u0026gt; None _make_request(self, conn: HTTPConnection, method: str, url: str, timeout: float, chunked: bool = False, **httplib_request_kw: Any) -\u0026gt; _HttplibHTTPResponse _absolute_url(self, path: str) -\u0026gt; str close(self) -\u0026gt; None is_same_host(self, url: str) -\u0026gt; bool urlopen(self, method: str, url: str, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw: Any) -\u0026gt; BaseHTTPResponse } class HTTPSConnectionPool { _prepare_conn(self, conn: HTTPSConnection) -\u0026gt; HTTPConnection _prepase_proxy(self, conn: HTTPSConnection) -\u0026gt; None _new_conn(self) -\u0026gt; HTTPConnection _validate_conn(self, conn: HTTPConnection) -\u0026gt; None } ConnectionPool \u0026lt;|-- HTTPConnectionPool RequestMethods \u0026lt;|-- HTTPConnectionPool HTTPConnectionPool \u0026lt;|-- HTTPSConnectionPool @enduml   connection @startuml NamedTuple \u0026lt;|-- ProxyConfig class ProxyConfig { ssl_context use_forwarding_for_https } _HTTPConnection \u0026lt;|-- HTTPConnection class HTTPConnection { host : property _new_conn(self) -\u0026gt; socket."}</script>
+<meta property="og:title" content="source read | Hackrole's Blog">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://hackrole.github.io/post/urllib3_source_read/">
+<meta property="og:description" content="TODOadd lib to auto-read python lib, make plantuml file plantuml graph class graph @startuml class RequestMethods { __init__(headers) urlopen(method: str, url: str, body, headers, encode_multipart, **kw) -> BaseHTTPResposne request(method: str, url: str, body, fields, headers, json, **urlopen_kw) -> BaseHTTPResposne request_encode_url(method, url, fields, headers, **urlopen_kw) -> BaseHTTPResposne request_encode_body(method, url, fields, headers, encode_multipart: bool, **urlopen_kw) -> BaseHTTPResposne } class ContentDecoder { decompress(self, data: btyes) -> bytes flush(self) -> bytes } class DeflateDecoder { decompress(self, data: bytes) -> bytes flush(self) -> bytes } enum GzipDecoderState { FIRST_MEMBER OTHER_MEMBERS SWALLOW_DATA } class GzipDecoder { decompress(self, data: bytes) -> bytes flush(self) -> bytes } class BrotliDecoder { flush(self) -> bytes } class MultiDecoder { list[ContentDecoder] _decoders decompress(self, data: bytes) -> bytes flush(self) -> bytes } ContentDecoder <|-- DeflateDecoder ContentDecoder <|-- GzipDecoder ContentDecoder <|-- BrotliDecoder ContentDecoder <|-- MultiDecoder class BaseHTTPResposne { abstract data : property abstract url : property abstract closed : property abstract HTTPConnection connection : property get_redirect_location(self) -> Union[None, str, False] json() -> Any abstract stream(amt: Optional[int] decode_content: Optional[bool]) -> Iterator[bytes] abstract read(amt: Optional[int], decode_content: Optional[bool], cache_content: bool) -> bytes abstract read_chunked(self, amt: Optional[int], decode_content: Optional[bool]) -> Iterator[bytes] abstract release_conn(self) -> None abstract draion_conn(self) -> None abstract close(self) -> None _init_decoder(self) -> None _decode(self, data: bytes, decode_content: Optional[bool], flush_decoder: bool) -> bytes _flush_decoder(self) -> bytes readable(self) -> bool readinto(self, b: bytearray) -> int getheaders(self) -> List[Tuple[str, str]] getheader(self, name: str, default: Optional[str] = None) -> Optional[str] info(self) -> HTTPHeaderDict geturl(self) -> Optional[Union[str, Literal[False]]] } class HTTPResponse { data : property url: property connection : property release_conn(self) -> None draion_conn(self) -> None is_closed(self) -> bool tell(self) -> int _init_length(self, request_method: Optional[str]) -> Optional[int] _error_catcher(self) -> Generator(None, None, None) : contextmanager read(self, amt: Optional[int], decode_content: Optional[bool] = None, cache_content: bool = False) -> bytes stream(amt: Optional[int] decode_content: Optional[bool]) -> Iterator[bytes] classmethod from_httplib(ResponseCls, r: HttpLibHTTPResponse, **response_kw: Any) -> HTTPResponse close(self) -> None closed(self) -> bool :property fileno(self) -> int flush(self) -> None supports_chunked_read(self) -> bool _update_chunk_length(self) -> None _handle_chunk(self, amt: Optional[int]) -> bytes read_chunked(self, amt: Optional[int], decode_content: Optional[bool] = None) -> Generator[bytes, None, None] __iter__(self) -> Iterator[bytes] } BaseHTTPResposne <|-- HTTPResponse @enduml   @startuml enum _Sentinel { not_passed } class RecentUsedContainer { } class HTTPHeaderDictItemView { HTTPHeaderDict _headers } class HTTPHeaderDict { } @enduml   pool_manager @startuml class PookKey { key_scheme key_host key_port key_timeout key_retries key_block key_source_address key_key_file key_key_password key_cert_file key_cert_reqs key_ca_certs key_ssl_version key_ssl_minimum_version key_ssl_maximum_version key_ca_cert_dir key_ssl_context key_maxsize key_headers key__proxy key__proxy_headers key__proxy_config key_socket_options key__socks_options key_assert_hostname key_assert_fingerprint key_server_hostname key_blocksize } class PoolManager { __enter__(self) -> _SelfT __exit__(self, exc_type, exc_val, exc_tb) --> Literal[False] _new_pool(self, scheme: str, host: str, port: str, request_context: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool clear(self) -> None connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = &#34;http&#34;, pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool connection_from_context(self, request_context: Dict[str, Any]) -> HTTPConnectionPool connection_from_pool_key(self, pool_key: PoolKey, request_context: Dict[str, Any]) -> HTTPConnectionPool connection_from_url(self, url: str, pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool _merge_pool_kwargs(self, overrider: Optional[Dict[str, Any]]) -> Dict[str, Any] _proxy_requires_url_absolute_form(self, parsed_url: Url) -> bool urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -> BaseHTTPResponse } class ProxyManager { connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = &#34;http&#34;, pool_kwargs: Optional[Dict[str, Any]] = None) -> HTTPConnectionPool _set_proxy_headers(self, url: str, headers: Optional[Mapping[str, str]] = None) -> Mapping[str, str] urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -> BaseHTTPResponse } RequestMethods <|-- PoolManager PoolManager <|-- ProxyManager @enduml   fields class RequestField { _name _filename headers classmethod from_tuples(cls, fieldname: str, value ) -> RequestField _render_part(self, name: str, value) -> str _render_parts(self, header_parts: Union[Dict[str, str], Sequence[Tuple[str, str]]) -> str render_headers(self) -> str make_multipart(self, content_disposition: Optional[str] = None, content_type: Optional[str] = None, content_loation: Optional[str] = None) -> None }  exceptions @startuml Excepption <|-- HTTPError Warning <|-- HTTPWarning PoolError <|-- HTTPError PoolError <|-- RequestError HTTPError <|-- SSLERROR HTTPError <|-- ProxyError HTTPError <|-- DecodeError HTTPError <|-- ProtocolError HTTPError <|-- ConnectionError RequestError <|-- MaxRetryError RequestError <|-- HostChangeError HTTPError <|-- TimeoutStateError HTTPError <|-- TimeoutError TimeoutError <|-- ReadTimeoutError TimeoutError <|-- ConnectTimeoutError ConnectTimeoutError <|-- NewConnectionError NewConnectionError <|-- NameResolutionError PoolError <|-- EmptyPoolError PoolError <|-- FullPoolError @enduml   connection pool @startuml class ConnectionPool { __str__(self) -> str __enter__(self) -> SelfT __exit__(self, exec_type, exc_value, exc_tb) -> &#34;Literal[False]&#34; close(self) -> None } class HTTPConnectionPool { _new_conn(self) -> HTTPConnection _get_conn(self, timeout: Optional[float] = None) -> HTTPConnection _put_conn(self, conn: Optional[HTTPConnection]) -> None _validate_conn(self, conn: HTTPConnection) -> None _prepare_proxy(self, conn: HTTPConnection) -> None _get_timeout(self, timeout) -> Timeout _raise_timeout(self, err, url: str, timeout_value) -> None _make_request(self, conn: HTTPConnection, method: str, url: str, timeout: float, chunked: bool = False, **httplib_request_kw: Any) -> _HttplibHTTPResponse _absolute_url(self, path: str) -> str close(self) -> None is_same_host(self, url: str) -> bool urlopen(self, method: str, url: str, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw: Any) -> BaseHTTPResponse } class HTTPSConnectionPool { _prepare_conn(self, conn: HTTPSConnection) -> HTTPConnection _prepase_proxy(self, conn: HTTPSConnection) -> None _new_conn(self) -> HTTPConnection _validate_conn(self, conn: HTTPConnection) -> None } ConnectionPool <|-- HTTPConnectionPool RequestMethods <|-- HTTPConnectionPool HTTPConnectionPool <|-- HTTPSConnectionPool @enduml   connection @startuml NamedTuple <|-- ProxyConfig class ProxyConfig { ssl_context use_forwarding_for_https } _HTTPConnection <|-- HTTPConnection class HTTPConnection { host : property _new_conn(self) -> socket.">
+<meta property="og:locale" content="en">
+<meta property="og:site_name" content="Hackrole's Blog">
+<meta property="article:published_time" content="2021-01-05T00:00:00+00:00">
+<meta property="article:modified_time" content="2022-01-05T14:31:14+08:00">
+<meta property="article:section" content="post">
+<body class="flex flex-col min-h-screen">
+<header class="flex items-center fixed w-full min-h-16 z-50 bg-secondary-bg shadow-sm">
+<div class="container mx-auto">
+<div class=max-w-screen-xl><script>let storageColorScheme=localStorage.getItem("lightDarkMode");(storageColorScheme=='Auto'||storageColorScheme==null)&&window.matchMedia("(prefers-color-scheme: dark)").matches||storageColorScheme=="Dark"?document.getElementsByTagName('html')[0].classList.add('dark'):storageColorScheme=="Light"&&document.getElementsByTagName('html')[0].classList.remove('dark')</script>
+<nav class="flex items-center justify-between flex-wrap p-4">
+<a href=/ class="mr-6 text-primary-text text-xl font-bold">Hackrole's Blog</a>
+<button id=navbar-btn class="md:hidden flex items-center px-3 py-2">
+<i class="fas fa-bars"></i>
+</button>
+<div id=target class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+<div class="text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0" id=current-url currenturl=https://hackrole.github.io/post/urllib3_source_read/>
+<a href=/about/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">About</a>
+<a href=/post/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Posts</a>
+<a href=/docs/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Docs</a>
+<a href=/tags/ class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Tags</a>
+<a href=/categories class="block mt-4 md:inline-block md:mt-0 hover:text-eureka mr-4 main-a">Categories</a>
+</div>
+<div class=flex>
+<div class="relative pt-4 md:pt-0">
+<div class="cursor-pointer hover:text-eureka" id=lightDarkMode>
+<i class="fas fa-adjust"></i>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id=is-open>
+</div>
+<div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40" id=lightDarkOptions>
+<span class="px-4 py-1 hover:text-eureka">Light</span>
+<span class="px-4 py-1 hover:text-eureka">Dark</span>
+<span class="px-4 py-1 hover:text-eureka">Auto</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id=is-open-mobile>
+</div>
+</nav>
+<script>document.addEventListener('DOMContentLoaded',()=>{getcolorscheme(),switchBurger()});let currenturl=document.getElementById('current-url').getAttribute('currenturl');currenturl.length>1&&(currenturl=currenturl.substr(0,currenturl.length-1)),sessionStorage.setItem("mainKey",currenturl);let elements=document.getElementsByClassName('main-a');for(let a in elements)if(typeof elements[a]=="object"){let b=elements[a].getAttribute('href');b.length>1&&b.charAt(b.length-1)=='/'&&(b=b.substr(0,b.length-1)),b==sessionStorage.getItem("mainKey")?elements[a].classList.add('text-eureka'):elements[a].classList.remove('text-eureka')}</script></div>
+</div>
+</header>
+<main class="flex-grow pt-16">
+<div class="container mx-auto">
+<div class="max-w-screen-xl lg:px-4 xl:px-8">
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+<div class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+<h1 class="font-bold text-3xl text-primary-text">source read</h1>
+<div class="flex flex-wrap flex-row items-center my-2 text-tertiary-text">
+<div class="mr-6 my-2">
+<i class="fas fa-calendar mr-1"></i>
+<span>Jan 5, 2021</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-clock mr-1"></i>
+<span>5 min read</span>
+</div>
+<div class="mr-6 my-2">
+<i class="fas fa-folder mr-1"></i>
+<a href=https://hackrole.github.io/categories/urllib3/ class=hover:text-eureka>urllib3</a>
+</div>
+</div>
+<div class=content>
+<h2 id=add-lib-to-auto-read-python-lib-make-plantuml-file>TODO add lib to auto-read python lib, make plantuml file</h2>
+<h2 id=plantuml-graph>plantuml graph</h2>
+<h3 id=class-graph>class graph</h3>
+<pre><code class=language-plantuml>@startuml
+class RequestMethods {
+        __init__(headers)
+        urlopen(method: str, url: str, body, headers, encode_multipart, **kw) -&gt; BaseHTTPResposne
+        request(method: str, url: str, body, fields, headers, json, **urlopen_kw) -&gt; BaseHTTPResposne
+        request_encode_url(method, url, fields, headers, **urlopen_kw) -&gt; BaseHTTPResposne
+        request_encode_body(method, url, fields, headers, encode_multipart: bool, **urlopen_kw) -&gt; BaseHTTPResposne
+}
+
+class ContentDecoder {
+        decompress(self, data: btyes) -&gt; bytes
+        flush(self) -&gt; bytes
+}
+
+class DeflateDecoder {
+        decompress(self, data: bytes) -&gt; bytes
+        flush(self) -&gt; bytes
+}
+
+enum GzipDecoderState {
+        FIRST_MEMBER
+        OTHER_MEMBERS
+        SWALLOW_DATA
+}
+class GzipDecoder {
+        decompress(self, data: bytes) -&gt; bytes
+        flush(self) -&gt; bytes
+}
+
+class BrotliDecoder {
+        flush(self) -&gt; bytes
+}
+
+class MultiDecoder {
+        list[ContentDecoder] _decoders
+        decompress(self, data: bytes) -&gt; bytes
+        flush(self) -&gt; bytes
+}
+
+ContentDecoder &lt;|-- DeflateDecoder
+ContentDecoder &lt;|-- GzipDecoder
+ContentDecoder &lt;|-- BrotliDecoder
+ContentDecoder &lt;|-- MultiDecoder
+
+class BaseHTTPResposne {
+        abstract data : property
+        abstract url : property
+        abstract closed : property
+        abstract HTTPConnection connection : property
+
+        get_redirect_location(self) -&gt; Union[None, str, False]
+        json() -&gt; Any
+        abstract stream(amt: Optional[int] decode_content: Optional[bool]) -&gt; Iterator[bytes]
+        abstract read(amt: Optional[int], decode_content: Optional[bool], cache_content: bool) -&gt; bytes
+        abstract read_chunked(self, amt: Optional[int], decode_content: Optional[bool]) -&gt; Iterator[bytes]
+        abstract release_conn(self) -&gt; None
+        abstract draion_conn(self) -&gt; None
+        abstract close(self) -&gt; None
+
+        _init_decoder(self) -&gt; None
+        _decode(self, data: bytes, decode_content: Optional[bool], flush_decoder: bool) -&gt; bytes
+        _flush_decoder(self) -&gt; bytes
+        readable(self) -&gt; bool
+        readinto(self, b: bytearray) -&gt; int
+        getheaders(self) -&gt; List[Tuple[str, str]]
+        getheader(self, name: str, default: Optional[str] = None) -&gt; Optional[str]
+
+        info(self) -&gt; HTTPHeaderDict
+        geturl(self) -&gt; Optional[Union[str, Literal[False]]]
+}
+
+class HTTPResponse {
+        data : property
+        url: property
+        connection : property
+
+        release_conn(self) -&gt; None
+        draion_conn(self) -&gt; None
+
+        is_closed(self) -&gt; bool
+        tell(self) -&gt; int
+        _init_length(self, request_method: Optional[str]) -&gt; Optional[int]
+        _error_catcher(self) -&gt; Generator(None, None, None) : contextmanager
+        read(self, amt: Optional[int], decode_content: Optional[bool] = None, cache_content: bool = False) -&gt; bytes
+        stream(amt: Optional[int] decode_content: Optional[bool]) -&gt; Iterator[bytes]
+        classmethod from_httplib(ResponseCls, r: HttpLibHTTPResponse, **response_kw: Any) -&gt; HTTPResponse
+
+        close(self) -&gt; None
+        closed(self) -&gt; bool :property
+        fileno(self) -&gt; int
+        flush(self) -&gt; None
+        supports_chunked_read(self) -&gt; bool
+        _update_chunk_length(self) -&gt; None
+        _handle_chunk(self, amt: Optional[int]) -&gt; bytes
+        read_chunked(self, amt: Optional[int], decode_content: Optional[bool] = None) -&gt; Generator[bytes, None, None]
+        __iter__(self) -&gt; Iterator[bytes]
+}
+
+BaseHTTPResposne &lt;|-- HTTPResponse
+
+@enduml
+</code></pre>
+<figure><img src=/image/urllib3_static_class.png>
+</figure>
+<pre><code class=language-plantuml>@startuml
+enum _Sentinel {
+        not_passed
+}
+
+class RecentUsedContainer {
+}
+
+class HTTPHeaderDictItemView {
+        HTTPHeaderDict _headers
+}
+class HTTPHeaderDict {
+
+}
+@enduml
+</code></pre>
+<figure><img src=/image/urllib3_collections_class.png>
+</figure>
+<h3 id=pool-manager>pool_manager</h3>
+<pre><code class=language-plantuml>@startuml
+class PookKey {
+        key_scheme
+        key_host
+        key_port
+        key_timeout
+        key_retries
+        key_block
+        key_source_address
+        key_key_file
+        key_key_password
+        key_cert_file
+        key_cert_reqs
+        key_ca_certs
+        key_ssl_version
+        key_ssl_minimum_version
+        key_ssl_maximum_version
+        key_ca_cert_dir
+        key_ssl_context
+        key_maxsize
+        key_headers
+        key__proxy
+        key__proxy_headers
+        key__proxy_config
+        key_socket_options
+        key__socks_options
+        key_assert_hostname
+        key_assert_fingerprint
+        key_server_hostname
+        key_blocksize
+}
+
+class PoolManager {
+        __enter__(self) -&gt; _SelfT
+        __exit__(self, exc_type, exc_val, exc_tb) --&gt; Literal[False]
+        _new_pool(self, scheme: str, host: str, port: str, request_context: Optional[Dict[str, Any]] = None) -&gt; HTTPConnectionPool
+        clear(self) -&gt; None
+        connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = &quot;http&quot;, pool_kwargs: Optional[Dict[str, Any]] = None) -&gt; HTTPConnectionPool
+        connection_from_context(self, request_context: Dict[str, Any]) -&gt; HTTPConnectionPool
+        connection_from_pool_key(self, pool_key: PoolKey, request_context: Dict[str, Any]) -&gt; HTTPConnectionPool
+        connection_from_url(self, url: str, pool_kwargs: Optional[Dict[str, Any]] = None) -&gt; HTTPConnectionPool
+        _merge_pool_kwargs(self, overrider: Optional[Dict[str, Any]]) -&gt; Dict[str, Any]
+        _proxy_requires_url_absolute_form(self, parsed_url: Url) -&gt; bool
+        urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -&gt; BaseHTTPResponse
+}
+
+class ProxyManager {
+        connection_from_host(self, host: Optional[str], port: Optional[int] = None, scheme: Optional[str] = &quot;http&quot;, pool_kwargs: Optional[Dict[str, Any]] = None) -&gt; HTTPConnectionPool
+        _set_proxy_headers(self, url: str, headers: Optional[Mapping[str, str]] = None) -&gt; Mapping[str, str]
+        urlopen(self, method: str, url: str, redirect: bool = True, **kw: Any) -&gt; BaseHTTPResponse
+}
+
+
+RequestMethods &lt;|-- PoolManager
+PoolManager &lt;|-- ProxyManager
+@enduml
+</code></pre>
+<figure><img src=/image/urllib3_pool_manager_class.png>
+</figure>
+<h3 id=fields>fields</h3>
+<pre><code class=language-plantuml>class RequestField {
+        _name
+        _filename
+        headers
+
+        classmethod from_tuples(cls, fieldname: str, value ) -&gt; RequestField
+        _render_part(self, name: str, value) -&gt; str
+        _render_parts(self, header_parts: Union[Dict[str, str], Sequence[Tuple[str, str]]) -&gt; str
+        render_headers(self) -&gt; str
+        make_multipart(self, content_disposition: Optional[str] = None, content_type: Optional[str] = None, content_loation: Optional[str] = None) -&gt; None
+}
+</code></pre>
+<h3 id=exceptions>exceptions</h3>
+<pre><code class=language-plantuml>@startuml
+Excepption &lt;|-- HTTPError
+Warning &lt;|-- HTTPWarning
+PoolError &lt;|-- HTTPError
+PoolError &lt;|-- RequestError
+HTTPError &lt;|-- SSLERROR
+HTTPError &lt;|-- ProxyError
+HTTPError &lt;|-- DecodeError
+HTTPError &lt;|-- ProtocolError
+HTTPError &lt;|-- ConnectionError
+RequestError &lt;|-- MaxRetryError
+RequestError &lt;|-- HostChangeError
+HTTPError &lt;|-- TimeoutStateError
+HTTPError &lt;|-- TimeoutError
+TimeoutError &lt;|-- ReadTimeoutError
+TimeoutError &lt;|-- ConnectTimeoutError
+ConnectTimeoutError &lt;|-- NewConnectionError
+NewConnectionError &lt;|-- NameResolutionError
+PoolError &lt;|-- EmptyPoolError
+PoolError &lt;|-- FullPoolError
+@enduml
+</code></pre>
+<figure><img src=/image/urllib3_exceptions_class.png>
+</figure>
+<h3 id=connection-pool>connection pool</h3>
+<pre><code class=language-plantuml>@startuml
+class ConnectionPool {
+        __str__(self) -&gt; str
+        __enter__(self) -&gt; SelfT
+        __exit__(self, exec_type, exc_value, exc_tb) -&gt; &quot;Literal[False]&quot;
+        close(self) -&gt; None
+}
+class HTTPConnectionPool {
+        _new_conn(self) -&gt; HTTPConnection
+        _get_conn(self, timeout: Optional[float] = None) -&gt; HTTPConnection
+        _put_conn(self, conn: Optional[HTTPConnection]) -&gt; None
+        _validate_conn(self, conn: HTTPConnection) -&gt; None
+        _prepare_proxy(self, conn: HTTPConnection) -&gt; None
+        _get_timeout(self, timeout) -&gt; Timeout
+        _raise_timeout(self, err, url: str, timeout_value) -&gt; None
+        _make_request(self, conn: HTTPConnection, method: str, url: str, timeout: float, chunked: bool = False, **httplib_request_kw: Any) -&gt; _HttplibHTTPResponse
+        _absolute_url(self, path: str) -&gt; str
+        close(self) -&gt; None
+        is_same_host(self, url: str) -&gt; bool
+        urlopen(self, method: str, url: str, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw: Any) -&gt; BaseHTTPResponse
+}
+
+class HTTPSConnectionPool {
+        _prepare_conn(self, conn: HTTPSConnection) -&gt; HTTPConnection
+        _prepase_proxy(self, conn: HTTPSConnection) -&gt; None
+        _new_conn(self) -&gt; HTTPConnection
+        _validate_conn(self, conn: HTTPConnection) -&gt; None
+}
+
+ConnectionPool &lt;|-- HTTPConnectionPool
+RequestMethods &lt;|-- HTTPConnectionPool
+HTTPConnectionPool &lt;|-- HTTPSConnectionPool
+@enduml
+</code></pre>
+<figure><img src=/image/urllib3_connectionpool_class.png>
+</figure>
+<h3 id=connection>connection</h3>
+<pre><code class=language-plantuml>@startuml
+NamedTuple &lt;|-- ProxyConfig
+class ProxyConfig {
+        ssl_context
+        use_forwarding_for_https
+}
+
+_HTTPConnection &lt;|-- HTTPConnection
+
+class HTTPConnection {
+        host : property
+        _new_conn(self) -&gt; socket.socket
+        _is_using_tunnel(self) -&gt; Optional[str]
+        _prepare_conn(self, conn: socket.socket) -&gt; None
+
+        connect(self) -&gt; None
+        close(self) -&gt; None
+        putrequest(self, method: str, url: str, skip_host: bool = False, skip_accept_encoding: bool = False) -&gt; None
+        putheader(self, header: str, *values: str) -&gt; None
+        request(self, method: str, url: str, body, headers: Mapping) -&gt; None
+        request_chunked(self, method: str, url: str, body, headers: Mapping) -&gt; None
+}
+
+HTTPConnection &lt;|-- HTTPSConnection
+
+class HTTPSConnection {
+        set_cert(self, key_file, cert_fiel, cert_reqs, key_password, ca_certs, assert_hostname, assert_fingerprint, ca_cer_dir, ca_cert_data) -&gt; None
+        connect(self) -&gt; None
+        _connect_tls_proxy(self, hostname: str, conn: socket.socket) -&gt; 'ssl.SSLSocket'
+}
+
+class DummmyConnection {
+}
+@enduml
+</code></pre>
+<figure><img src=/image/urllib3_connection_class.png>
+</figure>
+</div>
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+<div>
+<span class="block font-bold">Previous</span>
+<a href=https://hackrole.github.io/post/dirty-quick-and-tidy-it/ class=block>
+dirty-quick-and-tidy-it
+</a>
+</div>
+<div class="md:text-right mt-4 md:mt-0">
+<span class="block font-bold">Next</span>
+<a href=https://hackrole.github.io/post/ob-ipython-note/ class=block>
+using ob-ipython as alternative of jupyter
+</a>
+</div>
+</div>
+</div>
+</div>
+<script>document.addEventListener('DOMContentLoaded',()=>{hljs.initHighlightingOnLoad()})</script>
+</div>
+</div>
+</main>
+<footer>
+<div class="container mx-auto">
+<div class=max-w-screen-xl><footer class="w-full text-center p-6 pin-b text-sm text-tertiary-text">
+<p>&copy; 2020 <a href=https://www.wangchucheng.com/>C. Wang</a> and <a href=https://www.ruiqima.com/>R. Ma</a> &#183; Powered by the <a href=https://github.com/wangchucheng/hugo-eureka class=hover:text-eureka>Eureka</a> theme for <a href=https://gohugo.io class=hover:text-eureka>Hugo</a></p>
+</footer></div>
+</div>
+</footer>
+</body>
+</html>
